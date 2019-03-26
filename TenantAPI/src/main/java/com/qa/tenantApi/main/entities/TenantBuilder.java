@@ -31,44 +31,54 @@ public class TenantBuilder {
 		return tenantBuilder;
 	}
 
-	public void firstName(String firstName) {
+	public TenantBuilder firstName(String firstName) {
 		this.firstName = firstName;
+		return this;
 	}
 
-	public void lastName(String lastName) {
+	public TenantBuilder lastName(String lastName) {
 		this.lastName = lastName;
+		return this;
 	}
 
-	public void contactNumber(String contactNumber) {
+	public TenantBuilder contactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
+		return this;
 	}
 
-	public void contactEmail(String contactEmail) {
+	public TenantBuilder contactEmail(String contactEmail) {
 		this.contactEmail = contactEmail;
+		return this;
 	}
 
-	public void qaEmail(String qaEmail) {
+	public TenantBuilder qaEmail(String qaEmail) {
 		QaEmail = qaEmail;
+		return this;
 	}
 
-	public void roomReference(String roomReference) {
+	public TenantBuilder roomReference(String roomReference) {
 		this.roomReference = roomReference;
+		return this;
 	}
 
-	public void groupName(String groupName) {
+	public TenantBuilder groupName(String groupName) {
 		this.groupName = groupName;
+		return this;
 	}
 
-	public void startDate(String startDate) {
+	public TenantBuilder startDate(String startDate) {
 		this.startDate = startDate;
+		return this;
 	}
 
-	public void endDate(String endDate) {
+	public TenantBuilder endDate(String endDate) {
 		this.endDate = endDate;
+		return this;
 	}
 
-	public void notes(String notes) {
+	public TenantBuilder notes(String notes) {
 		this.notes = notes;
+		return this;
 	}
 	
 	public Tenant tennantBuild() {

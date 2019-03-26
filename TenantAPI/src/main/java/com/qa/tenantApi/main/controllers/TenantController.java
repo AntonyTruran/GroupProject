@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.tenantApi.main.entities.Tenant;
+import com.qa.tenantApi.main.entities.TenantBuilder;
 import com.qa.tenantApi.main.service.TenantService;
 
 @RestController
@@ -25,9 +26,15 @@ public class TenantController {
 	public String createTenant(@RequestBody Tenant tenant) {
 		return this.tenantService.createTenant(tenant);
 	}
-	
+
 	@GetMapping("/getAllTenants")
-	public List<Tenant> getAllTenants(){
+	public List<Tenant> getAllTenants() {
 		return this.tenantService.getAllTenants();
+	}
+
+	@GetMapping("/tenantSearch")
+	public List<Tenant> tenantSearch(String firstName, String lastName, String groupName) {
+		return this.tenantService.tenantSearch(TenantBuilder.getTenantBuilder().firstName(firstName).lastName(lastName)
+				.groupName(groupName).tennantBuild());
 	}
 }
