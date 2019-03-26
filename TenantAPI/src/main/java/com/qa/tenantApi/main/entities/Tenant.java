@@ -6,11 +6,11 @@ import javax.persistence.Id;
 
 @Entity
 public class Tenant {
-	
+
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	private String firstName;
 	private String lastName;
 	private String contactNumber;
@@ -21,11 +21,9 @@ public class Tenant {
 	private String startDate;
 	private String endDate;
 	private String notes;
-	
+
 	public Tenant() {
 	}
-
-
 
 	public Tenant(String firstName, String lastName, String contactNumber, String contactEmail, String qaEmail,
 			String roomReference, String groupName, String startDate, String endDate, String notes) {
@@ -41,8 +39,6 @@ public class Tenant {
 		this.endDate = endDate;
 		this.notes = notes;
 	}
-
-
 
 	public long getId() {
 		return id;
@@ -127,14 +123,12 @@ public class Tenant {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	
+
 	public boolean matches(Tenant tenant) {
-		
-		return (this.getFirstName().contentEquals(tenant.getFirstName())
-				||tenant.getFirstName().contentEquals("N/A"))
-				&& (this.getLastName().contentEquals(tenant.getLastName())
-						||tenant.getLastName().contentEquals("N/A"))
+
+		return (this.getFirstName().contentEquals(tenant.getFirstName()) || tenant.getFirstName().contentEquals("N/A"))
+				&& (this.getLastName().contentEquals(tenant.getLastName()) || tenant.getLastName().contentEquals("N/A"))
 				&& (this.getGroupName().contentEquals(tenant.getGroupName())
-						||tenant.getGroupName().contentEquals("N/A"));
+						|| tenant.getGroupName().contentEquals("N/A"));
 	}
 }
