@@ -1,4 +1,4 @@
-package com.qa.demo.entity;
+package com.qa.roomGateway.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,29 +10,33 @@ public class Room {
 
 	public Room() {
 		}
-	
-	public Room(String building, String roomNumber, int occupents, String currentState) {
+	public Room(String building, int roomNumber, int occupents, String currentState,String landlord) {
 		this.building = building;
 		this.roomNumber = roomNumber;
 		this.occupents = occupents;
 		this.currentState = currentState;
+		this.landlord = landlord;
 	}
 	
 	@Id
 	@GeneratedValue
-	private long roomId;
+	private int roomId;
+	@Column
 	private String building;
-	private String roomNumber;
+	@Column
+	private int roomNumber;
 	@Column(length = 1)
 	private int occupents;
+	@Column
 	private String currentState;
+	@Column
+	private String landlord;
 	
-	
-	
-	public long getRoomId() {
+		
+	public int getRoomId() {
 		return roomId;
 	}
-	public void setRoomId(long roomId) {
+	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
 	public String getBuilding() {
@@ -41,10 +45,10 @@ public class Room {
 	public void setBuilding(String building) {
 		this.building = building;
 	}
-	public String getRoomNumber() {
+	public int getRoomNumber() {
 		return roomNumber;
 	}
-	public void setRoomNumber(String roomNumber) {
+	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
 	}
 	public int getOccupents() {
@@ -58,5 +62,13 @@ public class Room {
 	}
 	public void setCurrentState(String currentState) {
 		this.currentState = currentState;
+	}
+
+	public String getLandlord() {
+		return landlord;
+	}
+
+	public void setLandlord(String landlord) {
+		this.landlord = landlord;
 	}
 }

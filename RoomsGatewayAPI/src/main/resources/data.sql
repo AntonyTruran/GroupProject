@@ -1,0 +1,1 @@
+INSERT INTO Room (room_Id,building,room_number, occupents, current_state, landlord) VALUES(0,'numberOne',1301,2,'cleaned','Jason Joans');
