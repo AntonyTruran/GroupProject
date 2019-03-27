@@ -9,6 +9,8 @@ ul{
   height: 30%;
   position: fixed;
   overflow: auto;
+  z-index: 3;
+
 }
 
 li NavLink {

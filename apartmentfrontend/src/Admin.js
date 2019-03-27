@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './Admin.css';
 
 class Admin extends Component {
  
@@ -20,7 +19,7 @@ class Admin extends Component {
   render() {
     return (
       <div>
-        
+        <div className = "Apartments">
         <h2>Apartments</h2>
           <h3>Add New Apartment</h3>
            <form>
@@ -48,6 +47,7 @@ class Admin extends Component {
            
            <input type='submit' value="Add"></input> 
 
+          <div className="delete">
            <h3>Delete an Apartment</h3>
             <form>
              <h4>
@@ -61,7 +61,9 @@ class Admin extends Component {
             </form>
 
             <input type='submit' value="Delete"></input> 
-
+          </div>
+          </div>
+          <div className="Tenants">
         <h2>Tenants</h2>
           <h3>Add New Tenant</h3>
            <form>
@@ -90,6 +92,7 @@ class Admin extends Component {
            
            <input type='submit' value="Add"></input> 
 
+            <div className="delete">
             <h3>Delete a Tenant</h3>
             <form>
              <h4>
@@ -98,9 +101,9 @@ class Admin extends Component {
              </h4>
             </form>
             <input type='submit' value="Delete"></input> 
-
-
-        
+          </div>
+          </div>
+          <div className="Building">
         <h2>Building</h2>
         <h3>Add New Building</h3>
         <form>
@@ -115,6 +118,8 @@ class Admin extends Component {
            </form> 
            <br></br>
            <input type='submit' value="Add"></input>  
+            
+            <div className="delete">
             <h3>Delete a Building</h3>
             <form>
              <h4>
@@ -124,9 +129,10 @@ class Admin extends Component {
             </form>
 
             <input type='submit' value="Delete"></input> 
-
-
-        <h2>LandLords</h2>
+          </div>
+          </div>
+          <div className="Landlords">
+        <h2>Landlords</h2>
         <h3>Add New Landlord</h3>
         <form>
              <h4>
@@ -144,7 +150,8 @@ class Admin extends Component {
            </form> 
            <input type='submit' value="Add"></input>  
 
-            <h3>Delete an Apartment</h3>
+            <div className="delete">
+            <h3>Delete a Landlord</h3>
             <form>
              <h4>
                Building name: 
@@ -157,7 +164,8 @@ class Admin extends Component {
             </form>
 
             <input type='submit' value="Delete"></input> 
-
+            </div>
+            </div>
       </div>
     );
   }
