@@ -3,7 +3,6 @@ import {
   NUM_OF_YEARS,
   MONTH_NAMES,
   MONTHS_PER_YEAR,
-  MONTHS_PER_QUARTER,
   NUM_OF_MONTHS,
   MAX_TRACK_START_GAP,
   MAX_ELEMENT_GAP,
@@ -16,10 +15,8 @@ import {
   fill,
   hexToRgb,
   colourIsLight,
-  addMonthsToYear,
   addMonthsToYearAsDate,
   nextColor,
-  createYears,
 } from './Utils.js'
 export const buildYearCells = () => {
 const v =[]

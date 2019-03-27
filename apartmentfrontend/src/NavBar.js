@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import logo from './logo.svg';
 import './NavBar.css';
 import Admin from './Admin';
 import Apartments from './Apartments';
@@ -38,6 +37,8 @@ class NavBar extends Component {
                   <br></br>
                   <li><NavLink to="/LandLords">Landlords</NavLink></li>
                   <br></br>
+                  <li><NavLink to="/Groups">Groups</NavLink></li>
+                  <br></br>
                 </ul>
               </div>
             </div>
@@ -47,6 +48,7 @@ class NavBar extends Component {
             <Route path="/Apartments" component={Apartments} />
             <Route path="/Buildings" component={Buildings} />
             <Route path="/Landlords" component={LandLords} />
+            <Route path="/Groups" component={Groups} />
             <div>
             </div>
 
