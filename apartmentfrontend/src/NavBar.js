@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import './NavBar.css';
 import Admin from './Admin';
 import Apartments from'./Apartments';
-import Groups from './Groups';
+
 import Tenants from './Tenants';
 import LandingPage from './LandingPage';
 import Buildings from './Buildings';

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import'./Tenants.css';
 
 class Tennants extends Component {
   constructor(props){

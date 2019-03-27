@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Timeline from 'react-timelines'
-
+import './Timeline.css'
 import 'react-timelines/lib/css/style.css'
 
 import {
