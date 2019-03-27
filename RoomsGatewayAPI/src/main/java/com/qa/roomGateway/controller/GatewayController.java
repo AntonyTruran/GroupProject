@@ -44,13 +44,13 @@ public class GatewayController {
 	}
 	
 	@GetMapping("/getSpecificRooms/{searchBy}")
-	public String getSpecificRooms(@PathVariable("searchBy")int request) {
-		return service.getRooms(request);	
+	public List<Room> getSpecificRooms(@PathVariable("searchBy")int request) {
+		return service.getRoomsByNumber(request);	
 	}
 	//@PathVariable ("parameter")String parameter, 
 	@PutMapping("/updateRoom/{roomReference}")
-	public String updateRoom(@PathVariable("roomReference")String roomReference) {
-		return service.updateRoom(roomReference);
+	public String updateRoom(@PathVariable("roomReference")String roomReference, @RequestBody Room updatedRoom) {
+		return service.updateRoom(roomReference, updatedRoom);
 	}
 	//send to microservices
 	

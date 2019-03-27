@@ -25,15 +25,16 @@ public class RoomService {
 		return this.repo.findAll();
 	}
 
-	public String getRooms(int request) {
-		// TODO Auto-generated method stub
-		return this.repo.findByRoomNumber(request).toString();
+	public List<Room> getRoomsByNumber(int request) {
+		return this.repo.findByRoomNumber(request);//.toString();
 		}
 
-	public String updateRoom(String roomReference) {
-		// TODO Auto-generated method stub
-		return null;
+	public String updateRoom(String roomReference, Room updatedRoom) {
+		Room currentDetails = this.repo.getOne(updatedRoom.getRoomId());
+		currentDetails.setCurrentState(updatedRoom.getCurrentState());
+		currentDetails.setOccupents(updatedRoom.getOccupents());
+		repo.save(currentDetails);
+		return "{\"message\":\"room updated\"}";
 	}
-
 
 }
