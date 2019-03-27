@@ -10,16 +10,16 @@ import org.springframework.stereotype.Component;
 public class TenantBuilder {
 	private static TenantBuilder tenantBuilder;
 
-	private String firstName = "";
-	private String lastName = "";
-	private String contactNumber = "";
-	private String contactEmail = "";
-	private String QaEmail = "";
-	private String roomReference = "";
-	private String groupName = "";
-	private String startDate = "";
-	private String endDate = "";
-	private String notes = "";
+	private String firstName;
+	private String lastName;
+	private String contactNumber;
+	private String contactEmail;
+	private String QaEmail;
+	private String roomReference;
+	private String groupName;
+	private String startDate;
+	private String endDate;
+	private String notes;
 
 	private TenantBuilder() {
 	}
