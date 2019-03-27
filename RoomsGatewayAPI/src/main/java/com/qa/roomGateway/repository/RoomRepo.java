@@ -25,6 +25,6 @@ public interface RoomRepo extends JpaRepository<Room, Integer>{
 	@Transactional
 	public List<Room> deleteRoomByBuildingAndRoomNumber(@Nullable String building, @Nullable Integer roomNumber);
 	
-	@Transactional
-	public List<Room> findByRoomNumberAndBuildingAndLandlord(@Nullable int roomNumber, String building, String landlord);
+//	@Transactional
+//	public List<Room> findByRoomNumberAndBuildingAndLandlord(@Nullable int roomNumber, String building, String landlord);
 }

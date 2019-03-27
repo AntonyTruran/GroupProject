@@ -43,6 +43,7 @@ public class RoomService {
 		Room currentDetails = this.repo.getOne(updatedRoom.getRoomId());
 		currentDetails.setCurrentState(updatedRoom.getCurrentState());
 		currentDetails.setOccupants(updatedRoom.getOccupants());
+		currentDetails.setLandlord(updatedRoom.getLandlord());
 		repo.save(currentDetails);
 		return "{\"message\":\"room updated\"}";
 	}

@@ -8,8 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Room {
 
-	public Room() {
-	}
 
 	public Room(String building, int roomNumber, int occupants, String currentState, String landlord) {
 		this.building = building;
@@ -19,6 +17,9 @@ public class Room {
 		this.landlord = landlord;
 	}
 
+	public Room() {
+	}
+	
 	@Id
 	@GeneratedValue
 	private int roomId;

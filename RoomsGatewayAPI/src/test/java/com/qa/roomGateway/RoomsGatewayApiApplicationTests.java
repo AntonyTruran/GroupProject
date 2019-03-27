@@ -1,4 +1,4 @@
-package com.qa.demo;
+package com.qa.roomGateway;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
