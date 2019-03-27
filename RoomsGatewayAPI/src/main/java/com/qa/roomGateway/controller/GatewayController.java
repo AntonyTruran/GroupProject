@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,15 +44,33 @@ public class GatewayController {
 		return this.service.getAllRooms();
 	}
 	
-	@GetMapping("/getSpecificRooms/{searchBy}")
-	public List<Room> getSpecificRooms(@PathVariable("searchBy")int request) {
+	@GetMapping("/getSpecificRooms/{request}")
+	public List<Room> getRoomsByNumber(@PathVariable("request")int request) {
 		return service.getRoomsByNumber(request);	
 	}
+	
+	@GetMapping("/getRoomByBuilding/{request}")
+	public List<Room> getRoomsByBuilding(@PathVariable("request")String request) {
+		return service.getRoomsByBuilding(request);	
+	}
+	
+	@GetMapping("/getRoomByLandlord/{request}")
+	public List<Room> getRoomsByLandlord(@PathVariable("request")String request) {
+		return service.getRoomsByLandlord(request);	
+	}
+	
 	//@PathVariable ("parameter")String parameter, 
 	@PutMapping("/updateRoom/{roomReference}")
 	public String updateRoom(@PathVariable("roomReference")String roomReference, @RequestBody Room updatedRoom) {
 		return service.updateRoom(roomReference, updatedRoom);
 	}
+	
+	@DeleteMapping("/removeRoom/{building}/{roomNumber}")
+	public String deleteRoom(@PathVariable("building") String building, @PathVariable("roomNumber") Integer roomNumber){
+		return service.deleteRoom(building, roomNumber);
+	}
+
+	
 	//send to microservices
 	
 	//get building ref
