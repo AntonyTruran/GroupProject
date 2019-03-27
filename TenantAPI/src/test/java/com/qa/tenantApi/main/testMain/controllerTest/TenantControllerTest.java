@@ -5,9 +5,11 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.ArgumentMatchers.notNull;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +33,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.qa.tenantApi.main.controllers.TenantController;
 import com.qa.tenantApi.main.entities.Tenant;
 import com.qa.tenantApi.main.entities.TenantBuilder;
@@ -53,6 +57,7 @@ public class TenantControllerTest {
 	RestTemplateBuilder rtb;
 	
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 	
 	private Tenant testTenant;
 	
@@ -61,13 +66,15 @@ public class TenantControllerTest {
 		testTenant = Constants.getConstructedTenant();
 	}
 	
-	@Ignore
 	@Test
 	public void testTenantCreation() throws Exception {
-		Mockito.when(service.createTenant((Tenant)notNull())).thenReturn("Tenant created");
-		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/createTenant").param("firstName", "first").param("lastName", "last")
-				.param("accountNum", "b12345")).andReturn();
-		assertThat(result.getResponse().getContentAsString()).contains("Account created");
+		OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+		ObjectWriter ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
+		String postContent = ow.writeValueAsString(testTenant);
+		Mockito.when(service.createTenant((Tenant)notNull())).thenReturn("New Tenant Created");
+		MvcResult result = mockMvc.perform(post("/createTenant").contentType(APPLICATION_JSON_UTF8)
+				.content(postContent)).andReturn();
+		assertThat(result.getResponse().getContentAsString()).contains("New Tenant Created");
 	}
 	
 	@Test
@@ -75,7 +82,7 @@ public class TenantControllerTest {
 		List<Tenant> MOCKED_TENANTS = new ArrayList<Tenant>();
 		MOCKED_TENANTS.add(Constants.getConstructedTenant());
 		when(service.getAllTenants()).thenReturn(MOCKED_TENANTS);
-		mockMvc.perform(get("/getAllTenants")).andExpect(content().string(containsString("TestFirst")));
+		assertThat(mockMvc.perform(get("/getAllTenants").accept(MediaType.APPLICATION_JSON)).andExpect(content().string(containsString("TestFirst"))));
 	}
 	
 	@Test
@@ -89,7 +96,6 @@ public class TenantControllerTest {
 		MvcResult result = mockMvc.perform(get("/tenantSearch").param("firstName", "TestFirst").param("lastName","TestLast").param("groupName", "TestGroupName").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
 		String content = result.getResponse().getContentAsString();
 		TypeReference<List<Tenant>> mapType = new TypeReference<List<Tenant>>() {};
-		System.out.println(content);
 		List<Tenant> list = OBJECT_MAPPER.readValue(content, mapType);
 		assertThat(list.stream().filter(x -> x.matches(testTenant)).collect(Collectors.toList()).get(0).matches(testTenant));
 	}

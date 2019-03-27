@@ -35,7 +35,7 @@ public class TenantServiceTest {
 	@Before
 	public void setup() {
 		tenantList.add(Constants.getDefaultBuilderTenant());
-		tenantList.add(Constants.getConstructedTenant());
+		tenantList.add(Constants.getConstructedTenant());  
 	}
 
 	@After
