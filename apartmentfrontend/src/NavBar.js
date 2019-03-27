@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import logo from './logo.svg';
 import './NavBar.css';
 import Admin from './Admin';
-import Apartments from'./Apartments';
+import Apartments from './Apartments';
 import Groups from './Groups';
 import Tenants from './Tenants';
 import LandingPage from './LandingPage';
@@ -12,7 +12,7 @@ import LandLords from './Landlords';
 
 class NavBar extends Component {
 
-  
+
 
   render() {
     return (
@@ -21,48 +21,35 @@ class NavBar extends Component {
           <div className="grid-counter">
             <div className="item1">
               <h1> </h1>
-            </div>  
-          
-          <div className="item2">
-            <div className ="topnav" id="NavBar">
-              <ul>
-              
-              <li> <NavLink to="/">Home</NavLink></li>
+            </div>
 
-                <br></br>
-                
-              <li><NavLink to= "/Admin">Admin</NavLink></li>
-                
-                <br></br>
-                
-              <li><NavLink to= "/Tenants">Tenants</NavLink></li>
-                
-                <br></br>
-                
-              <li><NavLink to= "/Apartments">Apartments</NavLink></li>
-              
-              <br></br>
-              
-              <li><NavLink to= "/Buildings">Buildings</NavLink></li>
-          
-              <br></br>
-                
-              
-              <li><NavLink to= "/LandLords">Landlords</NavLink></li>
-          
-              <br></br>
-              </ul>
-            </div>  
-          </div>  
-          <Route exact path="/" component={LandingPage} />
-          <Route path="/Admin" component={Admin} />
-          <Route path="/Tenants" component={Tenants} />
-          <Route path="/Apartments" component={Apartments} />
-          <Route path="/Buildings" component={Buildings} />
-          <Route path="/Landlords" component={LandLords} />
-          <div>
-          </div>
-          
+            <div className="item2">
+              <div className="topnav" id="NavBar">
+                <ul className="Navbar">
+                  <li> <NavLink to="/">Home</NavLink></li>
+                  <br></br>
+                  <li><NavLink to="/Admin">Admin</NavLink></li>
+                  <br></br>
+                  <li><NavLink to="/Tenants">Tenants</NavLink></li>
+                  <br></br>
+                  <li><NavLink to="/Apartments">Apartments</NavLink></li>
+                  <br></br>
+                  <li><NavLink to="/Buildings">Buildings</NavLink></li>
+                  <br></br>
+                  <li><NavLink to="/LandLords">Landlords</NavLink></li>
+                  <br></br>
+                </ul>
+              </div>
+            </div>
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/Admin" component={Admin} />
+            <Route path="/Tenants" component={Tenants} />
+            <Route path="/Apartments" component={Apartments} />
+            <Route path="/Buildings" component={Buildings} />
+            <Route path="/Landlords" component={LandLords} />
+            <div>
+            </div>
+
           </div>
         </Router>
       </nav>
