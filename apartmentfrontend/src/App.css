@@ -4,19 +4,31 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  height: 1vmin;
   pointer-events: none;
 }
 
+h1 img{
+  justify-content: left;
+  display: inline-flex;
+  max-height: 50px;
+  max-height: 50px;
+  width: auto;
+  height: auto; 
+}
+
 .App-header {
+  text-align: center;
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+  max-height: 80px;
+
+  display: inline-flex;
   flex-direction: column;
-  align-items: center;
+  align-items: Left;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100%;
 }
 
 .App-link {
