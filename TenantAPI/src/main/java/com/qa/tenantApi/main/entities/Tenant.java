@@ -25,8 +25,7 @@ public class Tenant {
 	public Tenant() {
 	}
 
-	public Tenant(String firstName, String lastName, String contactNumber, String contactEmail, String qaEmail,
-			String roomReference, String groupName, String startDate, String endDate, String notes) {
+	public Tenant(String firstName, String lastName, String contactNumber, String contactEmail, String qaEmail,String roomReference, String groupName, String startDate, String endDate, String notes) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.contactNumber = contactNumber;
