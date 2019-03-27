@@ -23,41 +23,18 @@ class Admin extends Component {
         <h2>Apartments</h2>
           <h3>Add New Apartment</h3>
            <form>
-             <h4>
-               Building name: 
-               <input id="building" type="text" name="Building"></input>
-             </h4>
-             <h4>
-               Apartment no.: 
-               <input id="roomNo" type="number" name="Apartment"></input>
-             </h4>
-             <h4>
-               No of occupants: 
-               <input id="occupantNo" type="number" name="No of Occupants"></input>
-             </h4>
-             <h4>
-               Landlord name: 
-               <input id="landlord" type="text" name="Landlord"></input>
-             </h4>
-             <h4>
-               Notes: 
-               <input id="notes" type="text" name="notes"></input>
-             </h4>
+             <pre>Building Name:    <input id="building" type="text" name="Building"></input></pre>
+             <pre>Apartment No:     <input id="roomNo" type="number" name="Apartment"></input></pre>
+             <pre>No Of Occupants:  <input id="occupantNo" type="number" name="No of Occupants"></input></pre>
+             <pre>Landlord Name:    <input id="landlord" type="text" name="Landlord"></input></pre>
+             <pre>Notes:            <input id="notes" type="text" name="notes"></input></pre>
            </form> 
-           
            <input type='submit' value="Add"></input> 
-
           <div className="delete">
            <h3>Delete an Apartment</h3>
             <form>
-             <h4>
-               Building name: 
-               <input id="building" type="text" name="Building"></input>
-             </h4>
-             <h4>
-               Apartment no.: 
-               <input id="roomNo" type="number" name="Apartment"></input>
-             </h4>
+             <pre>Building Name: <input id="building" type="text" name="Building"></input></pre>
+             <pre>Apartment No:  <input id="roomNo" type="number" name="Apartment"></input></pre>
             </form>
 
             <input type='submit' value="Delete"></input> 
@@ -67,27 +44,11 @@ class Admin extends Component {
         <h2>Tenants</h2>
           <h3>Add New Tenant</h3>
            <form>
-             <h4>
-               Name: 
-               <input id="name" type="text" name="Name"></input>
-             </h4>
-             <h4>
-               Group/intake: 
-               <input id="group" type="number" name="Group"></input>
-             </h4>
-             <h4>
-               Start date: 
-               <input id="startDate" type="number" name="Start Date"></input>
-             </h4>
-             <h4>
-               End date: 
-               <input id="endDate" type="number" name="End Date"></input>
-             </h4>
-             <h4>
-               Apartment no.: 
-               <input id="roomNo" type="number" name="Landlord"></input>
-             </h4>
-             
+             <pre>Name:         <input id="name" type="text" name="Name"></input></pre>
+             <pre>Group/Intake: <input id="group" type="number" name="Group"></input></pre>
+             <pre>Start Date:   <input id="startDate" type="number" name="Start Date"></input></pre>
+             <pre>End Date:     <input id="endDate" type="number" name="End Date"></input></pre>
+             <pre>Apartment No: <input id="roomNo" type="number" name="Landlord"></input></pre>
            </form> 
            
            <input type='submit' value="Add"></input> 
@@ -95,10 +56,7 @@ class Admin extends Component {
             <div className="delete">
             <h3>Delete a Tenant</h3>
             <form>
-             <h4>
-               name: 
-               <input id="name" type="text" name="Name"></input>
-             </h4>
+             <pre>Name: <input id="name" type="text" name="Name"></input></pre>
             </form>
             <input type='submit' value="Delete"></input> 
           </div>
@@ -107,14 +65,8 @@ class Admin extends Component {
         <h2>Building</h2>
         <h3>Add New Building</h3>
         <form>
-             <h4>
-               Building name: 
-               <input id="building" type="text" name="Building"></input>
-             </h4>
-             <h4>
-               Address: 
-               <input id="roomNo" type="number" name="Apartment"></input>
-             </h4>
+             <pre>Building Name:  <input id="building" type="text" name="Building"></input></pre>
+             <pre>Address:        <input id="roomNo" type="number" name="Apartment"></input></pre>
            </form> 
            <br></br>
            <input type='submit' value="Add"></input>  
@@ -122,10 +74,7 @@ class Admin extends Component {
             <div className="delete">
             <h3>Delete a Building</h3>
             <form>
-             <h4>
-               Building name: 
-               <input id="building" type="text" name="Building"></input>
-             </h4>
+             <pre>Building Name: <input id="building" type="text" name="Building"></input></pre>
             </form>
 
             <input type='submit' value="Delete"></input> 
@@ -135,32 +84,17 @@ class Admin extends Component {
         <h2>Landlords</h2>
         <h3>Add New Landlord</h3>
         <form>
-             <h4>
-               Name: 
-               <input id="name" type="text" name="Name"></input>
-             </h4>
-             <h4>
-               Phone no.: 
-               <input id="phoneNo" type="number" name="Phone"></input>
-             </h4>
-             <h4>
-               Email address
-               <input id="email" type="text" name="No of Occupants"></input>
-             </h4>
+             <pre>Name:           <input id="name" type="text" name="Name"></input></pre>
+             <pre>Phone No:       <input id="phoneNo" type="number" name="Phone"></input></pre>
+             <pre>Email Address:  <input id="email" type="text" name="No of Occupants"></input></pre>
            </form> 
            <input type='submit' value="Add"></input>  
 
             <div className="delete">
             <h3>Delete a Landlord</h3>
             <form>
-             <h4>
-               Building name: 
-               <input id="building" type="text" name="Building"></input>
-             </h4>
-             <h4>
-               Apartment no.: 
-               <input id="roomNo" type="number" name="Apartment"></input>
-             </h4>
+             <pre>Building Name: <input id="building" type="text" name="Building"></input></pre>
+             <pre>Apartment No:  <input id="roomNo" type="number" name="Apartment"></input></pre>
             </form>
 
             <input type='submit' value="Delete"></input> 
