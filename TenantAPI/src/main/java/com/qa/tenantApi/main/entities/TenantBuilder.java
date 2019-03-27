@@ -81,7 +81,7 @@ public class TenantBuilder {
 		return this;
 	}
 	
-	public Tenant TenantBuild() {
+	public Tenant tenantBuild() {
 		Tenant tenant = new Tenant(
 				Optional.ofNullable(this.firstName).orElse("N/A"),
 				Optional.ofNullable(this.lastName).orElse("N/A"),

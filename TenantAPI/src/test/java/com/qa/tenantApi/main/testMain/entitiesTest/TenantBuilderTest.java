@@ -33,13 +33,16 @@ public class TenantBuilderTest {
 
 	@Test
 	public void blankBuild() {
-		assertThat(tenantBuilder.TenantBuild().matches(Constants.getDefaultBuilderTenant()));
+		assertThat(tenantBuilder.tenantBuild().matches(Constants.getDefaultBuilderTenant()));
 	}
 
 	@Test
 	public void setterBuild() {
-		assertThat(tenantBuilder.firstName(Constants.getTestFirstName()).lastName(Constants.getTestLastName()));
-
+		assertThat(tenantBuilder.firstName(Constants.getTestFirstName()).lastName(Constants.getTestLastName())
+				.contactNumber(Constants.getTestContactNumber()).contactEmail(Constants.getTestContactEmail())
+				.qaEmail(Constants.getTestQaEmail()).roomReference(Constants.getTestRoomReference())
+				.groupName(Constants.getTestGroupName()).startDate(Constants.getTestStartDate())
+				.endDate(Constants.getTestEndDate()).notes(Constants.getTestNotes()).tenantBuild())
+		.isEqualToComparingFieldByField(Constants.getConstructedTenant());
 	}
-
 }

@@ -34,7 +34,7 @@ public class TenantController {
 
 	@GetMapping("/tenantSearch")
 	public List<Tenant> tenantSearch(String firstName, String lastName, String groupName) {
-		return this.tenantService.tenantSearch(TenantBuilder.getTenantBuilder().firstName(firstName).lastName(lastName)
-				.groupName(groupName).TenantBuild());
-	}
+		Tenant tenant = TenantBuilder.getTenantBuilder().firstName(firstName).lastName(lastName).groupName(groupName).tenantBuild();
+		return this.tenantService.tenantSearch(tenant);
+	}	
 }

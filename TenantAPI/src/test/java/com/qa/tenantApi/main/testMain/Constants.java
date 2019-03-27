@@ -6,7 +6,7 @@ import com.qa.tenantApi.main.entities.TenantBuilder;
 public class Constants {
 
 	private final static Tenant NULL_TENANT = new Tenant();
-	private final static Tenant DEFAULT_BUILDER_TENANT = TenantBuilder.getTenantBuilder().TenantBuild();
+	private final static Tenant DEFAULT_BUILDER_TENANT = TenantBuilder.getTenantBuilder().tenantBuild();
 
 	private final static String TEST_FIRST_NAME = "TestFirst";
 	private final static String TEST_LAST_NAME = "TestLast";
@@ -20,7 +20,7 @@ public class Constants {
 	private final static String TEST_NOTES = "TestNotes";
 	private final static String NA_STRING = "N/A";
 
-	private final static Tenant CONSTRUCT_TENANT = new Tenant(TEST_FIRST_NAME, TEST_LAST_NAME, TEST_CONTACT_NUMBER,
+	private final static Tenant CONSTRUCTED_TENANT = new Tenant(TEST_FIRST_NAME, TEST_LAST_NAME, TEST_CONTACT_NUMBER,
 			TEST_CONTACT_EMAIL, TEST_QA_EMAIL, TEST_ROOM_REFERENCE, TEST_GROUP_NAME, TEST_START_DATE, TEST_END_DATE,
 			TEST_NOTES);
 
@@ -82,8 +82,8 @@ public class Constants {
 		return TEST_NOTES;
 	}
 
-	public static Tenant getConstructTenant() {
-		return CONSTRUCT_TENANT;
+	public static Tenant getConstructedTenant() {
+		return CONSTRUCTED_TENANT;
 	}
 
 }

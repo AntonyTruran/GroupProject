@@ -35,7 +35,7 @@ public class TenantServiceTest {
 	@Before
 	public void setup() {
 		tenantList.add(Constants.getDefaultBuilderTenant());
-		tenantList.add(Constants.getConstructTenant());
+		tenantList.add(Constants.getConstructedTenant());
 	}
 
 	@After
@@ -50,24 +50,24 @@ public class TenantServiceTest {
 
 		assertThat(returnList.size()).isEqualTo(2);
 		assertThat(returnList.get(0)).isEqualToComparingFieldByField(Constants.getDefaultBuilderTenant());
-		assertThat(returnList.get(1)).isEqualToComparingFieldByField(Constants.getConstructTenant());
+		assertThat(returnList.get(1)).isEqualToComparingFieldByField(Constants.getConstructedTenant());
 	}
 	
 	@Test
 	public void createTenantTest() {
-		Tenant newTenant = Constants.getConstructTenant();
+		Tenant newTenant = Constants.getConstructedTenant();
 		Mockito.when(tenantRepo.save((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
 			tenantList.add(newTenant);
 			return Constants.getNullTenant();
 		});
 		assertThat(tenantService.createTenant(newTenant)).isEqualTo(Constants.getTenantCreated());
 		assertThat(tenantList.size()).isEqualTo(3);
-		assertThat(tenantList.get(2)).isEqualToComparingFieldByField(Constants.getConstructTenant());
+		assertThat(tenantList.get(2)).isEqualToComparingFieldByField(Constants.getConstructedTenant());
 	}
 	
 	@Test
 	public void tenantSearchTest() {
-		Tenant searchTenant = Constants.getConstructTenant();
+		Tenant searchTenant = Constants.getConstructedTenant();
 		Mockito.when(tenantRepo.findAll()).thenReturn(tenantList);
 		assertThat(tenantService.tenantSearch(searchTenant).size()).isEqualTo(1);
 		assertThat(tenantService.tenantSearch(searchTenant).get(0)).isEqualToComparingFieldByField(searchTenant);

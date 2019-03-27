@@ -57,6 +57,6 @@ public class TenantTest {
 		testTenant.setStartDate(Constants.getNaString());
 		testTenant.setEndDate(Constants.getNaString());
 		testTenant.setNotes(Constants.getNaString());
-		assertThat(testTenant.matches(Constants.getConstructTenant()));
+		assertThat(testTenant.matches(Constants.getConstructedTenant()));
 	}
 }

@@ -8,10 +8,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableWebMvc
-public class TenantApi1Application {
+public class TenantApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TenantApi1Application.class, args);
+	public static String main(String[] args) {
+		SpringApplication.run(TenantApiApplication.class, args);
+		return "Program ran successfully";
 	}
 
 }
