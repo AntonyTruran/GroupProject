@@ -18,10 +18,16 @@ public class Constants {
 	private final static String TEST_START_DATE = "TestStartDate";
 	private final static String TEST_END_DATE = "TestEndDate";
 	private final static String TEST_NOTES = "TestNotes";
-	
-	private final static Tenant CONSTRUCT_TENANT = new Tenant(TEST_FIRST_NAME, TEST_LAST_NAME, 
-			TEST_CONTACT_NUMBER,TEST_CONTACT_EMAIL, TEST_QA_EMAIL, TEST_ROOM_REFERENCE,
-			TEST_GROUP_NAME, TEST_START_DATE, TEST_END_DATE,TEST_NOTES);
+
+	private final static Tenant CONSTRUCT_TENANT = new Tenant(TEST_FIRST_NAME, TEST_LAST_NAME, TEST_CONTACT_NUMBER,
+			TEST_CONTACT_EMAIL, TEST_QA_EMAIL, TEST_ROOM_REFERENCE, TEST_GROUP_NAME, TEST_START_DATE, TEST_END_DATE,
+			TEST_NOTES);
+
+	private final static String TENANT_CREATED = "New Tenant Created";
+
+	public static String getTenantCreated() {
+		return TENANT_CREATED;
+	}
 
 	public static Tenant getNullTenant() {
 		return NULL_TENANT;
@@ -75,6 +81,4 @@ public class Constants {
 		return CONSTRUCT_TENANT;
 	}
 
-	
-	
 }

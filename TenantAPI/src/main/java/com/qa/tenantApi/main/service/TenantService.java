@@ -22,7 +22,7 @@ public class TenantService {
 	}
 	
 	public List<Tenant> tenantSearch(Tenant tenant){
-		return this.getAllTenants().stream().filter(x -> x.matches(tenant)).collect(Collectors.toList());
+		return this.getAllTenants().stream().filter(x->x.matches(tenant)).collect(Collectors.toList());
 	}
 	
 	public String createTenant(Tenant tenant) {
