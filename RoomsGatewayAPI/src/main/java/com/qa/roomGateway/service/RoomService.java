@@ -1,8 +1,9 @@
 package com.qa.roomGateway.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.qa.roomGateway.entity.Room;
@@ -41,23 +42,14 @@ public class RoomService {
 	public String updateRoom(String roomReference, Room updatedRoom) {
 		Room currentDetails = this.repo.getOne(updatedRoom.getRoomId());
 		currentDetails.setCurrentState(updatedRoom.getCurrentState());
-		currentDetails.setOccupents(updatedRoom.getOccupents());
+		currentDetails.setOccupants(updatedRoom.getOccupants());
 		repo.save(currentDetails);
 		return "{\"message\":\"room updated\"}";
 	}
 
-	public String deleteRoom(String building, int roomNumber) {
-		Room selectedRoom = null;
-		int selectedId=0;
-		List<Room> roomList = this.getRoomsByNumber(roomNumber);
-		for (Room apartment : roomList) {
-			if(apartment.getBuilding().equals(building)) {
-				selectedRoom = apartment;
-			}
-		}
-		selectedId=selectedRoom.getRoomId();
-		this.repo.deleteById(selectedId);
-		return "{\"message\":\"room updated\"}";
+	public ResponseEntity<List<Room>> deleteRoom(String building, Integer roomNumber) {
+		List<Room> room = repo.deleteRoomByBuildingAndRoomNumber(building, roomNumber);
+		return new ResponseEntity<List<Room>>(room, HttpStatus.OK);
 	}
 	
 	public String deleteRoomCustom(String building, int roomNumber) {
