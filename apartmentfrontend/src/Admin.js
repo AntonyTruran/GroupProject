@@ -46,8 +46,10 @@ class Admin extends Component {
            <form>
              <pre>Name:         <input id="name" type="text" name="Name"></input></pre>
              <pre>Group/Intake: <input id="group" type="number" name="Group"></input></pre>
-             <pre>Start Date:   <input id="startDate" type="number" name="Start Date"></input></pre>
-             <pre>End Date:     <input id="endDate" type="number" name="End Date"></input></pre>
+             <pre>Start Date:   <input id="startDate" type="text" name="Start Date"></input></pre>
+             
+             <pre>End Date:     <input id="endDate" type="text" name="End Date"></input></pre>
+             
              <pre>Apartment No: <input id="roomNo" type="number" name="Landlord"></input></pre>
            </form> 
            
