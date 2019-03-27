@@ -56,10 +56,6 @@ export const addMonthsToYear = (year, monthsToAdd) => {
   return { year: y, month: m + 1 }
 }
 
-export const createYears = (year, month) =>{
-  const r = addMonthsToYear(year,month)
-  return new Date(`${r.year}-${r.month}`)
-}
 export const addMonthsToYearAsDate = (year, monthsToAdd) => {
   const r = addMonthsToYear(year, monthsToAdd)
   return new Date(`${r.year}-${r.month}`)
