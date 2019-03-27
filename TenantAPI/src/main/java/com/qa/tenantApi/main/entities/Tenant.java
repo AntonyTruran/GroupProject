@@ -27,7 +27,6 @@ public class Tenant {
 
 	public Tenant(String firstName, String lastName, String contactNumber, String contactEmail, String qaEmail,
 			String roomReference, String groupName, String startDate, String endDate, String notes) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.contactNumber = contactNumber;
@@ -126,9 +125,9 @@ public class Tenant {
 
 	public boolean matches(Tenant tenant) {
 
-		return (this.getFirstName().contentEquals(tenant.getFirstName()) || tenant.getFirstName().contentEquals("N/A"))
+		return ((this.getFirstName().contentEquals(tenant.getFirstName()) || tenant.getFirstName().contentEquals("N/A")) 
 				&& (this.getLastName().contentEquals(tenant.getLastName()) || tenant.getLastName().contentEquals("N/A"))
 				&& (this.getGroupName().contentEquals(tenant.getGroupName())
-						|| tenant.getGroupName().contentEquals("N/A"));
+						|| tenant.getGroupName().contentEquals("N/A")));
 	}
 }
