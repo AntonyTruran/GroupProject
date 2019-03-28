@@ -77,9 +77,17 @@ public class Building {
 	}
 	
 	public boolean matches(Building building) {
-		return (this.getBuildingName().contentEquals(building.getBuildingName()) || building.getBuildingName().contentEquals("N/A")) 
-				&& (this.getBuildingLocation().contentEquals(building.getBuildingLocation()) || building.getBuildingLocation().contentEquals("N/A"))
-				&& (this.getOwnerName().contentEquals(building.getOwnerName()) || building.getOwnerName().contentEquals("N/A"));
+		Boolean buildingCheck = this.getBuildingName().contentEquals(building.getBuildingName()) ;
+		Boolean buildingNull = building.getBuildingName().contentEquals("N/A");
+		Boolean locationCheck = this.getBuildingLocation().contentEquals(building.getBuildingLocation());
+		Boolean locationNull = building.getBuildingLocation().contentEquals("N/A");
+		Boolean ownerCheck = this.getOwnerName().contentEquals(building.getOwnerName());
+	    Boolean ownerNull = building.getOwnerName().contentEquals("N/A");
+		
+		buildingCheck = buildingCheck||buildingNull;
+		locationCheck = locationCheck||locationNull;
+		ownerCheck = ownerCheck||ownerNull;
+		return (buildingCheck && locationCheck && ownerCheck);
 	}
 	
 }
