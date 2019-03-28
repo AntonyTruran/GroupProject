@@ -9,7 +9,7 @@ class Admin extends Component {
             cleanResult = cleanResult.replace(']'," ");
             cleanResult = cleanResult.replace(/{/g," <divdis>");
             cleanResult = cleanResult.replace(/}/g," </divdis> </br>");
-            cleanResult = cleanResult.replace(/\"/g, "");
+            cleanResult = cleanResult.replace(/"/g, "");
             cleanResult = cleanResult.replace(/,/g,"<br/>");
     
       
