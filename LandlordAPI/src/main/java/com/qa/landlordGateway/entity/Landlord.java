@@ -14,7 +14,7 @@ public class Landlord {
 	private String lastName;
 	private String email;
 	private String phoneNumber;
-	
+
 	public Landlord() {
 	}
 
@@ -64,18 +64,17 @@ public class Landlord {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+
 	public boolean matches(Landlord landlord) {
 
-		Boolean firstCheck = this.getFirstName().contentEquals(landlord.getFirstName()) ;
-		Boolean firstNull = landlord.getFirstName().contentEquals("N/A");
-		Boolean lastCheck = this.getLastName().contentEquals(landlord.getLastName());
-		Boolean lastNull = landlord.getLastName().contentEquals("N/A");
-		
-		firstCheck = firstCheck||firstNull;
-		lastCheck = lastCheck||lastNull;
-		return (firstCheck && lastCheck);
+		Boolean firstNameCheck = this.getFirstName().contentEquals(landlord.getFirstName());
+		Boolean firstNameNull = landlord.getFirstName().contentEquals("N/A");
+		Boolean lastNameCheck = this.getLastName().contentEquals(landlord.getLastName());
+		Boolean lastNameNull = landlord.getLastName().contentEquals("N/A");
+
+		firstNameCheck = firstNameCheck || firstNameNull;
+		lastNameCheck = lastNameCheck || lastNameNull;
+		return (firstNameCheck && lastNameCheck);
 	}
-	
-	
+
 }
