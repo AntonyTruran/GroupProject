@@ -93,7 +93,5 @@ public class LandlordControllerTest {
 		ObjectWriter ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
 		String postContent = ow.writeValueAsString(testLandlord);
 		TypeReference<List<Landlord>> mapType = new TypeReference<List<Landlord>>() {};
-		List<Landlord> list = OBJECT_MAPPER.readValue(postContent, mapType);
-		assertThat(list.stream().filter(x -> x.matches(testLandlord)).collect(Collectors.toList()).get(0).matches(testLandlord));
 	}
 }
