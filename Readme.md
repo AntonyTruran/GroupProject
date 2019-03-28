@@ -2,15 +2,11 @@
 This parent folder contains micro-services which facilitate the running of an Apartment Management System.
 Collaborators include;
 
-	- [Anthony Truran](https://github.com/AntonyTruran)
-	
-	- [James Ingram](https://github.com/smurfjames101)
-	
-	- [Luke Jones](https://github.com/BetaDraconis)
-	
-	- [Kyle Warrington](https://github.com/Kyrvix)
-	
-	- [Ryan Lang](https://github.com/RyanLang44)
+- [Anthony Truran](https://github.com/AntonyTruran)
+- [James Ingram](https://github.com/smurfjames101
+- [Luke Jones](https://github.com/BetaDraconis)
+- [Kyle Warrington](https://github.com/Kyrvix)
+- [Ryan Lang](https://github.com/RyanLang44)
 	
 ## Contents
  - [**Initial Overview**](https://github.com/AntonyTruran/GroupProject/tree/ReadMe#initial-overview)
@@ -128,7 +124,7 @@ See Figure 4. This wireframe shows how details about individual apartments can b
 Search-box functionality (as seen in the Navigation bar of the left) will also be integrated to allow the user 
 to search for a specific data entry.
 ````
-![Tenants Page WireFrame](Documentation/TenantsPageWireFrame.png)
+![Tenants Page WireFrame](Documentation/TenantsPageWireFrame.PNG)
 **`Figure 8:`**
 ```
 See Figure 4. This wireframe shows how details about individual tenants can be displayed within the system. 
