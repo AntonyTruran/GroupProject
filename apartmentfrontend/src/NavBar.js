@@ -36,9 +36,6 @@ class NavBar extends Component {
                   <li><NavLink to="/Buildings">Buildings</NavLink></li>
                   <br></br>
                   <li><NavLink to="/LandLords">Landlords</NavLink></li>
-                  <br></br>
-                  <li><NavLink to="/Groups">Groups</NavLink></li>
-                  <br></br>
                 </ul>
               </div>
             </div>
@@ -48,7 +45,7 @@ class NavBar extends Component {
             <Route path="/Apartments" component={Apartments} />
             <Route path="/Buildings" component={Buildings} />
             <Route path="/Landlords" component={LandLords} />
-            <Route path="/Groups" component={Groups} />
+            
             <div>
             </div>
 

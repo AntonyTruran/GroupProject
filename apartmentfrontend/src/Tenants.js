@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import'./Tenants.css';
+import'./Table.css';
 
 class Tennants extends Component {
   constructor(props){
@@ -14,6 +14,7 @@ class Tennants extends Component {
       startDate: "defaultStart",
       endDate:"defaultEnd",
       group:"defaultGroup",
+      building:"defaultBuilding",
       roomNum: 0
     }
   }
@@ -25,6 +26,7 @@ class Tennants extends Component {
         <td>{this.data.startDate}</td>
         <td>{this.data.endDate}</td>
         <td>{this.data.group}</td>
+        <td>{this.data.building}</td>
         <td>{this.data.roomNum}</td>
       </tr>
 
@@ -44,12 +46,13 @@ class Tennants extends Component {
       <div className="DisplayTable">
         <table id="table">
             <tr>
-              <th>id</th>
-              <th>name</th>
-              <th>startDate</th>
-              <th>endDate</th>
-              <th>group</th>
-              <th>roomNum</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Group</th>
+              <th>Building</th>
+              <th>Flat Number</th>
             </tr>
           {this.addRow(this.state.data)}
         </table>
