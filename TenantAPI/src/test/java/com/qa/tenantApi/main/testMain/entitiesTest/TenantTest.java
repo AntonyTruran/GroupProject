@@ -47,7 +47,7 @@ public class TenantTest {
 	@Test
 	public void setterTest() {
 		Tenant testTenant = Constants.getNullTenant();
-
+		testTenant.setFirstName(Constants.getNaString());
 		testTenant.setLastName(Constants.getNaString());
 		testTenant.setContactNumber(Constants.getNaString());
 		testTenant.setContactEmail(Constants.getNaString());
@@ -57,6 +57,6 @@ public class TenantTest {
 		testTenant.setStartDate(Constants.getNaString());
 		testTenant.setEndDate(Constants.getNaString());
 		testTenant.setNotes(Constants.getNaString());
-		assertThat(testTenant.matches(Constants.getConstructedTenant()));
+		assertThat(testTenant.matches(Constants.getDefaultBuilderTenant()));
 	}
 }

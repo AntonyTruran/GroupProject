@@ -11,7 +11,6 @@ public class TenantApiApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ac = SpringApplication.run(TenantApiApplication.class, args);
-		//return "Program ran successfully";
 	}
 
 }

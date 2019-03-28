@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.After;
 import org.junit.Before;
@@ -72,5 +73,41 @@ public class TenantServiceTest {
 		assertThat(tenantService.tenantSearch(searchTenant).size()).isEqualTo(1);
 		assertThat(tenantService.tenantSearch(searchTenant).get(0)).isEqualToComparingFieldByField(searchTenant);
 	}
+	
+	@Test
+	public void deleteTenantTest() {
+		Mockito.when(tenantService.deleteTenant((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
+			tenantList.remove(Constants.getDefaultBuilderTenant());
+			return "Tenant deleted";
+		});
+		assertThat(tenantService.deleteTenant(Constants.getDefaultBuilderTenant())).isEqualTo("Tenant deleted");
+		assertThat(!tenantList.contains(Constants.getDefaultBuilderTenant()));
+		
+	}
+	
+	@Test
+	public void deleteAllTest() {
+		Mockito.when(tenantService.deleteAllTenants()).thenAnswer((Answer<?>) invocation -> {
+			tenantList.clear();
+			return "All tenants deleted";
+		});
+		assertThat(tenantService.deleteAllTenants()).isEqualTo("All Tenants deleted");
+		assertThat(tenantList.size()).isEqualTo(0);
+	}
+	
+	@Test
+	public void updateTenantTest() {
+		Tenant updateTenant = Constants.getConstructedTenant();
+		Mockito.when(tenantRepo.findById((Long)notNull())).thenReturn(Optional.ofNullable(tenantList.get(0)));
+		Mockito.when(tenantRepo.saveAndFlush((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
+			tenantList.clear();
+			tenantList.add(updateTenant);
+			tenantList.add(Constants.getConstructedTenant());  
+			return updateTenant;
+		});
 
+		Long index = Long.valueOf(String.valueOf(0));
+		tenantService.updateTenant(index, updateTenant);
+		assertThat(tenantList.get(0).matches(Constants.getConstructedTenant()));
+	}
 }

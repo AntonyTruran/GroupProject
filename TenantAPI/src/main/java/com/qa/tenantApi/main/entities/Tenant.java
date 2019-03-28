@@ -126,7 +126,7 @@ public class Tenant {
 
 	public boolean matches(Tenant tenant) {
 
-		Boolean firstCheck = this.getFirstName().contentEquals(tenant.getFirstName()) ;
+		Boolean firstCheck = this.getFirstName().contentEquals(tenant.getFirstName());
 		Boolean firstNull = tenant.getFirstName().contentEquals("N/A");
 		Boolean lastCheck = this.getLastName().contentEquals(tenant.getLastName());
 		Boolean lastNull = tenant.getLastName().contentEquals("N/A");
