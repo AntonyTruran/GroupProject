@@ -13,14 +13,19 @@ import com.qa.landlordGateway.LandlordApiApplication;
 public class LandlordApiApplicationTests {
 
 	private LandlordApiApplication app;
+	private TestSuite suite;
+	private Constants constants;
 	@Before
 	public void setup() {
 		app = new LandlordApiApplication();
+		suite = new TestSuite();
+		constants = new Constants();
 	}
 	@Test
 	public void contextLoads() {
 		String[] args = new String[] {"Hello World"};
 		app.main(args);
 	}
+	
 
 }

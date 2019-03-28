@@ -14,7 +14,7 @@ import com.qa.landlordGateway.testMain.Constants;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class LandlordTests {
+public class LandlordTest {
 	@Test
 	public void superConstructorTest() {
 		Landlord landlord = new Landlord();
@@ -32,7 +32,6 @@ public class LandlordTests {
 		assertNull(Constants.getNullLandlord().getLastName());
 		assertNull(Constants.getNullLandlord().getPhoneNumber());
 		assertNull(Constants.getNullLandlord().getEmail());
-		assertThat(Constants.getNullLandlord().getId()).isEqualTo(0);
 	}
 	@Test
 	public void setttertest() {

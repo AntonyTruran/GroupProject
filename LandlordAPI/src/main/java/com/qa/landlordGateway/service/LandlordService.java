@@ -18,7 +18,7 @@ public class LandlordService {
 	
 	public String createLandlord(Landlord landlord) {
 		this.landlordRepo.save(landlord);
-		return "Landlord Created!";
+		return "Landlord Created";
 	}
 	public List<Landlord> getLandlords(){
 		return this.landlordRepo.findAll();	

@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +30,13 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.qa.landlordGateway.controllers.LandlordController;
 import com.qa.landlordGateway.entity.Landlord;
 import com.qa.landlordGateway.entity.LandlordBuilder;
 import com.qa.landlordGateway.service.LandlordService;
 import com.qa.landlordGateway.testMain.Constants;
-import com.fasterxml.jackson.databind.ObjectWriter;
 
 
 @RunWith(SpringRunner.class)
