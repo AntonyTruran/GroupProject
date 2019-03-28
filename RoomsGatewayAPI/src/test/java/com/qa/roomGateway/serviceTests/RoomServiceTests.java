@@ -1,10 +1,12 @@
 package com.qa.roomGateway.serviceTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.notNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,21 +36,26 @@ public class RoomServiceTests {
 	public void setup() {
 		roomList.add(GatewayConstants.getConstructedRoom());
 	}
-//	@Test
-//	public void createRoomTest() {
-//		Room mockedRoom = GatewayConstants.getConstructedRoom();
-//		Mockito.when(repo.save(Room)).thenReturn("Created");
-//		assertThat(tenantService.createTenant(newTenant)).isEqualTo(Constants.getTenantCreated());
-//		assertThat(tenantList.size()).isEqualTo(3)
-//		assertThat(tenantList.get(2)).isEqualToComparingFieldByField(Constants.getConstructedTenant());
-//	}
+	@After
+	public void tearDown() {
+		roomList.clear();
+	}
+	@Test
+	public void createRoomTest() {
+		Room mockedRoom = GatewayConstants.getConstructedRoom();
+		Mockito.when(repo.save((Room)notNull())).thenAnswer((Answer<?>) invocation -> {
+			roomList.add(mockedRoom);
+			return GatewayConstants.getConstructedRoom();
+		});
+		assertThat(roomList.size()).isEqualTo(1);
+	}
 	
 	@Test
 	public void getAllTest() {
 		Mockito.when(repo.findAll()).thenReturn(roomList);
 		List<Room> returnList = service.getAllRooms();
-
 		assertThat(returnList.size()).isEqualTo(1);
+		
 	}
 	
 	@Test

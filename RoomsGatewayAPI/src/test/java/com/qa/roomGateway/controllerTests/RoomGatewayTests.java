@@ -2,6 +2,7 @@ package com.qa.roomGateway.controllerTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.notNull;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -39,6 +40,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.qa.roomGateway.GatewayConstants;
+import com.qa.roomGateway.controller.GatewayController;
 import com.qa.roomGateway.entity.Room;
 import com.qa.roomGateway.service.RoomService;
 
@@ -46,7 +48,6 @@ import com.qa.roomGateway.service.RoomService;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class RoomGatewayTests {
-
 	@Autowired
 	private MockMvc mvc;
 
@@ -54,6 +55,9 @@ public class RoomGatewayTests {
 	RoomService service;
 	@MockBean
 	RestTemplateBuilder rtb;
+	
+	GatewayController controller = new GatewayController(null, service, rtb);
+	
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
@@ -71,10 +75,10 @@ public class RoomGatewayTests {
 		OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
 		ObjectWriter ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
 		String postContent = ow.writeValueAsString(testRoom);
-		Mockito.when(service.addRoom((Room)notNull())).thenReturn("New Tenant Created");
+		Mockito.when(service.addRoom((Room)notNull())).thenReturn("{\"message\":\"room added\"}");
 		MvcResult result = mvc.perform(post("/createRoom").contentType(APPLICATION_JSON_UTF8)
 				.content(postContent)).andReturn();
-		assertThat(result.getResponse().getContentAsString()).contains("New Tenant Created");
+		assertThat(result.getResponse().getContentAsString()).contains("{\"message\":\"room added\"}");
 	}
 
 	@Test
@@ -114,9 +118,20 @@ public class RoomGatewayTests {
 	public void updateRoomTest() {
 
 	}
-	@Ignore
-	@Test
-	public void deleteRoomTest() throws Exception {
-		assertThat( mvc.perform(post("/removeRoom").contentType(Room testRoom).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()));
-	}
+//	@Ignore
+//	@Test
+//	public void deleteRoomTest() throws Exception {
+//		Room mockRoom =  GatewayConstants.getConstructedRoom();
+//		Mockito.when(service.deleteRoom(GatewayConstants.getDeleteBuilding(), GatewayConstants.getDeleteRoomNum())).thenReturn(GatewayConstants.getMockDeleteResponse());
+//		assertEquals(GatewayConstants.getMockDeleteResponse(), controller.deleteRoom(mockRoom));
+//		Mockito.verify(service).deleteRoom(GatewayConstants.getDeleteBuilding(), GatewayConstants.getDeleteRoomNum());
+//		
+//		OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+//		ObjectWriter ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
+//		String postContent = ow.writeValueAsString(testRoom);
+//		Mockito.when(service.addRoom((Room)notNull())).thenReturn("{\"message\":\"room deleted\"}");
+//		MvcResult result = mvc.perform(post("/removeRoom").contentType(APPLICATION_JSON_UTF8)
+//				.content(postContent)).andReturn();
+//		assertThat(result.getResponse().getContentAsString()).contains("{\"message\":\"room deleted\"}");
+//	}
 }
