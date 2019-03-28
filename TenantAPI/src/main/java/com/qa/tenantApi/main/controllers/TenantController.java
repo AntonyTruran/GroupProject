@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.tenantApi.main.entities.Tenant;
@@ -40,6 +42,12 @@ public class TenantController {
 		return this.tenantService.tenantSearch(tenant);
 	}
 	
+	@GetMapping("/tenantGroupSearch")
+	public List<Tenant> tenantGroupSearch(String groupName) {
+		Tenant tenant = TenantBuilder.getTenantBuilder().groupName(groupName).tenantBuild();
+		return this.tenantService.tenantSearch(tenant);
+	}
+	
 	@DeleteMapping("/deleteAllTenants")
 	public String deleteAllTenants() {
 		return this.tenantService.deleteAllTenants();
@@ -47,8 +55,7 @@ public class TenantController {
 	
 	@DeleteMapping("/deleteTenantGroup")
 	public String deleteTenantGroup(String groupName) {
-		Tenant tenant = TenantBuilder.getTenantBuilder().groupName(groupName).tenantBuild();
-		List<Tenant> tenants = this.tenantService.tenantSearch(tenant);
+		List<Tenant> tenants = this.tenantGroupSearch(groupName);
 		return this.tenantService.deleteTenantGroup(tenants);
 	}
 	
@@ -59,5 +66,16 @@ public class TenantController {
 			this.tenantService.deleteTenant(tenants.get(i));
 		}
 		return "Tenant(s) deleted";
+	}
+	
+	@PutMapping("/updateTenant/{id}")
+	public String updateTenant(@PathVariable("id")long id, @RequestBody Tenant tenantUpdate) {
+		return this.tenantService.updateTenant(id, tenantUpdate);
+	}
+	
+	@PutMapping("/updateTenantGroup")
+	public String updateTenant(String setGroupName, @RequestBody Tenant tenantUpdate) {
+		List<Tenant> tenants = this.tenantGroupSearch(setGroupName);
+		return this.tenantService.updateTenantGroup(tenants, tenantUpdate);
 	}
 }

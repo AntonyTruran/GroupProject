@@ -47,7 +47,7 @@ public class TenantTest {
 	@Test
 	public void setterTest() {
 		Tenant testTenant = Constants.getNullTenant();
-		testTenant.setFirstName(Constants.getNaString());
+
 		testTenant.setLastName(Constants.getNaString());
 		testTenant.setContactNumber(Constants.getNaString());
 		testTenant.setContactEmail(Constants.getNaString());
