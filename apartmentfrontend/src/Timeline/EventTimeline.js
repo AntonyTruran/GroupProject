@@ -19,8 +19,8 @@ const now = new Date('2021-01-01')
 
 const timebar = buildTimebar()
 
-const MIN_ZOOM = 2
-const MAX_ZOOM = 20
+const MIN_ZOOM = 4
+const MAX_ZOOM = 4
 
 class EventTimeline extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class EventTimeline extends Component {
 
         this.state = {
             open: true,
-            zoom: 2,
+            zoom: 4,
             tracksById,
             tracks: [{
                 id: "track-0",
@@ -157,18 +157,18 @@ class EventTimeline extends Component {
     }
 
     handleToggleTrackOpen = (track) => {
-        const tracksById = {
-            ...this.state.tracksById,
-            [track.id]: {
-                ...track,
-                isOpen: !track.isOpen,
-            },
+        for (var i = 0; i < this.state.tracks.length; i++) {
+            if (this.state.tracks[i].id === track.id) {
+                var tempTrack = this.state.tracks[i];
+                if (tempTrack.isOpen) {
+                    tempTrack.isOpen = false;
+                }
+                else {
+                    tempTrack.isOpen = true;
+                }
+                this.setState({ isOpen: false })
+            }
         }
-
-        this.setState({
-            tracksById,
-            tracks: this.state.tracks
-        })
     }
 
     render() {
