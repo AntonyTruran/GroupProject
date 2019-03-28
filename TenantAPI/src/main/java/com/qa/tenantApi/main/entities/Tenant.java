@@ -1,5 +1,6 @@
 package com.qa.tenantApi.main.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,7 +26,8 @@ public class Tenant {
 	public Tenant() {
 	}
 
-	public Tenant(String firstName, String lastName, String contactNumber, String contactEmail, String qaEmail,String roomReference, String groupName, String startDate, String endDate, String notes) {
+	public Tenant(String firstName, String lastName, String contactNumber, String contactEmail, String qaEmail,
+			String roomReference, String groupName, String startDate, String endDate, String notes) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.contactNumber = contactNumber;
@@ -38,10 +40,12 @@ public class Tenant {
 		this.notes = notes;
 	}
 
+	@Column
 	public long getId() {
 		return id;
 	}
 
+	@Column
 	public String getFirstName() {
 		return firstName;
 	}
@@ -50,6 +54,7 @@ public class Tenant {
 		this.firstName = firstName;
 	}
 
+	@Column
 	public String getLastName() {
 		return lastName;
 	}
@@ -58,6 +63,7 @@ public class Tenant {
 		this.lastName = secondName;
 	}
 
+	@Column
 	public String getContactNumber() {
 		return contactNumber;
 	}
@@ -66,6 +72,7 @@ public class Tenant {
 		this.contactNumber = contactNumber;
 	}
 
+	@Column
 	public String getContactEmail() {
 		return contactEmail;
 	}
@@ -74,6 +81,7 @@ public class Tenant {
 		this.contactEmail = contactEmail;
 	}
 
+	@Column
 	public String getQaEmail() {
 		return QaEmail;
 	}
@@ -82,6 +90,7 @@ public class Tenant {
 		QaEmail = qaEmail;
 	}
 
+	@Column
 	public String getRoomReference() {
 		return roomReference;
 	}
@@ -90,6 +99,7 @@ public class Tenant {
 		this.roomReference = roomReference;
 	}
 
+	@Column
 	public String getGroupName() {
 		return groupName;
 	}
@@ -98,6 +108,7 @@ public class Tenant {
 		this.groupName = groupName;
 	}
 
+	@Column
 	public String getStartDate() {
 		return startDate;
 	}
@@ -106,6 +117,7 @@ public class Tenant {
 		this.startDate = startDate;
 	}
 
+	@Column
 	public String getEndDate() {
 		return endDate;
 	}
@@ -114,6 +126,7 @@ public class Tenant {
 		this.endDate = endDate;
 	}
 
+	@Column
 	public String getNotes() {
 		return notes;
 	}
@@ -124,7 +137,7 @@ public class Tenant {
 
 	public boolean matches(Tenant tenant) {
 
-		return ((this.getFirstName().contentEquals(tenant.getFirstName()) || tenant.getFirstName().contentEquals("N/A")) 
+		return ((this.getFirstName().contentEquals(tenant.getFirstName()) || tenant.getFirstName().contentEquals("N/A"))
 				&& (this.getLastName().contentEquals(tenant.getLastName()) || tenant.getLastName().contentEquals("N/A"))
 				&& (this.getGroupName().contentEquals(tenant.getGroupName())
 						|| tenant.getGroupName().contentEquals("N/A")));

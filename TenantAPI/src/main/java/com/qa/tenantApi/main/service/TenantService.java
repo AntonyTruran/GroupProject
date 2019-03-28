@@ -29,4 +29,29 @@ public class TenantService {
 		this.tenantRepo.save(tenant);
 		return "New Tenant Created";
 	}
+	
+	public String deleteTenant(Tenant tenant) {
+		this.tenantRepo.delete(tenant);
+		return "Tenant deleted";
+	}
+	
+	public String deleteTenantGroup(List<Tenant> tenants) {
+		this.tenantRepo.deleteAll(tenants);;
+		return "Tenant deleted";
+	}
+	
+	public String deleteAllTenants() {
+		this.tenantRepo.deleteAll();
+		return "All Tenants deleted";
+	}
+	
+	public String updateTenant(Tenant tenant) {
+		this.tenantRepo.saveAndFlush(tenant);
+		return "Tenant upated";
+	}
+	
+	public String updateTenantGroup(List<Tenant> tenants) {
+		this.tenantRepo.saveAll(tenants);
+		return "Tenant group upated";
+	}
 }
