@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.qa.accommodation.buildingAPI.Constants;
 import com.qa.accommodation.buildingAPI.entities.Building;
 import com.qa.accommodation.buildingAPI.repository.BuildingRepo;
 
@@ -28,6 +29,11 @@ public class BuildingService {
 	
 	public String createBuilding(Building building) {
 		this.buildingRepo.save(building);
-		return "New building has been added";
+		return Constants.getCreateSuccess();
+	}
+	
+	public String deleteBuilding(Building building) {
+		this.buildingRepo.delete(building);
+		return Constants.getDeleteSuccess();
 	}
 }

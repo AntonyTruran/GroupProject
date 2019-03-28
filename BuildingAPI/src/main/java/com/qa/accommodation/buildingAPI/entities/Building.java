@@ -31,11 +31,11 @@ public class Building {
 		this.ownerNumber = ownerNumber;
 		this.ownerEmail = ownerEmail;
 	}
-
+	
 	public long getId() {
 		return id;
 	}
-
+	
 	public String getBuildingName() {
 		return buildingName;
 	}
@@ -43,7 +43,7 @@ public class Building {
 	public void setBuildingName(String buildingName) {
 		this.buildingName = buildingName;
 	}
-
+	
 	public String getBuildingLocation() {
 		return buildingLocation;
 	}
@@ -51,7 +51,7 @@ public class Building {
 	public void setBuildingLocation(String buildingLocation) {
 		this.buildingLocation = buildingLocation;
 	}
-
+	
 	public String getOwnerName() {
 		return ownerName;
 	}
