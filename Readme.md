@@ -3,7 +3,7 @@ This parent folder contains micro-services which facilitate the running of an Ap
 Collaborators include;
 
 - [Anthony Truran](https://github.com/AntonyTruran)
-- [James Ingram](https://github.com/smurfjames101
+- [James Ingram](https://github.com/smurfjames101)
 - [Luke Jones](https://github.com/BetaDraconis)
 - [Kyle Warrington](https://github.com/Kyrvix)
 - [Ryan Lang](https://github.com/RyanLang44)
