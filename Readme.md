@@ -1,6 +1,7 @@
 # QA Group Project
 This parent folder contains micro-services which facilitate the running of an Apartment Management System.
 Collaborators include;
+
 	- [Anthony Truran][https://github.com/AntonyTruran]
 	- [James Ingram][https://github.com/smurfjames101]
 	- [Luke Jones][https://github.com/BetaDraconis]
@@ -71,7 +72,9 @@ be hosted on a virtual machine (making use of Jenkins, Docker, and GCP), using G
 a source-code repository. See Figure 3 for more details about the front-end, and back-end.
 ````
 #### Database – Structure and relationships
+
 ![Entity Relationship Diagram][Documentation/ERD.png]
+
 **`Figure 2:`**
 ````
 Expanded architecture diagram for the front-end and back-end sections of Figure 
@@ -82,6 +85,7 @@ end. Queueing system, database) will interact with the back-end.
 #### Back-end – Front-end and API Architecture 
 
 ![API Architecture][Documentation/API.png]
+
 **`Figure 3:`**
 ````
 Entity relationship diagram to show the approximate relational database structure which is 
@@ -89,22 +93,27 @@ intended to be implemented in this project. The ‘main’ table is to be the �
 which has the most relationships.
 ````
 #### Front-end – Wireframe
+
 ![API Architecture][Documentation/API.png]
+
 **`Figure 4:`**
 ````
 Wire-frame diagram depicting a proposed section of the front-end application interface. This specific wireframe shows how the occupation status of different apartments, from different buildings, would be displayed with respect to time.
 ````
 ![API Architecture][Documentation/GroupPageWireFrame.png]
+
 **`Figure 5:`**
 ````
 See Figure 4. Here is demonstrated how the ‘group’ functionality is intended to function. On this page details about a group of tenants will be displayed. The user will also be able to make bulk changes to tenants by applying them to the group as a whole.
 ````
 ![API Architecture][Documentation/AdminPageWireFrame.png]
+
 **`Figure 6:`**
 ````
 See Figure 4. Here some of the basic CRUD functionalities of the product are demonstrated. On this page the user will be able to create new items in the various different tables, as well as edit or delete any of the existing ones.
 ````
 ![API Architecture][Documentation/ApartmentPageWireFrame.png]
+
 **`Figure 7:`**
 ````
 See Figure 4. This wireframe shows how details about individual apartments can be displayed within the system. Search-box functionality (as seen in the Navigation bar of the left) will also be integrated to allow the user to search for a specific data entry.
