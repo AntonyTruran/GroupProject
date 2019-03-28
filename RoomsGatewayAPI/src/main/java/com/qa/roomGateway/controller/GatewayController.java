@@ -44,7 +44,7 @@ public class GatewayController {
 		return this.service.getAllRooms();
 	}
 	
-	@GetMapping("/getSpecificRooms/{request}")
+	@GetMapping("/getRoomByNumber/{request}")
 	public List<Room> getRoomsByNumber(@PathVariable("request")int request) {
 		return service.getRoomsByNumber(request);	
 	}

@@ -1,4 +1,4 @@
-package com.qa.roomGateway;
+package com.qa.roomGateway.smokeTests;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
