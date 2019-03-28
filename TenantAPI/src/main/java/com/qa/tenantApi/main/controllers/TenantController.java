@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qa.tenantApi.main.Constants;
 import com.qa.tenantApi.main.entities.Tenant;
 import com.qa.tenantApi.main.entities.TenantBuilder;
 import com.qa.tenantApi.main.service.TenantService;
@@ -42,8 +42,8 @@ public class TenantController {
 		return this.tenantService.tenantSearch(tenant);
 	}
 	
-	@GetMapping("/tenantGroupSearch")
-	public List<Tenant> tenantGroupSearch(String groupName) {
+	@GetMapping("/tenantGroupSearch/{groupName}")
+	public List<Tenant> tenantGroupSearch(@PathVariable("groupName")String groupName) {
 		Tenant tenant = TenantBuilder.getTenantBuilder().groupName(groupName).tenantBuild();
 		return this.tenantService.tenantSearch(tenant);
 	}
@@ -53,10 +53,13 @@ public class TenantController {
 		return this.tenantService.deleteAllTenants();
 	}
 	
-	@DeleteMapping("/deleteTenantGroup")
-	public String deleteTenantGroup(String groupName) {
+	@DeleteMapping("/deleteTenantGroup/{groupName}")
+	public String deleteTenantGroup(@PathVariable("groupName") String groupName) {
 		List<Tenant> tenants = this.tenantGroupSearch(groupName);
-		return this.tenantService.deleteTenantGroup(tenants);
+		for(int i = 0; i < tenants.size();i++) {
+			this.tenantService.deleteTenant(tenants.get(i));
+		}
+		return Constants.getGroupDeletionMessage();
 	}
 	
 	@DeleteMapping("/deleteTenant")
@@ -65,7 +68,7 @@ public class TenantController {
 		for(int i = 0; i < tenants.size();i++) {
 			this.tenantService.deleteTenant(tenants.get(i));
 		}
-		return "Tenant(s) deleted";
+		return Constants.getTenantsDeletionMessage();
 	}
 	
 	@PutMapping("/updateTenant/{id}")
@@ -73,8 +76,8 @@ public class TenantController {
 		return this.tenantService.updateTenant(id, tenantUpdate);
 	}
 	
-	@PutMapping("/updateTenantGroup")
-	public String updateTenant(String setGroupName, @RequestBody Tenant tenantUpdate) {
+	@PutMapping("/updateTenantGroup/{groupName}")
+	public String updateTenant(@PathVariable("groupName") String setGroupName, @RequestBody Tenant tenantUpdate) {
 		List<Tenant> tenants = this.tenantGroupSearch(setGroupName);
 		return this.tenantService.updateTenantGroup(tenants, tenantUpdate);
 	}

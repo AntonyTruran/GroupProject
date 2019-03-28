@@ -17,11 +17,11 @@ import org.mockito.stubbing.Answer;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.qa.tenantApi.main.Constants;
 import com.qa.tenantApi.main.entities.Tenant;
 import com.qa.tenantApi.main.repository.TenantRepo;
 import static org.mockito.ArgumentMatchers.*;
 import com.qa.tenantApi.main.service.TenantService;
-import com.qa.tenantApi.main.testMain.Constants;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -61,7 +61,7 @@ public class TenantServiceTest {
 			tenantList.add(newTenant);
 			return Constants.getNullTenant();
 		});
-		assertThat(tenantService.createTenant(newTenant)).isEqualTo(Constants.getTenantCreated());
+		assertThat(tenantService.createTenant(newTenant)).isEqualTo(Constants.getCreationMessage());
 		assertThat(tenantList.size()).isEqualTo(3);
 		assertThat(tenantList.get(2)).isEqualToComparingFieldByField(Constants.getConstructedTenant());
 	}
@@ -78,10 +78,10 @@ public class TenantServiceTest {
 	public void deleteTenantTest() {
 		Mockito.when(tenantService.deleteTenant((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
 			tenantList.remove(Constants.getDefaultBuilderTenant());
-			return "Tenant deleted";
+			return Constants.getDeletionMessage();
 		});
-		assertThat(tenantService.deleteTenant(Constants.getDefaultBuilderTenant())).isEqualTo("Tenant deleted");
-		assertThat(!tenantList.contains(Constants.getDefaultBuilderTenant()));
+		assertThat(tenantService.deleteTenant(Constants.getDefaultBuilderTenant())).isEqualTo(Constants.getDeletionMessage());
+		assertThat(tenantList.contains(Constants.getDefaultBuilderTenant())).isEqualTo(false);
 		
 	}
 	
@@ -89,9 +89,9 @@ public class TenantServiceTest {
 	public void deleteAllTest() {
 		Mockito.when(tenantService.deleteAllTenants()).thenAnswer((Answer<?>) invocation -> {
 			tenantList.clear();
-			return "All tenants deleted";
+			return Constants.getAllDeletionMessage();
 		});
-		assertThat(tenantService.deleteAllTenants()).isEqualTo("All Tenants deleted");
+		assertThat(tenantService.deleteAllTenants()).isEqualTo(Constants.getAllDeletionMessage());
 		assertThat(tenantList.size()).isEqualTo(0);
 	}
 	

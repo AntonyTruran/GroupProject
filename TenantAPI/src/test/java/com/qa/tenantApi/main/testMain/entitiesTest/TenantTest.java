@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.qa.tenantApi.main.Constants;
 import com.qa.tenantApi.main.entities.Tenant;
-import com.qa.tenantApi.main.testMain.Constants;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

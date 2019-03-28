@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.qa.tenantApi.main.Constants;
+
 @Component
 @Scope("singleton")
 public class TenantBuilder {
@@ -14,7 +16,7 @@ public class TenantBuilder {
 	private String lastName;
 	private String contactNumber;
 	private String contactEmail;
-	private String QaEmail;
+	private String qaEmail;
 	private String roomReference;
 	private String groupName;
 	private String startDate;
@@ -52,7 +54,7 @@ public class TenantBuilder {
 	}
 
 	public TenantBuilder qaEmail(String qaEmail) {
-		QaEmail = qaEmail;
+		this.qaEmail = qaEmail;
 		return this;
 	}
 
@@ -83,16 +85,16 @@ public class TenantBuilder {
 	
 	public Tenant tenantBuild() {
 		Tenant tenant = new Tenant(
-				Optional.ofNullable(this.firstName).orElse("N/A"),
-				Optional.ofNullable(this.lastName).orElse("N/A"),
-				Optional.ofNullable(this.contactNumber).orElse("N/A"),
-				Optional.ofNullable(this.contactEmail).orElse("N/A"),
-				Optional.ofNullable(this.QaEmail).orElse("N/A"),
-				Optional.ofNullable(this.roomReference).orElse("N/A"),
-				Optional.ofNullable(this.groupName).orElse("N/A"),
-				Optional.ofNullable(this.startDate).orElse("N/A"),
-				Optional.ofNullable(this.endDate).orElse("N/A"),
-				Optional.ofNullable(this.notes).orElse("N/A")
+				Optional.ofNullable(this.firstName).orElse(Constants.getNaString()),
+				Optional.ofNullable(this.lastName).orElse(Constants.getNaString()),
+				Optional.ofNullable(this.contactNumber).orElse(Constants.getNaString()),
+				Optional.ofNullable(this.contactEmail).orElse(Constants.getNaString()),
+				Optional.ofNullable(this.qaEmail).orElse(Constants.getNaString()),
+				Optional.ofNullable(this.roomReference).orElse(Constants.getNaString()),
+				Optional.ofNullable(this.groupName).orElse(Constants.getNaString()),
+				Optional.ofNullable(this.startDate).orElse(Constants.getNaString()),
+				Optional.ofNullable(this.endDate).orElse(Constants.getNaString()),
+				Optional.ofNullable(this.notes).orElse(Constants.getNaString())
 				);
 		tenantBuilder= new TenantBuilder();
 		return tenant;

@@ -4,8 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.ArgumentMatchers.notNull;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -30,15 +29,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.qa.tenantApi.main.Constants;
 import com.qa.tenantApi.main.controllers.TenantController;
 import com.qa.tenantApi.main.entities.Tenant;
 import com.qa.tenantApi.main.entities.TenantBuilder;
 import com.qa.tenantApi.main.service.TenantService;
-import com.qa.tenantApi.main.testMain.Constants;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TenantController.class)
@@ -57,91 +57,83 @@ public class TenantControllerTest {
 
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
-			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
+			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName(Constants.getCharset()));
 
-	private Tenant testTenant;
+	private Tenant controllerTestTenant;
+	private String postContent;
+	private ObjectWriter ow;
+	private List<Tenant> MOCKED_TENANTS;
 
 	@Before
-	public void setUp() {
-		testTenant = Constants.getConstructedTenant();
+	public void setUp() throws JsonProcessingException {
+		controllerTestTenant = Constants.getConstructedTenant();
+		OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+		ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
+		postContent= ow.writeValueAsString(controllerTestTenant);
+		MOCKED_TENANTS = new ArrayList<Tenant>();
 	}
 
 	@Test
 	public void testTenantCreation() throws Exception {
-		OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-		ObjectWriter ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
-		String postContent = ow.writeValueAsString(testTenant);
-		Mockito.when(service.createTenant((Tenant) notNull())).thenReturn("New Tenant Created");
+		Mockito.when(service.createTenant((Tenant) notNull())).thenReturn(Constants.getCreationMessage());
 		MvcResult result = mockMvc
-				.perform(post("/createTenant").contentType(APPLICATION_JSON_UTF8).content(postContent)).andReturn();
-		assertThat(result.getResponse().getContentAsString()).contains("New Tenant Created");
+				.perform(post(Constants.getCreateUrl()).contentType(APPLICATION_JSON_UTF8).content(postContent)).andReturn();
+		assertThat(result.getResponse().getContentAsString()).contains(Constants.getCreationMessage());
 	}
 
 	@Test
 	public void testGetAllTenants() throws Exception {
-		List<Tenant> MOCKED_TENANTS = new ArrayList<Tenant>();
 		MOCKED_TENANTS.add(Constants.getConstructedTenant());
 		when(service.getAllTenants()).thenReturn(MOCKED_TENANTS);
-		assertThat(mockMvc.perform(get("/getAllTenants").accept(MediaType.APPLICATION_JSON))
-				.andExpect(content().string(containsString("TestFirst"))));
+		assertThat(mockMvc.perform(get(Constants.getGetAllUrl()).accept(MediaType.APPLICATION_JSON))
+				.andExpect(content().string(containsString(Constants.getTestFirstName()))));
 	}
 
 	@Test
 	public void testTenantSearch() throws Exception {
-		List<Tenant> MOCKED_TENANTS = new ArrayList<Tenant>();
-		MOCKED_TENANTS.add(testTenant);
+		MOCKED_TENANTS.add(controllerTestTenant);
 		MOCKED_TENANTS.add(Constants.getDefaultBuilderTenant());
 
 		Mockito.when(service.tenantSearch((Tenant) notNull()))
-				.thenReturn(MOCKED_TENANTS.stream().filter(x -> x.matches(testTenant)).collect(Collectors.toList()));
+				.thenReturn(MOCKED_TENANTS.stream().filter(x -> x.matches(controllerTestTenant)).collect(Collectors.toList()));
 		MvcResult result = mockMvc
-				.perform(get("/tenantSearch").param("firstName", "TestFirst").param("lastName", "TestLast")
-						.param("groupName", "TestGroupName").accept(MediaType.APPLICATION_JSON))
+				.perform(get(Constants.getSearchUrl()).param(Constants.getFirstName(), Constants.getTestFirstName()).param(Constants.getLastName(), Constants.getTestLastName())
+						.param(Constants.getGroupName(), Constants.getTestGroupName()).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andReturn();
 		String content = result.getResponse().getContentAsString();
 		TypeReference<List<Tenant>> mapType = new TypeReference<List<Tenant>>() {
 		};
 		List<Tenant> list = OBJECT_MAPPER.readValue(content, mapType);
-		assertThat(list.stream().filter(x -> x.matches(testTenant)).collect(Collectors.toList()).get(0)
-				.matches(testTenant));
-	}
-
-	@Test
-	public void testGroupSearch() {
-
+		assertThat(list.stream().filter(x -> x.matches(controllerTestTenant)).collect(Collectors.toList()).get(0)
+				.matches(controllerTestTenant));
 	}
 
 	@Test
 	public void testDeleteAll() throws Exception {
-		List<Tenant> MOCKED_TENANTS = new ArrayList<Tenant>();
-		MOCKED_TENANTS.add(testTenant);
+		MOCKED_TENANTS.add(controllerTestTenant);
 		MOCKED_TENANTS.add(Constants.getDefaultBuilderTenant());
 		Mockito.when(service.deleteAllTenants()).thenAnswer((Answer<?>) invocation -> {
 			MOCKED_TENANTS.clear();
-			return "All tenants deleted";
+			return Constants.getAllDeletionMessage();
 		});
-		this.mockMvc.perform(MockMvcRequestBuilders.delete("/deleteAllTenants").contentType(MediaType.APPLICATION_JSON)
+		this.mockMvc.perform(MockMvcRequestBuilders.delete(Constants.getDeleteAllUrl()).contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 		assertThat(MOCKED_TENANTS.size()).isEqualTo(0);
 	}
 
 	@Test
 	public void testDeleteTenant() throws Exception {
-		OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-		ObjectWriter ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
-		String postContent = ow.writeValueAsString(testTenant);
-		
 		List<Tenant> MOCKED_TENANTS = new ArrayList<Tenant>();
-		MOCKED_TENANTS.add(testTenant);
+		MOCKED_TENANTS.add(controllerTestTenant);
 		MOCKED_TENANTS.add(Constants.getDefaultBuilderTenant());
 		
 		Mockito.when(service.tenantSearch((Tenant) notNull())).thenReturn(MOCKED_TENANTS);
 		Mockito.when(service.deleteTenant((Tenant) notNull())).thenAnswer((Answer<?>) invocation -> {
-			MOCKED_TENANTS.remove(testTenant);
-			return "Tenant deleted";
+			MOCKED_TENANTS.remove(controllerTestTenant);
+			return Constants.getDeletionMessage();
 		});
 		this.mockMvc.perform(MockMvcRequestBuilders
-				.delete("/deleteTenant")
+				.delete(Constants.getDeleteUrl())
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(postContent))
 		.andExpect(status().isOk());
@@ -149,12 +141,20 @@ public class TenantControllerTest {
 	}
 
 	@Test
-	public void testDeleteGroup() {
-
-	}
-
-	@Test
-	public void testUpdateTenant() {
-
+	public void testUpdateTenant() throws Exception {
+		Long id = controllerTestTenant.getId();
+		Mockito.when(service.updateTenant((Long)notNull(), (Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
+			controllerTestTenant = Constants.getDefaultBuilderTenant();
+			controllerTestTenant.setId(id);
+			return Constants.getUpdateMesssage();
+		});
+		this.mockMvc.perform(MockMvcRequestBuilders.put(Constants.getUpdateUrl(), id)
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(postContent))
+		.andExpect(status().isOk());
+		System.out.println(postContent);
+		System.out.println(controllerTestTenant.getFirstName());
+		assertThat(controllerTestTenant.getFirstName()).isEqualTo(Constants.getNaString());
+		assertThat(controllerTestTenant.getId()).isEqualTo(id);
 	}
 }

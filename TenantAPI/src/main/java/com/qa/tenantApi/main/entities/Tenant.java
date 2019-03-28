@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.qa.tenantApi.main.Constants;
+
 @Entity
 public class Tenant {
 
@@ -42,6 +44,10 @@ public class Tenant {
 
 	public long getId() {
 		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id=id;
 	}
 
 	public String getFirstName() {
@@ -127,11 +133,11 @@ public class Tenant {
 	public boolean matches(Tenant tenant) {
 
 		Boolean firstCheck = this.getFirstName().contentEquals(tenant.getFirstName());
-		Boolean firstNull = tenant.getFirstName().contentEquals("N/A");
+		Boolean firstNull = tenant.getFirstName().contentEquals(Constants.getNaString());
 		Boolean lastCheck = this.getLastName().contentEquals(tenant.getLastName());
-		Boolean lastNull = tenant.getLastName().contentEquals("N/A");
+		Boolean lastNull = tenant.getLastName().contentEquals(Constants.getNaString());
 		Boolean groupCheck = this.getGroupName().contentEquals(tenant.getGroupName());
-	    Boolean groupNull = tenant.getGroupName().contentEquals("N/A");
+	    Boolean groupNull = tenant.getGroupName().contentEquals(Constants.getNaString());
 		
 		firstCheck = firstCheck||firstNull;
 		lastCheck = lastCheck||lastNull;
