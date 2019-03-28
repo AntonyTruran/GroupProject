@@ -37,7 +37,7 @@ public class TenantService {
 	
 	public String deleteTenantGroup(List<Tenant> tenants) {
 		this.tenantRepo.deleteAll(tenants);;
-		return "Tenant deleted";
+		return "Tenant group deleted";
 	}
 	
 	public String deleteAllTenants() {

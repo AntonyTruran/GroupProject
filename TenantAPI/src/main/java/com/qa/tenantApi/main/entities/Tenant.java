@@ -126,9 +126,16 @@ public class Tenant {
 
 	public boolean matches(Tenant tenant) {
 
-		return ((this.getFirstName().contentEquals(tenant.getFirstName()) || tenant.getFirstName().contentEquals("N/A"))
-				&& (this.getLastName().contentEquals(tenant.getLastName()) || tenant.getLastName().contentEquals("N/A"))
-				&& (this.getGroupName().contentEquals(tenant.getGroupName())
-						|| tenant.getGroupName().contentEquals("N/A")));
+		Boolean firstCheck = this.getFirstName().contentEquals(tenant.getFirstName()) ;
+		Boolean firstNull = tenant.getFirstName().contentEquals("N/A");
+		Boolean lastCheck = this.getLastName().contentEquals(tenant.getLastName());
+		Boolean lastNull = tenant.getLastName().contentEquals("N/A");
+		Boolean groupCheck = this.getGroupName().contentEquals(tenant.getGroupName());
+	    Boolean groupNull = tenant.getGroupName().contentEquals("N/A");
+		
+		firstCheck = firstCheck||firstNull;
+		lastCheck = lastCheck||lastNull;
+		groupCheck = groupCheck||groupNull;
+		return (firstCheck && lastCheck && groupCheck);
 	}
 }
