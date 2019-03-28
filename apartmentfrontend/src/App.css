@@ -31,6 +31,12 @@ h1 img{
   width: 100%;
 }
 
+.Timeline-Container{
+  display: inline-block;
+  margin-left: auto;
+  margin-right:auto;
+  max-width: 1200px
+}
 .App-link {
   color: #61dafb;
 }

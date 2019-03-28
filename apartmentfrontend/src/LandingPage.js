@@ -6,7 +6,9 @@ class LandingPage extends Component {
   render() {
     return (
       <div>
+        <div className="Timeline-Container">
         <EventTimeline/>
+        </div>
       </div>
     );
   }
