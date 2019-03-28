@@ -1,7 +1,6 @@
 # QA Group Project
 This parent folder contains micro-services which facilitate the running of an Apartment Management System.
 Collaborators include;
-
 	- [Anthony Truran](https://github.com/AntonyTruran)
 	- [James Ingram](https://github.com/smurfjames101)
 	- [Luke Jones](https://github.com/BetaDraconis)
@@ -19,20 +18,17 @@ Collaborators include;
 
 ## Initial Overview
 ### Plan
-1.  **Gather general information about the project.** Interview relevant personnel to
-determine what key functionality would be required in any potential solution. If a
-version of the system already exists, also investigate how the current system could
-be improved, and what parts of the current system they wish to retain.
+1.  **Gather general information about the project.** Interview relevant personnel to determine what key 
+functionality would be required in any potential solution. If aversion of the system already exists, also 
+investigate how the current system couldbe improved, and what parts of the current system they wish to retain.
 
-2.  **Bring together initial findings.** Produce basic project outline. Make initial
-assessment on project architecture, and which tools/technology may be suitable.
-Conduct second round of interviews to verify any assumptions, gather additional
-information, and ask more specific questions about the project.
+2.  **Bring together initial findings.** Produce basic project outline. Make initial assessment on project 
+architecture, and which tools/technology may be suitable.Conduct second round of interviews to verify any 
+assumptions, gather additional information, and ask more specific questions about the project.
 
-3. **Construct full project overview.** Use feedback from second round of interviews to
-produce a comprehensive plan for the project. Include a consideration of business
-logic, front-end wire frames, use cases, and architecture and present to client for
-approval. Make final decision on tools/ technology to be used.
+3. **Construct full project overview.** Use feedback from second round of interviews to produce a comprehensive 
+plan for the project. Include a consideration of business logic, front-end wire frames, use cases, and 
+architecture and present to client for approval. Make final decision on tools/ technology to be used.
 ### Options Considered
 ---
 - **Interview management system** (**`Chester`**):
@@ -94,27 +90,42 @@ which has the most relationships.
 ````
 #### Front-end – Wireframe
 
-![API Architecture](Documentation/API.png)
+![API Architecture](Documentation/HomePageWireFrame.png)
 
 **`Figure 4:`**
 ````
-Wire-frame diagram depicting a proposed section of the front-end application interface. This specific wireframe shows how the occupation status of different apartments, from different buildings, would be displayed with respect to time.
+Wire-frame diagram depicting a proposed section of the front-end application interface. This specific 
+wireframe shows how the occupation status of different apartments, from different buildings, would be 
+displayed with respect to time.
 ````
-![API Architecture](Documentation/GroupPageWireFrame.png)
+![API Architecture](Documentation/GroupsPageWireFrame.png)
 
 **`Figure 5:`**
 ````
-See Figure 4. Here is demonstrated how the ‘group’ functionality is intended to function. On this page details about a group of tenants will be displayed. The user will also be able to make bulk changes to tenants by applying them to the group as a whole.
+See Figure 4. Here is demonstrated how the ‘group’ functionality is intended to function. On this page details 
+about a group of tenants will be displayed. The user will also be able to make bulk changes to tenants by 
+applying them to the group as a whole.
 ````
-![API Architecture](Documentation/AdminPageWireFrame.png0
+![API Architecture](Documentation/AdminPageWireFrame.png)
 
 **`Figure 6:`**
 ````
-See Figure 4. Here some of the basic CRUD functionalities of the product are demonstrated. On this page the user will be able to create new items in the various different tables, as well as edit or delete any of the existing ones.
+See Figure 4. Here some of the basic CRUD functionalities of the product are demonstrated. On this page the 
+user will be able to create new items in the various different tables, as well as edit or delete any of the 
+existing ones.
 ````
 ![API Architecture](Documentation/ApartmentPageWireFrame.png)
 
 **`Figure 7:`**
 ````
-See Figure 4. This wireframe shows how details about individual apartments can be displayed within the system. Search-box functionality (as seen in the Navigation bar of the left) will also be integrated to allow the user to search for a specific data entry.
+See Figure 4. This wireframe shows how details about individual apartments can be displayed within the system. 
+Search-box functionality (as seen in the Navigation bar of the left) will also be integrated to allow the user 
+to search for a specific data entry.
 ````
+![API Architecture](Documentation/TenantsPageWireFrame.png)
+**`Figure 8`*
+```
+See Figure 4. This wireframe shows how details about individual tenants can be displayed within the system. 
+Search-box functionality (as seen in the Navigation bar of the left) will also be integrated to allow the 
+user to search for a specific data entry. 
+```
