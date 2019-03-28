@@ -2,16 +2,16 @@
 This parent folder contains micro-services which facilitate the running of an Apartment Management System.
 Collaborators include;
 
-	- [Anthony Truran][https://github.com/AntonyTruran]
-	- [James Ingram][https://github.com/smurfjames101]
-	- [Luke Jones][https://github.com/BetaDraconis]
-	- [Kyle Warrington][https://github.com/Kyrvix]
-	- [Ryan Lang][https://github.com/RyanLang44]
+	- [Anthony Truran](https://github.com/AntonyTruran)
+	- [James Ingram](https://github.com/smurfjames101)
+	- [Luke Jones](https://github.com/BetaDraconis)
+	- [Kyle Warrington](https://github.com/Kyrvix)
+	- [Ryan Lang](https://github.com/RyanLang44)
 ## Contents
- - [**Initial Overview**][https://github.com/AntonyTruran/GroupProject/tree/ReadMe#initial-overview]
+ - [**Initial Overview**](https://github.com/AntonyTruran/GroupProject/tree/ReadMe#initial-overview)
 	 - Plan
 	 - Options Considered
-	 - [Project Outline - AMS][https://github.com/AntonyTruran/GroupProject/tree/ReadMe#project-outline---accommodation-management-system]
+	 - [Project Outline - AMS](https://github.com/AntonyTruran/GroupProject/tree/ReadMe#project-outline---accommodation-management-system)
 		 - Overall Architecture
 		 - Database - Structure and Relationships
 		 - Back-end - API Architecture
@@ -61,7 +61,7 @@ about people apartments tracked with that person.
 
 ### Project Outline - Accommodation Management System
 #### Overall Architecture
-![architecture-diagram][Documentation/ArchitectureDiagram.png]
+![architecture-diagram](Documentation/ArchitectureDiagram.png)
 **`Figure 1:`** 
 ````
 Overall project architecture diagram. The product will consist of 3 main parts: the
@@ -73,7 +73,7 @@ a source-code repository. See Figure 3 for more details about the front-end, and
 ````
 #### Database – Structure and relationships
 
-![Entity Relationship Diagram][Documentation/ERD.png]
+![Entity Relationship Diagram](Documentation/ERD.png)
 
 **`Figure 2:`**
 ````
@@ -84,7 +84,7 @@ end. Queueing system, database) will interact with the back-end.
 ````
 #### Back-end – Front-end and API Architecture 
 
-![API Architecture][Documentation/API.png]
+![API Architecture](Documentation/API.png)
 
 **`Figure 3:`**
 ````
@@ -94,25 +94,25 @@ which has the most relationships.
 ````
 #### Front-end – Wireframe
 
-![API Architecture][Documentation/API.png]
+![API Architecture](Documentation/API.png)
 
 **`Figure 4:`**
 ````
 Wire-frame diagram depicting a proposed section of the front-end application interface. This specific wireframe shows how the occupation status of different apartments, from different buildings, would be displayed with respect to time.
 ````
-![API Architecture][Documentation/GroupPageWireFrame.png]
+![API Architecture](Documentation/GroupPageWireFrame.png)
 
 **`Figure 5:`**
 ````
 See Figure 4. Here is demonstrated how the ‘group’ functionality is intended to function. On this page details about a group of tenants will be displayed. The user will also be able to make bulk changes to tenants by applying them to the group as a whole.
 ````
-![API Architecture][Documentation/AdminPageWireFrame.png]
+![API Architecture](Documentation/AdminPageWireFrame.png0
 
 **`Figure 6:`**
 ````
 See Figure 4. Here some of the basic CRUD functionalities of the product are demonstrated. On this page the user will be able to create new items in the various different tables, as well as edit or delete any of the existing ones.
 ````
-![API Architecture][Documentation/ApartmentPageWireFrame.png]
+![API Architecture](Documentation/ApartmentPageWireFrame.png)
 
 **`Figure 7:`**
 ````
