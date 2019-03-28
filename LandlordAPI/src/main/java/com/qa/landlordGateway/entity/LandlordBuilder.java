@@ -11,7 +11,7 @@ public class LandlordBuilder {
 	private String firstName = "";
 	private String lastName = "";
 	private String email = "";
-	private int phoneNumber = 0;
+	private String phoneNumber = "";
 	private static LandlordBuilder landlordBuilder;
 	
 	private LandlordBuilder() {
@@ -29,7 +29,7 @@ public class LandlordBuilder {
 		this.email = email;
 		return this;
 	}
-	public LandlordBuilder phoneNumber(int phoneNumber) {
+	public LandlordBuilder phoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 		return this;
 	}
@@ -38,7 +38,7 @@ public class LandlordBuilder {
 				Optional.ofNullable(this.firstName).orElse("N/A"),
 				Optional.ofNullable(this.lastName).orElse("N/A"),
 				Optional.ofNullable(this.email).orElse("N/A"),
-				Optional.ofNullable(this.phoneNumber).orElse(0));
+				Optional.ofNullable(this.phoneNumber).orElse("N/A"));
 		landlordBuilder = null;
 		return landlord;
 	}

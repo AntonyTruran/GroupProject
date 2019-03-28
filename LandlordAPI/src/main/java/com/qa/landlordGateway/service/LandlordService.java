@@ -23,7 +23,7 @@ public class LandlordService {
 	public List<Landlord> getLandlords(){
 		return this.landlordRepo.findAll();	
 		}
-	public List<Landlord> landlordSearh(Landlord landlord){
+	public List<Landlord> landlordSearch(Landlord landlord){
 		return this.getLandlords().stream().filter(x -> x.matches(landlord)).collect(Collectors.toList());
 	}
 }

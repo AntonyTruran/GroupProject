@@ -13,16 +13,16 @@ public class Landlord {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private int phoneNumber;
+	private String phoneNumber;
 	
 	public Landlord() {
 	}
 
-	public Landlord(String firstName, String lastName, String email, int phoneNumber) {
+	public Landlord(String firstName, String lastName, String email, String testContactNumber) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.phoneNumber = phoneNumber;
+		this.phoneNumber = testContactNumber;
 	}
 
 	public Long getId() {
@@ -57,11 +57,11 @@ public class Landlord {
 		this.email = email;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	

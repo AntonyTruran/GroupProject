@@ -37,7 +37,7 @@ public class LandlordController {
 	}
 	@GetMapping("/landlordSearch")
 	public List<Landlord> landlordSearch(String firstName, String lastName){
-		return this.landlordService.landlordSearh(landlordBuilder.firstName(firstName).lastName(lastName).landlordBuild());
+		return this.landlordService.landlordSearch(landlordBuilder.firstName(firstName).lastName(lastName).landlordBuild());
 	}
 	@Autowired
 	RestTemplateBuilder rtb;
