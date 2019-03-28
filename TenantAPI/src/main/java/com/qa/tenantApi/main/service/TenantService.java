@@ -47,11 +47,11 @@ public class TenantService {
 	
 	public String updateTenant(Tenant tenant) {
 		this.tenantRepo.saveAndFlush(tenant);
-		return "Tenant upated";
+		return "Tenant updated";
 	}
 	
 	public String updateTenantGroup(List<Tenant> tenants) {
 		this.tenantRepo.saveAll(tenants);
-		return "Tenant group upated";
+		return "Tenant group updated";
 	}
 }
