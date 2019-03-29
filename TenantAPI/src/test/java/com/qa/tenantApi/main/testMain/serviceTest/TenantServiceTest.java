@@ -40,6 +40,7 @@ public class TenantServiceTest {
 
 	@Before
 	public void setup() {
+		this.tenantList = new ArrayList<Tenant>();
 		this.tenantList.add(Constants.getDefaultBuilderTenant());
 		this.tenantList.add(Constants.getConstructedTenant());  
 		this.tenant = new Tenant();
