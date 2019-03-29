@@ -17,7 +17,7 @@ public class Tenant {
 	private String lastName;
 	private String contactNumber;
 	private String contactEmail;
-	private String qaEmail;
+	private String QaEmail;
 	private String roomReference;
 	private String groupName;
 	private String startDate;
@@ -34,7 +34,7 @@ public class Tenant {
 		this.lastName = lastName;
 		this.contactNumber = contactNumber;
 		this.contactEmail = contactEmail;
-		this.qaEmail = qaEmail;
+		this.QaEmail = qaEmail;
 		this.roomReference = roomReference;
 		this.groupName = groupName;
 		this.startDate = startDate;
@@ -83,11 +83,11 @@ public class Tenant {
 	}
 
 	public String getQaEmail() {
-		return qaEmail;
+		return QaEmail;
 	}
 
 	public void setQaEmail(String qaEmail) {
-		this.qaEmail = qaEmail;
+		QaEmail = qaEmail;
 	}
 
 	public String getRoomReference() {

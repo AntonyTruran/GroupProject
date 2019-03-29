@@ -15,7 +15,7 @@ import com.qa.tenantApi.main.testMain.serviceTest.TenantServiceTest;
 @RunWith(Suite.class)
 
 @SuiteClasses({TenantTest.class, SmokeTest.class, TenantServiceTest.class,
-	 TenantBuilderTest.class,  TenantRepoTest.class, ApplicationMainTest.class,  TenantControllerTest.class })
+	 TenantBuilderTest.class,  TenantRepoTest.class, /*ApplicationMainTest.class,*/  TenantControllerTest.class })
 
 @SpringBootTest
 public class TestSuite {

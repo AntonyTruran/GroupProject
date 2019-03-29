@@ -61,7 +61,6 @@ public class TenantControllerTest {
 
 	private Tenant controllerTestTenant;
 	private String postContent;
-	private String postContent2;
 	private ObjectWriter ow;
 	private List<Tenant> MOCKED_TENANTS;
 
@@ -71,7 +70,6 @@ public class TenantControllerTest {
 		OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
 		ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
 		postContent= ow.writeValueAsString(controllerTestTenant);
-		postContent2 = ow.writeValueAsString(Constants.getDefaultBuilderTenant());
 		MOCKED_TENANTS = new ArrayList<Tenant>();
 	}
 
@@ -88,7 +86,7 @@ public class TenantControllerTest {
 		MOCKED_TENANTS.add(Constants.getConstructedTenant());
 		when(service.getAllTenants()).thenReturn(MOCKED_TENANTS);
 		assertThat(mockMvc.perform(get(Constants.getGetAllUrl()).accept(MediaType.APPLICATION_JSON))
-				.andExpect(content().string(containsString(Constants.getTestFirstName())))).isEqualTo(true);
+				.andExpect(content().string(containsString(Constants.getTestFirstName()))));
 	}
 
 	@Test
@@ -107,7 +105,7 @@ public class TenantControllerTest {
 		};
 		List<Tenant> list = OBJECT_MAPPER.readValue(content, mapType);
 		assertThat(list.stream().filter(x -> x.matches(controllerTestTenant)).collect(Collectors.toList()).get(0)
-				.matches(controllerTestTenant)).isEqualTo(true);
+				.matches(controllerTestTenant));
 	}
 
 	@Test
@@ -152,11 +150,11 @@ public class TenantControllerTest {
 		});
 		this.mockMvc.perform(MockMvcRequestBuilders.put(Constants.getUpdateUrl(), id)
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(postContent2))
+				.content(postContent))
 		.andExpect(status().isOk());
-		System.out.println(postContent2);
+		System.out.println(postContent);
 		System.out.println(controllerTestTenant.getFirstName());
 		assertThat(controllerTestTenant.getFirstName()).isEqualTo(Constants.getNaString());
-		assertThat(controllerTestTenant.getId()).isEqualTo(id).isEqualTo(true);
+		assertThat(controllerTestTenant.getId()).isEqualTo(id);
 	}
 }

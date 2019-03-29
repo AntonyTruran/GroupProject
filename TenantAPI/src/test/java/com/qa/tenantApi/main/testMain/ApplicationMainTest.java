@@ -1,7 +1,5 @@
 package com.qa.tenantApi.main.testMain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,5 @@ public class ApplicationMainTest {
 		app = new TenantApiApplication();
 		String[] args = new String[] {Constants.getHelloWorld()};
 		app.main(args);
-		assertThat(app).isNotNull();
 	}
 	}

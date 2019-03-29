@@ -34,7 +34,7 @@ public class TenantBuilderTest {
 
 	@Test
 	public void blankBuild() {
-		assertThat(tenantBuilder.tenantBuild().matches(Constants.getDefaultBuilderTenant())).isEqualTo(true);
+		assertThat(tenantBuilder.tenantBuild().matches(Constants.getDefaultBuilderTenant()));
 	}
 
 	@Test

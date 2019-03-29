@@ -26,7 +26,7 @@ public class TenantTest {
 		Tenant tenant = new Tenant(Constants.getNaString(), Constants.getNaString(), Constants.getNaString(),
 				Constants.getNaString(), Constants.getNaString(), Constants.getNaString(), Constants.getNaString(),
 				Constants.getNaString(), Constants.getNaString(), Constants.getNaString());
-		assertThat(tenant.matches(Constants.getDefaultBuilderTenant())).isEqualTo(true);
+		assertThat(tenant.matches(Constants.getDefaultBuilderTenant()));
 	}
 
 	@Test
@@ -57,6 +57,6 @@ public class TenantTest {
 		testTenant.setStartDate(Constants.getNaString());
 		testTenant.setEndDate(Constants.getNaString());
 		testTenant.setNotes(Constants.getNaString());
-		assertThat(testTenant.matches(Constants.getDefaultBuilderTenant())).isEqualTo(true);
+		assertThat(testTenant.matches(Constants.getDefaultBuilderTenant()));
 	}
 }

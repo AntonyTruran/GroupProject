@@ -38,15 +38,13 @@ public class TenantController {
 
 	@GetMapping("/tenantSearch")
 	public List<Tenant> tenantSearch(String firstName, String lastName, String groupName) {
-		TenantBuilder.getTenantBuilder().firstName(firstName).lastName(lastName).groupName(groupName);
-		Tenant tenant = TenantBuilder.tenantBuild();
+		Tenant tenant = TenantBuilder.getTenantBuilder().firstName(firstName).lastName(lastName).groupName(groupName).tenantBuild();
 		return this.tenantService.tenantSearch(tenant);
 	}
 	
 	@GetMapping("/tenantGroupSearch/{groupName}")
 	public List<Tenant> tenantGroupSearch(@PathVariable("groupName")String groupName) {
-		TenantBuilder.getTenantBuilder().groupName(groupName);
-		Tenant tenant = TenantBuilder.tenantBuild();
+		Tenant tenant = TenantBuilder.getTenantBuilder().groupName(groupName).tenantBuild();
 		return this.tenantService.tenantSearch(tenant);
 	}
 	
@@ -58,7 +56,10 @@ public class TenantController {
 	@DeleteMapping("/deleteTenantGroup/{groupName}")
 	public String deleteTenantGroup(@PathVariable("groupName") String groupName) {
 		List<Tenant> tenants = this.tenantGroupSearch(groupName);
-		return this.tenantService.deleteTenantGroup(tenants);
+		for(int i = 0; i < tenants.size();i++) {
+			this.tenantService.deleteTenant(tenants.get(i));
+		}
+		return Constants.getGroupDeletionMessage();
 	}
 	
 	@DeleteMapping("/deleteTenant")

@@ -4,48 +4,44 @@ import com.qa.tenantApi.main.entities.Tenant;
 import com.qa.tenantApi.main.entities.TenantBuilder;
 
 public class Constants {
-	
-	private Constants() {
-		
-	}
 
-	private static final Tenant NULL_TENANT = new Tenant();
-	private static final Tenant DEFAULT_BUILDER_TENANT = TenantBuilder.tenantBuild();
+	private final static Tenant NULL_TENANT = new Tenant();
+	private final static Tenant DEFAULT_BUILDER_TENANT = TenantBuilder.getTenantBuilder().tenantBuild();
 
-	private static final String TEST_FIRST_NAME = "TestFirst";
-	private static final String TEST_LAST_NAME = "TestLast";
-	private static final String TEST_CONTACT_NUMBER = "TestNumber";
-	private static final String TEST_CONTACT_EMAIL = "TestEmail";
-	private static final String TEST_QA_EMAIL = "TestQaEmail";
-	private static final String TEST_ROOM_REFERENCE = "TestRoomReference";
-	private static final String TEST_GROUP_NAME = "TestGroupName";
-	private static final String TEST_START_DATE = "TestStartDate";
-	private static final String TEST_END_DATE = "TestEndDate";
-	private static final String TEST_NOTES = "TestNotes";
-	private static final String NA_STRING = "N/A";
-	private static final String CREATION_MESSAGE = "New tenant created";
-	private static final String DELETION_MESSAGE = "Tenant deleted";
-	private static final String ALL_DELETION_MESSAGE = "All tenants deleted";
-	private static final String UPDATE_MESSSAGE = "Tenant updated";
-	private static final String GROUP_UPDATE_MESSAGE = "Tenant group updated";
-	private static final String TENANTS_DELETION_MESSAGE = "Tenant(s) deleted";
-	private static final String GROUP_DELETION_MESSAGE = "Tenant group deleted";
-	private static final String HELLO_WORLD = "Hello World";
-	private static final String GROUP_NAME = "groupName";
-	private static final String FIRST_NAME = "firstName";
-	private static final String LAST_NAME = "Name";
-	private static final String ID = "id";
-	private static final String CHARSET = "utf8";
+	private final static String TEST_FIRST_NAME = "TestFirst";
+	private final static String TEST_LAST_NAME = "TestLast";
+	private final static String TEST_CONTACT_NUMBER = "TestNumber";
+	private final static String TEST_CONTACT_EMAIL = "TestEmail";
+	private final static String TEST_QA_EMAIL = "TestQaEmail";
+	private final static String TEST_ROOM_REFERENCE = "TestRoomReference";
+	private final static String TEST_GROUP_NAME = "TestGroupName";
+	private final static String TEST_START_DATE = "TestStartDate";
+	private final static String TEST_END_DATE = "TestEndDate";
+	private final static String TEST_NOTES = "TestNotes";
+	private final static String NA_STRING = "N/A";
+	private final static String CREATION_MESSAGE = "New tenant created";
+	private final static String DELETION_MESSAGE = "Tenant deleted";
+	private final static String ALL_DELETION_MESSAGE = "All tenants deleted";
+	private final static String UPDATE_MESSSAGE = "Tenant updated";
+	private final static String GROUP_UPDATE_MESSAGE = "Tenant group updated";
+	private final static String TENANTS_DELETION_MESSAGE = "Tenant(s) deleted";
+	private final static String GROUP_DELETION_MESSAGE = "Tenant group deleted";
+	private final static String HELLO_WORLD = "Hello World";
+	private final static String GROUP_NAME = "groupName";
+	private final static String FIRST_NAME = "firstName";
+	private final static String LAST_NAME = "Name";
+	private final static String ID = "id";
+	private final static String CHARSET = "utf8";
 	
-	private static final String CREATE_URL = "/createTenant";
-	private static final String GET_ALL_URL = "/getAllTenants";
-	private static final String SEARCH_URL = "/tenantSearch";
-	private static final String GROUP_SEARCH_URL = "/tenantGroupSearch/{groupName}";
-	private static final String DELETE_ALL_URL="/deleteAllTenants";
-	private static final String DELETE_GROUP_URL ="/deleteTenantGroup/{groupName}";
-	private static final String DELETE_URL="/deleteTenant";
-	private static final String UPDATE_URL="/updateTenant/{id}";
-	private static final String UPDATE_GROUP_URL="/updateTenantGroup/{groupName}";
+	private final static String CREATE_URL = "/createTenant";
+	private final static String GET_ALL_URL = "/getAllTenants";
+	private final static String SEARCH_URL = "/tenantSearch";
+	private final static String GROUP_SEARCH_URL = "/tenantGroupSearch/{groupName}";
+	private final static String DELETE_ALL_URL="/deleteAllTenants";
+	private final static String DELETE_GROUP_URL ="/deleteTenantGroup/{groupName}";
+	private final static String DELETE_URL="/deleteTenant";
+	private final static String UPDATE_URL="/updateTenant/{id}";
+	private final static String UPDATE_GROUP_URL="/updateTenantGroup/{groupName}";
 	
 
 	public static String getTenantsDeletionMessage() {
@@ -132,7 +128,7 @@ public class Constants {
 		return GROUP_UPDATE_MESSAGE;
 	}
 
-	private static final Tenant CONSTRUCTED_TENANT = new Tenant(TEST_FIRST_NAME, TEST_LAST_NAME, TEST_CONTACT_NUMBER,
+	private final static Tenant CONSTRUCTED_TENANT = new Tenant(TEST_FIRST_NAME, TEST_LAST_NAME, TEST_CONTACT_NUMBER,
 			TEST_CONTACT_EMAIL, TEST_QA_EMAIL, TEST_ROOM_REFERENCE, TEST_GROUP_NAME, TEST_START_DATE, TEST_END_DATE,
 			TEST_NOTES);
 

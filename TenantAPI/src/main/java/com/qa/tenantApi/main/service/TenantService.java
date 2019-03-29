@@ -37,11 +37,6 @@ public class TenantService {
 		return Constants.getDeletionMessage();
 	}
 	
-	public String deleteTenantGroup(List<Tenant> tenants) {
-		this.tenantRepo.deleteAll(tenants);
-		return Constants.getGroupDeletionMessage();
-	}
-	
 	public String deleteAllTenants() {
 		this.tenantRepo.deleteAll();
 		return Constants.getAllDeletionMessage();
