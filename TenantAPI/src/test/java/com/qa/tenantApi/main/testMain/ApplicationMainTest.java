@@ -7,17 +7,16 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import com.qa.tenantApi.main.Constants;
 import com.qa.tenantApi.main.TenantApiApplication;
-
-import jdk.nashorn.internal.ir.annotations.Ignore;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ApplicationMainTest {
 	@Autowired
 	private TenantApiApplication app;
+	
+	Constants constants;
 	
 	@Test
 	public void appRuns() {
@@ -26,4 +25,4 @@ public class ApplicationMainTest {
 		app.main(args);
 		assertThat(app).isNotNull();
 	}
-	}
+	} 

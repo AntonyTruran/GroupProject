@@ -5,12 +5,8 @@ import com.qa.tenantApi.main.entities.TenantBuilder;
 
 public class Constants {
 	
-	private Constants() {
-		
-	}
-
 	private static final Tenant NULL_TENANT = new Tenant();
-	private static final Tenant DEFAULT_BUILDER_TENANT = TenantBuilder.tenantBuild();
+	private static Tenant DEFAULT_BUILDER_TENANT = TenantBuilder.getTenantBuilder().tenantBuild();
 
 	private static final String TEST_FIRST_NAME = "TestFirst";
 	private static final String TEST_LAST_NAME = "TestLast";
@@ -48,6 +44,10 @@ public class Constants {
 	private static final String UPDATE_GROUP_URL="/updateTenantGroup/{groupName}";
 	
 
+	public static void setDefaultBuilderTenant(Tenant tenant) {
+		DEFAULT_BUILDER_TENANT = tenant;
+	}
+	
 	public static String getTenantsDeletionMessage() {
 		return TENANTS_DELETION_MESSAGE;
 	}

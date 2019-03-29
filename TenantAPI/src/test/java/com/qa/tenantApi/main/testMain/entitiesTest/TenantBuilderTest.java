@@ -19,11 +19,13 @@ public class TenantBuilderTest {
 	
 	@Autowired
 	private static TenantBuilder tenantBuilder;
+	Constants constants;
 
 	@Before
 	public void getBuilder() {
 		tenantBuilder = TenantBuilder.getTenantBuilder();
 		assertThat(tenantBuilder).isNotNull();
+		constants = new Constants();
 	}
 
 	@After
@@ -34,16 +36,18 @@ public class TenantBuilderTest {
 
 	@Test
 	public void blankBuild() {
-		assertThat(tenantBuilder.tenantBuild().matches(Constants.getDefaultBuilderTenant())).isEqualTo(true);
+		System.out.println(constants.getDefaultBuilderTenant().getFirstName());
+		assertThat(TenantBuilder.tenantBuild().matches(constants.getDefaultBuilderTenant())).isEqualTo(true);
 	}
 
 	@Test
 	public void setterBuild() {
-		assertThat(tenantBuilder.firstName(Constants.getTestFirstName()).lastName(Constants.getTestLastName())
-				.contactNumber(Constants.getTestContactNumber()).contactEmail(Constants.getTestContactEmail())
-				.qaEmail(Constants.getTestQaEmail()).roomReference(Constants.getTestRoomReference())
-				.groupName(Constants.getTestGroupName()).startDate(Constants.getTestStartDate())
-				.endDate(Constants.getTestEndDate()).notes(Constants.getTestNotes()).tenantBuild())
-		.isEqualToComparingFieldByField(Constants.getConstructedTenant());
+		tenantBuilder.firstName(constants.getTestFirstName()).lastName(constants.getTestLastName())
+				.contactNumber(constants.getTestContactNumber()).contactEmail(constants.getTestContactEmail())
+				.qaEmail(constants.getTestQaEmail()).roomReference(constants.getTestRoomReference())
+				.groupName(constants.getTestGroupName()).startDate(constants.getTestStartDate())
+				.endDate(constants.getTestEndDate()).notes(constants.getTestNotes());
+		assertThat(TenantBuilder.tenantBuild())
+		.isEqualToComparingFieldByField(constants.getConstructedTenant());
 	}
 }

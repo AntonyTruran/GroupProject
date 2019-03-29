@@ -36,7 +36,7 @@ public class TenantTest {
 		assertNull(Constants.getNullTenant().getContactNumber());
 		assertNull(Constants.getNullTenant().getContactEmail());
 		assertNull(Constants.getNullTenant().getQaEmail());
-		assertNull(Constants.getNullTenant().getRoomReference());
+	 	assertNull(Constants.getNullTenant().getRoomReference());
 		assertNull(Constants.getNullTenant().getGroupName());
 		assertNull(Constants.getNullTenant().getStartDate());
 		assertNull(Constants.getNullTenant().getEndDate());

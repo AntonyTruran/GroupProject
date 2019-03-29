@@ -42,7 +42,7 @@ import com.qa.tenantApi.main.service.TenantService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TenantController.class)
-@AutoConfigureMockMvc 
+@AutoConfigureMockMvc
 public class TenantControllerTest {
 
 	@Autowired
@@ -88,7 +88,7 @@ public class TenantControllerTest {
 		MOCKED_TENANTS.add(Constants.getConstructedTenant());
 		when(service.getAllTenants()).thenReturn(MOCKED_TENANTS);
 		assertThat(mockMvc.perform(get(Constants.getGetAllUrl()).accept(MediaType.APPLICATION_JSON))
-				.andExpect(content().string(containsString(Constants.getTestFirstName()))));
+				.andExpect(content().string(containsString(Constants.getTestFirstName())))).isEqualTo(true);
 	}
 
 	@Test
@@ -157,6 +157,6 @@ public class TenantControllerTest {
 		System.out.println(postContent2);
 		System.out.println(controllerTestTenant.getFirstName());
 		assertThat(controllerTestTenant.getFirstName()).isEqualTo(Constants.getNaString());
-		assertThat(controllerTestTenant.getId()).isEqualTo(id);
+		assertThat(controllerTestTenant.getId()).isEqualTo(id).isEqualTo(true);
 	}
 }

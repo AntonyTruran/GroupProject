@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -19,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.qa.tenantApi.main.Constants;
 import com.qa.tenantApi.main.entities.Tenant;
+import com.qa.tenantApi.main.entities.TenantBuilder;
 import com.qa.tenantApi.main.repository.TenantRepo;
 import static org.mockito.ArgumentMatchers.*;
 import com.qa.tenantApi.main.service.TenantService;
@@ -30,7 +32,7 @@ public class TenantServiceTest {
 	TenantService tenantService;
 	@Mock
 	TenantRepo tenantRepo;
-
+	
 	private List<Tenant> tenantList = new ArrayList<Tenant>();
 
 	@Before
@@ -41,6 +43,8 @@ public class TenantServiceTest {
 
 	@After
 	public void deconstruct() {
+		Tenant tenant = TenantBuilder.getTenantBuilder().tenantBuild();
+		Constants.setDefaultBuilderTenant(tenant);
 		tenantList.clear();
 	}
 
@@ -53,7 +57,7 @@ public class TenantServiceTest {
 		assertThat(returnList.get(0)).isEqualToComparingFieldByField(Constants.getDefaultBuilderTenant());
 		assertThat(returnList.get(1)).isEqualToComparingFieldByField(Constants.getConstructedTenant());
 	}
-	
+	 
 	@Test
 	public void createTenantTest() {
 		Tenant newTenant = Constants.getConstructedTenant();
@@ -96,7 +100,7 @@ public class TenantServiceTest {
 	}
 	
 	@Test
-	public void updateTenantTest() {
+	public void updateTenantTest() throws CloneNotSupportedException {
 		Tenant updateTenant = Constants.getConstructedTenant();
 		Mockito.when(tenantRepo.findById((Long)notNull())).thenReturn(Optional.ofNullable(tenantList.get(0)));
 		Mockito.when(tenantRepo.saveAndFlush((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
