@@ -26,7 +26,7 @@ public class TenantBuilder {
 	private TenantBuilder() {
 	}
 
-	public static TenantBuilder getTenantBuilder() {
+	public static  TenantBuilder getTenantBuilder() {
 		if (tenantBuilder == null) {
 			tenantBuilder = new TenantBuilder();
 		}
@@ -83,18 +83,18 @@ public class TenantBuilder {
 		return this;
 	}
 	
-	public Tenant tenantBuild() {
+	public static Tenant tenantBuild() {
 		Tenant tenant = new Tenant(
-				Optional.ofNullable(this.firstName).orElse(Constants.getNaString()),
-				Optional.ofNullable(this.lastName).orElse(Constants.getNaString()),
-				Optional.ofNullable(this.contactNumber).orElse(Constants.getNaString()),
-				Optional.ofNullable(this.contactEmail).orElse(Constants.getNaString()),
-				Optional.ofNullable(this.qaEmail).orElse(Constants.getNaString()),
-				Optional.ofNullable(this.roomReference).orElse(Constants.getNaString()),
-				Optional.ofNullable(this.groupName).orElse(Constants.getNaString()),
-				Optional.ofNullable(this.startDate).orElse(Constants.getNaString()),
-				Optional.ofNullable(this.endDate).orElse(Constants.getNaString()),
-				Optional.ofNullable(this.notes).orElse(Constants.getNaString())
+				Optional.ofNullable(tenantBuilder.firstName).orElse(Constants.getNaString()),
+				Optional.ofNullable(tenantBuilder.lastName).orElse(Constants.getNaString()),
+				Optional.ofNullable(tenantBuilder.contactNumber).orElse(Constants.getNaString()),
+				Optional.ofNullable(tenantBuilder.contactEmail).orElse(Constants.getNaString()),
+				Optional.ofNullable(tenantBuilder.qaEmail).orElse(Constants.getNaString()),
+				Optional.ofNullable(tenantBuilder.roomReference).orElse(Constants.getNaString()),
+				Optional.ofNullable(tenantBuilder.groupName).orElse(Constants.getNaString()),
+				Optional.ofNullable(tenantBuilder.startDate).orElse(Constants.getNaString()),
+				Optional.ofNullable(tenantBuilder.endDate).orElse(Constants.getNaString()),
+				Optional.ofNullable(tenantBuilder.notes).orElse(Constants.getNaString())
 				);
 		tenantBuilder= new TenantBuilder();
 		return tenant;
