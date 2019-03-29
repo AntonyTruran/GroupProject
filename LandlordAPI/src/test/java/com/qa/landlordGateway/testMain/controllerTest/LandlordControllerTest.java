@@ -42,7 +42,6 @@ import com.qa.landlordGateway.testMain.Constants;
 @AutoConfigureWebMvc
 public class LandlordControllerTest {
 
-	@Autowired
 	private MockMvc mockMvc;
 	
 	@MockBean
@@ -52,8 +51,7 @@ public class LandlordControllerTest {
 	@MockBean
 	RestTemplateBuilder rtb;
 	
-	
-	
+
 	private Landlord testLandlord;
 	
 	@Before
@@ -91,4 +89,13 @@ public class LandlordControllerTest {
 		String postContent = ow.writeValueAsString(testLandlord);
 		TypeReference<List<Landlord>> mapType = new TypeReference<List<Landlord>>() {};
 	}
+
+	public MockMvc getMockMvc() {
+		return mockMvc;
+	}
+
+	public void setMockMvc(MockMvc mockMvc) {
+		this.mockMvc = mockMvc;
+	}
+	
 }
