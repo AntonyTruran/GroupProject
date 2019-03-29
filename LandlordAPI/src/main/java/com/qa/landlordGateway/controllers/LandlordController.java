@@ -28,7 +28,7 @@ public class LandlordController {
 	
 	@PostMapping("/createLandlord")
 	public String createLandlord(@RequestBody Landlord landlord) {
-		this.landlordService.createLandlord(landlord);
+		return this.landlordService.createLandlord(landlord);
 		return "Landlord Created";
 	}
 	@GetMapping("/getAllLandlords")
