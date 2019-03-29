@@ -10,13 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.qa.roomGateway.GatewayConstants;
-import com.qa.roomGateway.repository.RoomRepo;
+import com.qa.roomGateway.repository.ApartmentRepo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RoomRepositoryTest {
+public class ApartmentRepositoryTest {
 	@Autowired
-	RoomRepo repo;
+	ApartmentRepo repo;
 //	@Autowired
 //	GatewayConstants constants;
 	@Test

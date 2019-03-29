@@ -18,34 +18,34 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.qa.roomGateway.GatewayConstants;
-import com.qa.roomGateway.entity.Room;
-import com.qa.roomGateway.repository.RoomRepo;
-import com.qa.roomGateway.service.RoomService;
+import com.qa.roomGateway.entity.Apartment;
+import com.qa.roomGateway.repository.ApartmentRepo;
+import com.qa.roomGateway.service.ApartmentService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RoomServiceTests {
+public class ApartmentServiceTests {
 	
 	@InjectMocks
-	RoomService service;
+	ApartmentService service;
 	@Mock
-	RoomRepo repo;
-	private List<Room> roomList = new ArrayList<Room>();
+	ApartmentRepo repo;
+	private List<Apartment> roomList = new ArrayList<Apartment>();
 
 	@Before
 	public void setup() {
-		roomList.add(GatewayConstants.getConstructedRoom());
+		roomList.add(GatewayConstants.getConstructedApartment());
 	}
 	@After
 	public void tearDown() {
 		roomList.clear();
 	}
 	@Test
-	public void createRoomTest() {
-		Room mockedRoom = GatewayConstants.getConstructedRoom();
-		Mockito.when(repo.save((Room)notNull())).thenAnswer((Answer<?>) invocation -> {
-			roomList.add(mockedRoom);
-			return GatewayConstants.getConstructedRoom();
+	public void createApartmentTest() {
+		Apartment mockedApartment = GatewayConstants.getConstructedApartment();
+		Mockito.when(repo.save((Apartment)notNull())).thenAnswer((Answer<?>) invocation -> {
+			roomList.add(mockedApartment);
+			return GatewayConstants.getConstructedApartment();
 		});
 		assertThat(roomList.size()).isEqualTo(1);
 	}
@@ -53,7 +53,7 @@ public class RoomServiceTests {
 	@Test
 	public void getAllTest() {
 		Mockito.when(repo.findAll()).thenReturn(roomList);
-		List<Room> returnList = service.getAllRooms();
+		List<Apartment> returnList = service.getAllApartments();
 		assertThat(returnList.size()).isEqualTo(1);
 		
 	}
@@ -61,7 +61,7 @@ public class RoomServiceTests {
 	@Test
 	public void getByNumberTest() {
 		Mockito.when(repo.findAll()).thenReturn(roomList);
-		List<Room> returnList = service.getAllRooms();
+		List<Apartment> returnList = service.getAllApartments();
 
 		assertThat(returnList.size()).isEqualTo(1);		
 	}
@@ -69,7 +69,7 @@ public class RoomServiceTests {
 	@Test
 	public void getByBuildingTest() {
 		Mockito.when(repo.findAll()).thenReturn(roomList);
-		List<Room> returnList = service.getAllRooms();
+		List<Apartment> returnList = service.getAllApartments();
 
 		assertThat(returnList.size()).isEqualTo(1);
 	}
@@ -77,18 +77,18 @@ public class RoomServiceTests {
 	@Test
 	public void getByLandlordTest() {
 		Mockito.when(repo.findAll()).thenReturn(roomList);
-		List<Room> returnList = service.getAllRooms();
+		List<Apartment> returnList = service.getAllApartments();
 
 		assertThat(returnList.size()).isEqualTo(1);
 	}
 	
 	@Test
-	public void updateRoomTest() {
+	public void updateApartmentTest() {
 		
 	}
 	
 	@Test
-	public void deleteRoomTest() {
+	public void deleteApartmentTest() {
 		
 	}
 }

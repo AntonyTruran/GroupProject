@@ -2,6 +2,8 @@ package com.qa.roomGateway.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.netflix.discovery.EurekaClient;
-import com.qa.roomGateway.entity.Room;
-import com.qa.roomGateway.service.RoomService;
+import com.qa.roomGateway.entity.Apartment;
+import com.qa.roomGateway.service.ApartmentService;
 
 @RestController
 public class GatewayController {
 
-	public GatewayController(EurekaClient client, RoomService service, RestTemplateBuilder rtb) {
+	public GatewayController(EurekaClient client, ApartmentService service, RestTemplateBuilder rtb) {
 		super();
 		this.client = client;
 		this.service = service;
@@ -29,46 +31,46 @@ public class GatewayController {
 	@Autowired
 	private EurekaClient client;
 	
-	private RoomService service;
+	private ApartmentService service;
 	
 	@Autowired
 	private RestTemplateBuilder rtb;
 	
-	@PostMapping("/createRoom")
-	public String addRoom(@RequestBody Room room) {
-		return service.addRoom(room);
+	@PostMapping("/createApartment")
+	public String addApartment(@RequestBody Apartment apartment) {
+		return service.addApartment(apartment);
 	}
 	
-	@GetMapping("/getAllRooms")
-	public List<Room> getAllRooms() {
-		return this.service.getAllRooms();
+	@GetMapping("/getAllApartments")
+	public List<Apartment> getAllApartments() {
+		return this.service.getAllApartments();
 	}
 	
-	@GetMapping("/getRoomByNumber/{request}")
-	public List<Room> getRoomsByNumber(@PathVariable("request")int request) {
-		return service.getRoomsByNumber(request);	
+	@GetMapping("/getApartmentByNumber/{request}")
+	public List<Apartment> getApartmentsByNumber(@PathVariable("request")int request) {
+		return service.getApartmentsByNumber(request);	
 	}
 	
-	@GetMapping("/getRoomByBuilding/{request}")
-	public List<Room> getRoomsByBuilding(@PathVariable("request")String request) {
-		return service.getRoomsByBuilding(request);	
+	@GetMapping("/getApartmentByBuilding/{request}")
+	public List<Apartment> getApartmentsByBuilding(@PathVariable("request")String request) {
+		return service.getApartmentsByBuilding(request);	
 	}
 	
-	@GetMapping("/getRoomByLandlord/{request}")
-	public List<Room> getRoomsByLandlord(@PathVariable("request")String request) {
-		return service.getRoomsByLandlord(request);	
+	@GetMapping("/getApartmentByLandlord/{request}")
+	public List<Apartment> getApartmentsByLandlord(@PathVariable("request")String request) {
+		return service.getApartmentsByLandlord(request);	
 	}
 	
 	//@PathVariable ("parameter")String parameter, 
-	@PutMapping("/updateRoom/{roomReference}")
-	public String updateRoom(@PathVariable("roomReference")String roomReference, @RequestBody Room updatedRoom) {
-		return service.updateRoom(roomReference, updatedRoom);
-	}
+//	@PutMapping("/updateApartment/{apartmentReference}")
+//	public String updateApartment(@PathVariable("apartmentReference")String apartmentReference, @RequestBody Apartment updatedApartment) {
+//		return service.updateApartment(apartmentReference, updatedApartment);
+//	}
 	
-	@PostMapping("/removeRoom")
-	public ResponseEntity<List<Room>> deleteRoom(@RequestBody Room room){
-		return service.deleteRoom(room.getBuilding(), room.getRoomNumber());
-	}
+//	@PostMapping("/removeApartment/{apartmentNumber}")
+//	public ResponseEntity<List<Apartment>> deleteApartment(@PathParam("apartmentNumber") Integer apartmentNumber){
+//		return service.deleteApartment(apartmentNumber);
+//	}
 
 	
 	//send to microservices

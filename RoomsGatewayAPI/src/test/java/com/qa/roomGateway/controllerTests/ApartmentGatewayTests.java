@@ -43,18 +43,18 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.qa.roomGateway.GatewayConstants;
 import com.qa.roomGateway.controller.GatewayController;
-import com.qa.roomGateway.entity.Room;
-import com.qa.roomGateway.service.RoomService;
+import com.qa.roomGateway.entity.Apartment;
+import com.qa.roomGateway.service.ApartmentService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class RoomGatewayTests {
+public class ApartmentGatewayTests {
 	@Autowired
 	private MockMvc mvc;
 
 	@MockBean
-	RoomService service;
+	ApartmentService service;
 	@MockBean
 	RestTemplateBuilder rtb;
 	
@@ -64,90 +64,77 @@ public class RoomGatewayTests {
 	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
-	private List<Room> roomList = new ArrayList<Room>();
-	private Room testRoom;
+	private List<Apartment> roomList = new ArrayList<Apartment>();
+	private Apartment testApartment;
 	private String postContent;
 	private ObjectWriter ow;
 
 	@Before
 	public void setUp() throws JsonProcessingException {
-		roomList.add(GatewayConstants.getConstructedRoom());
-		testRoom = GatewayConstants.getConstructedRoom();
+		roomList.add(GatewayConstants.getConstructedApartment());
+		testApartment = GatewayConstants.getConstructedApartment();
 		OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
 		ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
-		postContent= ow.writeValueAsString(testRoom);
+		postContent= ow.writeValueAsString(testApartment);
 
 //		
 	}
 	@Test
-	public void addRoomTest() throws Exception {
+	public void addApartmentTest() throws Exception {
 		OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
 		ObjectWriter ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
-		String postContent = ow.writeValueAsString(testRoom);
-		Mockito.when(service.addRoom((Room)notNull())).thenReturn("{\"message\":\"room added\"}");
-		MvcResult result = mvc.perform(post("/createRoom").contentType(APPLICATION_JSON_UTF8)
+		String postContent = ow.writeValueAsString(testApartment);
+		Mockito.when(service.addApartment((Apartment)notNull())).thenReturn("{\"message\":\"room added\"}");
+		MvcResult result = mvc.perform(post("/createApartment").contentType(APPLICATION_JSON_UTF8)
 				.content(postContent)).andReturn();
 		assertThat(result.getResponse().getContentAsString()).contains("{\"message\":\"room added\"}");
 	}
 
 	@Test
 	public void getAllTest() throws Exception {
-		when(service.getAllRooms()).thenReturn(roomList);
-		assertThat(mvc.perform(get("/getAllRooms").accept(MediaType.APPLICATION_JSON))
+		when(service.getAllApartments()).thenReturn(roomList);
+		assertThat(mvc.perform(get("/getAllApartments").accept(MediaType.APPLICATION_JSON))
 				.andExpect(content().string(containsString("numberOne"))));
 	}
 
 	@Test
-	public void getRoomsByNumberTest() throws Exception {
-		roomList.add(GatewayConstants.getConstructedRoom());
-		when(service.getRoomsByNumber(0)).thenReturn(roomList);
-		assertThat(mvc.perform(get("/getRoomByNumber/").param("request", "1301").accept(MediaType.APPLICATION_JSON))
+	public void getApartmentsByNumberTest() throws Exception {
+		roomList.add(GatewayConstants.getConstructedApartment());
+		when(service.getApartmentsByNumber(0)).thenReturn(roomList);
+		assertThat(mvc.perform(get("/getApartmentByNumber/").param("request", "1301").accept(MediaType.APPLICATION_JSON))
 				.andExpect(content().string("")));
 	}
 
 	@Test
-	public void getRoomByBuildingTest() throws Exception {
-		roomList.add(GatewayConstants.getConstructedRoom());
-		when(service.getRoomsByBuilding("numberOne")).thenReturn(roomList);
+	public void getApartmentByBuildingTest() throws Exception {
+		roomList.add(GatewayConstants.getConstructedApartment());
+		when(service.getApartmentsByBuilding("numberOne")).thenReturn(roomList);
 		assertThat(
-				mvc.perform(get("/getRoomByBuilding/").param("request", "numberOne").accept(MediaType.APPLICATION_JSON))
+				mvc.perform(get("/getApartmentByBuilding/").param("request", "numberOne").accept(MediaType.APPLICATION_JSON))
 						.andExpect(content().string("")));
 	}
 
 	@Test
-	public void getRoomByLandlordTest() throws Exception {
-		roomList.add(GatewayConstants.getConstructedRoom());
-		when(service.getRoomsByLandlord("Jason Joans")).thenReturn(roomList);
+	public void getApartmentByLandlordTest() throws Exception {
+		roomList.add(GatewayConstants.getConstructedApartment());
+		when(service.getApartmentsByLandlord("Jason Joans")).thenReturn(roomList);
 		assertThat(mvc
-				.perform(get("/getRoomByLandlord/").param("request", "Jason Joans").accept(MediaType.APPLICATION_JSON))
+				.perform(get("/getApartmentByLandlord/").param("request", "Jason Joans").accept(MediaType.APPLICATION_JSON))
 				.andExpect(content().string("")));
 	}
-
-	@Test
-	public void updateRoomTest() throws Exception {
-		int id = testRoom.getRoomId();
-		Mockito.when(service.updateRoom((String)notNull(), (Room)notNull())).thenAnswer((Answer<?>) invocation -> {
-			testRoom.setRoomId(id);
-			return GatewayConstants.getNaString();
-		});
-		this.mvc.perform(MockMvcRequestBuilders.put(GatewayConstants.getUpdateUrl(), id)
-				.contentType(MediaType.APPLICATION_JSON).content(postContent)).andExpect(status().isOk());
-		assertThat(testRoom.getRoomId()).isEqualTo(id);
-
-	}
-	@Test
-	public void deleteRoomTest() throws Exception {
-		List<Room> MOCKED_ROOM_LIST = new ArrayList<Room>();
-		MOCKED_ROOM_LIST.add(testRoom);
-		Mockito.when(service.deleteRoom(GatewayConstants.getBuilding(), GatewayConstants.getRoomNumber())).thenAnswer((Answer<?>) invocation -> {
-			MOCKED_ROOM_LIST.remove(testRoom);
-			return GatewayConstants.getNaString();
-		});
-		this.mvc.perform(MockMvcRequestBuilders
-				.post(GatewayConstants.getDeletionUrl())
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(postContent))
-		.andExpect(status().isOk());
-		assertThat(MOCKED_ROOM_LIST.size()).isEqualTo(0);
-	}
+//	@Test
+//	public void deleteApartmentTest() throws Exception {
+//		List<Apartment> MOCKED_ROOM_LIST = new ArrayList<Apartment>();
+//		MOCKED_ROOM_LIST.add(testApartment);
+//		Mockito.when(service.deleteApartment(GatewayConstants.getApartmentNumber())).thenAnswer((Answer<?>) invocation -> {
+//			MOCKED_ROOM_LIST.remove(testApartment);
+//			return GatewayConstants.getNaString();
+//		});
+//		this.mvc.perform(MockMvcRequestBuilders
+//				.post(GatewayConstants.getDeletionUrl())
+//				.contentType(MediaType.APPLICATION_JSON)
+//				.content(postContent))
+//		.andExpect(status().isOk());
+//		assertThat(MOCKED_ROOM_LIST.size()).isEqualTo(0);
+//	}
 }
