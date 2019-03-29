@@ -1,0 +1,21 @@
+.DisplayTable{
+    position: absolute;
+    left:25%;  
+}
+.DisplayBuildingTable{
+    position: absolute;
+    left:30%;  
+}
+.DisplayLandlordTable{
+    position: absolute;
+    left:80%;  
+}
+th {
+    text-align: center;
+    width: 150px;
+}
+td{
+    text-align:center;
+    width:150px;
+}
+
