@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.qa.landlordGateway.entity.Landlord;
@@ -59,7 +60,7 @@ public class LandlordServiceTest {
 			landlordList.add(newLandlord);
 			return Constants.getNullLandlord();
 		});
-		assertThat(landlordService.createLandlord(newLandlord)).isEqualTo(Constants.getLandlordCreated());
+		assertThat(landlordService.createLandlord(newLandlord).getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(landlordList.size()).isEqualTo(3);
 		assertThat(landlordList.get(2)).isEqualToComparingFieldByField(Constants.getConstructedLandlord());
 	}

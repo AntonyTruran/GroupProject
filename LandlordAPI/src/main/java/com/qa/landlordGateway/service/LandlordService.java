@@ -3,6 +3,8 @@ package com.qa.landlordGateway.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.qa.landlordGateway.entity.Landlord;
@@ -16,9 +18,8 @@ public class LandlordService {
 		this.landlordRepo = landlordRepo;
 	}
 	
-	public String createLandlord(Landlord landlord) {
-		this.landlordRepo.save(landlord);
-		return "Landlord Created";
+	public ResponseEntity<Landlord> createLandlord(Landlord landlord) {
+		return new ResponseEntity<Landlord>(this.landlordRepo.save(landlord), HttpStatus.OK);
 	}
 	public List<Landlord> getLandlords(){
 		return this.landlordRepo.findAll();	

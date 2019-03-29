@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.qa.landlordGateway.LandlordApiApplication;
+import com.qa.landlordGateway.MainConstants;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -15,11 +16,13 @@ public class LandlordApiApplicationTests {
 	private LandlordApiApplication app;
 	private TestSuite suite;
 	private Constants constants;
+	private MainConstants mainConstants;
 	@Before
 	public void setup() {
-		app = new LandlordApiApplication();
-		suite = new TestSuite();
+		this.app = new LandlordApiApplication();
+		this.suite = new TestSuite();
 		this.constants = new Constants();
+		this.mainConstants = new MainConstants();
 	}
 	@Test
 	public void contextLoads() {

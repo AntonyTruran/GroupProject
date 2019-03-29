@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("singleton")
 public class LandlordBuilder {
-	private String firstName = "";
-	private String lastName = "";
-	private String email = "";
-	private String phoneNumber = "";
+	private String firstName = null;
+	private String lastName = null;
+	private String email = null;
+	private String phoneNumber = null;
 	private static LandlordBuilder landlordBuilder;
 	
 	private LandlordBuilder() {
