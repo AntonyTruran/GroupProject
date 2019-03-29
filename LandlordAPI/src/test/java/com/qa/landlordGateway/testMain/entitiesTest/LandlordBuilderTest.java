@@ -22,13 +22,13 @@ public class LandlordBuilderTest {
 
 	@Before
 	public void getBuilder() {
-		landlordBuilder = LandlordBuilder.getLandlord();
+		this.landlordBuilder = LandlordBuilder.getLandlord();
 		assertThat(landlordBuilder).isNotNull();
 	}
 
 	@After
 	public void resetBuilder() {
-		landlordBuilder = LandlordBuilder.getLandlord();
+		this.landlordBuilder = LandlordBuilder.getLandlord();
 		assertThat(landlordBuilder).isNotNull();
 	}
 

@@ -61,7 +61,7 @@ public class LandlordControllerTest {
 	
 	@Before
 	public void setUp() {
-		testLandlord = Constants.getConstructedLandlord();
+		this.testLandlord = Constants.getConstructedLandlord();
 	}
 	
 	@Test

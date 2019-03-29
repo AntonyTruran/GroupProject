@@ -19,7 +19,7 @@ public class LandlordApiApplicationTests {
 	public void setup() {
 		app = new LandlordApiApplication();
 		suite = new TestSuite();
-		constants = new Constants();
+		this.constants = new Constants();
 	}
 	@Test
 	public void contextLoads() {
