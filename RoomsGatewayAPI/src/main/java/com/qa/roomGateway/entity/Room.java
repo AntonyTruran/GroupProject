@@ -2,7 +2,11 @@ package com.qa.roomGateway.entity;
 
 import java.util.Set;
 
+import org.springframework.data.annotation.Id;
+
 public class Room {
+	@Id
+	private String _id;
 	private String roomName;
 	
 	private Set<Event> events;

@@ -1,7 +1,10 @@
 package com.qa.roomGateway.entity;
 
-public class Event {
+import org.springframework.data.annotation.Id;
 
+public class Event {
+	@Id
+	private String _id;
 	private String title;
 	private String startDate;
 	private String endDate;

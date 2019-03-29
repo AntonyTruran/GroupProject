@@ -2,12 +2,16 @@ package com.qa.roomGateway.entity;
 
 import java.util.Set;
 
+import org.springframework.data.annotation.Id;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class Apartment {
 
+	@Id
+	private String _id;
 	private String building;
 
 	private Integer apartmentNumber;
