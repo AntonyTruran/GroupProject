@@ -33,85 +33,91 @@ public class TenantServiceTest {
 	@Mock
 	TenantRepo tenantRepo;
 	
-	private List<Tenant> tenantList = new ArrayList<Tenant>();
+	private List<Tenant> tenantList;
+	private Tenant tenant;
+	private List<Tenant> returnList;
+	private Long index;
 
 	@Before
 	public void setup() {
-		tenantList.add(Constants.getDefaultBuilderTenant());
-		tenantList.add(Constants.getConstructedTenant());  
+		this.tenantList.add(Constants.getDefaultBuilderTenant());
+		this.tenantList.add(Constants.getConstructedTenant());  
+		this.tenant = new Tenant();
+		this.returnList = new ArrayList<Tenant>();  
+		index=null;
 	}
 
 	@After
 	public void deconstruct() {
-		Tenant tenant = TenantBuilder.getTenantBuilder().tenantBuild();
-		Constants.setDefaultBuilderTenant(tenant);
-		tenantList.clear();
+		this.tenant = TenantBuilder.getTenantBuilder().tenantBuild();
+		Constants.setDefaultBuilderTenant(this.tenant);
+		this.tenantList.clear();
 	}
 
 	@Test
 	public void getAllTest() {
-		Mockito.when(tenantRepo.findAll()).thenReturn(tenantList);
-		List<Tenant> returnList = tenantService.getAllTenants();
+		Mockito.when(this.tenantRepo.findAll()).thenReturn(this.tenantList);
+		this.returnList = this.tenantService.getAllTenants();
 
-		assertThat(returnList.size()).isEqualTo(2);
-		assertThat(returnList.get(0)).isEqualToComparingFieldByField(Constants.getDefaultBuilderTenant());
-		assertThat(returnList.get(1)).isEqualToComparingFieldByField(Constants.getConstructedTenant());
+		assertThat(this.returnList.size()).isEqualTo(2);
+		assertThat(this.returnList.get(0)).isEqualToComparingFieldByField(Constants.getDefaultBuilderTenant());
+		assertThat(this.returnList.get(1)).isEqualToComparingFieldByField(Constants.getConstructedTenant());
 	}
 	 
 	@Test
 	public void createTenantTest() {
-		Tenant newTenant = Constants.getConstructedTenant();
-		Mockito.when(tenantRepo.save((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
-			tenantList.add(newTenant);
+		this.tenant = Constants.getConstructedTenant();
+		Mockito.when(this.tenantRepo.save((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
+			this.tenantList.add(this.tenant);
 			return Constants.getNullTenant();
 		});
-		assertThat(tenantService.createTenant(newTenant)).isEqualTo(Constants.getCreationMessage());
-		assertThat(tenantList.size()).isEqualTo(3);
-		assertThat(tenantList.get(2)).isEqualToComparingFieldByField(Constants.getConstructedTenant());
+		assertThat(this.tenantService.createTenant(this.tenant)).isEqualTo(Constants.getCreationMessage());
+		assertThat(this.tenantList.size()).isEqualTo(3);
+		assertThat(this.tenantList.get(2)).isEqualToComparingFieldByField(Constants.getConstructedTenant());
 	}
 	
 	@Test
 	public void tenantSearchTest() {
-		Tenant searchTenant = Constants.getConstructedTenant();
-		Mockito.when(tenantRepo.findAll()).thenReturn(tenantList);
-		assertThat(tenantService.tenantSearch(searchTenant).size()).isEqualTo(1);
-		assertThat(tenantService.tenantSearch(searchTenant).get(0)).isEqualToComparingFieldByField(searchTenant);
+		this.tenant = Constants.getConstructedTenant();
+		Mockito.when(this.tenantRepo.findAll()).thenReturn(this.tenantList);
+		assertThat(tenantService.tenantSearch(this.tenant).size()).isEqualTo(1);
+		assertThat(tenantService.tenantSearch(this.tenant).get(0)).isEqualToComparingFieldByField(this.tenant);
 	}
 	
 	@Test
 	public void deleteTenantTest() {
-		Mockito.when(tenantService.deleteTenant((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
-			tenantList.remove(Constants.getDefaultBuilderTenant());
+		Mockito.when(this.tenantService.deleteTenant((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
+			this.tenantList.remove(Constants.getDefaultBuilderTenant());
 			return Constants.getDeletionMessage();
 		});
-		assertThat(tenantService.deleteTenant(Constants.getDefaultBuilderTenant())).isEqualTo(Constants.getDeletionMessage());
-		assertThat(tenantList.contains(Constants.getDefaultBuilderTenant())).isEqualTo(false);
+		assertThat(this.tenantService.deleteTenant(Constants.getDefaultBuilderTenant())).isEqualTo(Constants.getDeletionMessage());
+		assertThat(this.tenantList.contains(Constants.getDefaultBuilderTenant())).isEqualTo(false);
 		
 	}
 	
 	@Test
 	public void deleteAllTest() {
-		Mockito.when(tenantService.deleteAllTenants()).thenAnswer((Answer<?>) invocation -> {
-			tenantList.clear();
+		Mockito.when(this.tenantService.deleteAllTenants()).thenAnswer((Answer<?>) invocation -> {
+			this.tenantList.clear();
 			return Constants.getAllDeletionMessage();
 		});
-		assertThat(tenantService.deleteAllTenants()).isEqualTo(Constants.getAllDeletionMessage());
-		assertThat(tenantList.size()).isEqualTo(0);
+		assertThat(this.tenantService.deleteAllTenants()).isEqualTo(Constants.getAllDeletionMessage());
+		assertThat(this.tenantList.size()).isEqualTo(0);
 	}
 	
 	@Test
 	public void updateTenantTest() throws CloneNotSupportedException {
-		Tenant updateTenant = Constants.getConstructedTenant();
-		Mockito.when(tenantRepo.findById((Long)notNull())).thenReturn(Optional.ofNullable(tenantList.get(0)));
-		Mockito.when(tenantRepo.saveAndFlush((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
-			tenantList.clear();
-			tenantList.add(updateTenant);
-			tenantList.add(Constants.getConstructedTenant());  
-			return updateTenant;
+		this.tenant = Constants.getConstructedTenant();
+		Mockito.when(this.tenantRepo.findById((Long)notNull())).thenReturn(Optional.ofNullable(this.tenantList.get(0)));
+		Mockito.when(this.tenantRepo.saveAndFlush((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
+			this.tenantList.clear();
+			this.tenantList.add(this.tenant);
+			this.tenantList.add(Constants.getConstructedTenant());  
+			return tenant;
 		});
 
-		Long index = Long.valueOf(String.valueOf(0));
-		tenantService.updateTenant(index, updateTenant);
-		assertThat(tenantList.get(0).matches(Constants.getConstructedTenant()));
+		this.index = Long.valueOf(String.valueOf(0));
+		this.tenantService.updateTenant(this.index, this.tenant);
+		assertThat(this.tenantList.get(0).matches(Constants.getConstructedTenant()));
 	}
 }

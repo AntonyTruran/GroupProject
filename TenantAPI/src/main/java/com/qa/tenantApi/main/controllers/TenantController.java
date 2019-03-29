@@ -26,42 +26,42 @@ public class TenantController {
 		this.tenantService = tenantService;
 	}
 
-	@PostMapping("/createTenant")
+	@PostMapping(Constants.CREATE_URL)
 	public String createTenant(@RequestBody Tenant tenant) {
 		return this.tenantService.createTenant(tenant);
 	}
 
-	@GetMapping("/getAllTenants")
+	@GetMapping(Constants.GET_ALL_URL)
 	public List<Tenant> getAllTenants() {
 		return this.tenantService.getAllTenants();
 	}
 
-	@GetMapping("/tenantSearch")
+	@GetMapping(Constants.SEARCH_URL)
 	public List<Tenant> tenantSearch(String firstName, String lastName, String groupName) {
 		TenantBuilder.getTenantBuilder().firstName(firstName).lastName(lastName).groupName(groupName);
 		Tenant tenant = TenantBuilder.tenantBuild();
 		return this.tenantService.tenantSearch(tenant);
 	}
 	
-	@GetMapping("/tenantGroupSearch/{groupName}")
+	@GetMapping(Constants.GROUP_SEARCH_URL)
 	public List<Tenant> tenantGroupSearch(@PathVariable("groupName")String groupName) {
 		TenantBuilder.getTenantBuilder().groupName(groupName);
 		Tenant tenant = TenantBuilder.tenantBuild();
 		return this.tenantService.tenantSearch(tenant);
 	}
 	
-	@DeleteMapping("/deleteAllTenants")
+	@DeleteMapping(Constants.DELETE_ALL_URL)
 	public String deleteAllTenants() {
 		return this.tenantService.deleteAllTenants();
 	}
 	
-	@DeleteMapping("/deleteTenantGroup/{groupName}")
+	@DeleteMapping(Constants.DELETE_GROUP_URL)
 	public String deleteTenantGroup(@PathVariable("groupName") String groupName) {
 		List<Tenant> tenants = this.tenantGroupSearch(groupName);
 		return this.tenantService.deleteTenantGroup(tenants);
 	}
 	
-	@DeleteMapping("/deleteTenant")
+	@DeleteMapping(Constants.DELETE_URL)
 	public String deleteTenant(String firstName, String lastName, String groupName) {
 		List<Tenant> tenants = this.tenantSearch(firstName, lastName, groupName);
 		for(int i = 0; i < tenants.size();i++) {
@@ -70,12 +70,12 @@ public class TenantController {
 		return Constants.getTenantsDeletionMessage();
 	}
 	
-	@PutMapping("/updateTenant/{id}")
+	@PutMapping(Constants.UPDATE_URL)
 	public String updateTenant(@PathVariable("id")long id, @RequestBody Tenant tenantUpdate) {
 		return this.tenantService.updateTenant(id, tenantUpdate);
 	}
 	
-	@PutMapping("/updateTenantGroup/{groupName}")
+	@PutMapping(Constants.UPDATE_GROUP_URL)
 	public String updateTenant(@PathVariable("groupName") String setGroupName, @RequestBody Tenant tenantUpdate) {
 		List<Tenant> tenants = this.tenantGroupSearch(setGroupName);
 		return this.tenantService.updateTenantGroup(tenants, tenantUpdate);

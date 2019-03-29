@@ -15,18 +15,20 @@ import com.qa.tenantApi.main.entities.Tenant;
 @SpringBootTest
 public class TenantTest {
 
+	
+	private Tenant tenant;
 	@Test
 	public void superConstructorTest() {
-		Tenant tenant = new Tenant();
-		assertThat(tenant).isNotNull();
+		this.tenant = new Tenant();
+		assertThat(this.tenant).isNotNull();
 	}
 
 	@Test
 	public void fullConstructorTest() {
-		Tenant tenant = new Tenant(Constants.getNaString(), Constants.getNaString(), Constants.getNaString(),
+		this.tenant = new Tenant(Constants.getNaString(), Constants.getNaString(), Constants.getNaString(),
 				Constants.getNaString(), Constants.getNaString(), Constants.getNaString(), Constants.getNaString(),
 				Constants.getNaString(), Constants.getNaString(), Constants.getNaString());
-		assertThat(tenant.matches(Constants.getDefaultBuilderTenant())).isEqualTo(true);
+		assertThat(this.tenant.matches(Constants.getDefaultBuilderTenant())).isEqualTo(true);
 	}
 
 	@Test
@@ -46,17 +48,17 @@ public class TenantTest {
 
 	@Test
 	public void setterTest() {
-		Tenant testTenant = Constants.getNullTenant();
-		testTenant.setFirstName(Constants.getNaString());
-		testTenant.setLastName(Constants.getNaString());
-		testTenant.setContactNumber(Constants.getNaString());
-		testTenant.setContactEmail(Constants.getNaString());
-		testTenant.setQaEmail(Constants.getNaString());
-		testTenant.setRoomReference(Constants.getNaString());
-		testTenant.setGroupName(Constants.getNaString());
-		testTenant.setStartDate(Constants.getNaString());
-		testTenant.setEndDate(Constants.getNaString());
-		testTenant.setNotes(Constants.getNaString());
-		assertThat(testTenant.matches(Constants.getDefaultBuilderTenant())).isEqualTo(true);
+		this.tenant = Constants.getNullTenant();
+		this.tenant.setFirstName(Constants.getNaString());
+		this.tenant.setLastName(Constants.getNaString());
+		this.tenant.setContactNumber(Constants.getNaString());
+		this.tenant.setContactEmail(Constants.getNaString());
+		this.tenant.setQaEmail(Constants.getNaString());
+		this.tenant.setRoomReference(Constants.getNaString());
+		this.tenant.setGroupName(Constants.getNaString());
+		this.tenant.setStartDate(Constants.getNaString());
+		this.tenant.setEndDate(Constants.getNaString());
+		this.tenant.setNotes(Constants.getNaString());
+		assertThat(this.tenant.matches(Constants.getDefaultBuilderTenant())).isEqualTo(true);
 	}
 }

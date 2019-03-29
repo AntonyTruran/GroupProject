@@ -131,7 +131,7 @@ public class Tenant {
 	}
 
 	public boolean matches(Tenant tenant) {
-
+		//This is a project standard.
 		Boolean firstCheck = this.getFirstName().contentEquals(tenant.getFirstName());
 		Boolean firstNull = tenant.getFirstName().contentEquals(Constants.getNaString());
 		Boolean lastCheck = this.getLastName().contentEquals(tenant.getLastName());

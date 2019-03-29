@@ -6,7 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -17,37 +16,30 @@ import com.qa.tenantApi.main.entities.TenantBuilder;
 @SpringBootTest
 public class TenantBuilderTest {
 	
-	@Autowired
-	private static TenantBuilder tenantBuilder;
-	Constants constants;
-
 	@Before
 	public void getBuilder() {
-		tenantBuilder = TenantBuilder.getTenantBuilder();
-		assertThat(tenantBuilder).isNotNull();
-		constants = new Constants();
+		assertThat(TenantBuilder.getTenantBuilder()).isNotNull();
 	}
 
 	@After
 	public void resetBuilder() {
-		tenantBuilder = TenantBuilder.getTenantBuilder();
-		assertThat(tenantBuilder).isNotNull();
+		assertThat(TenantBuilder.getTenantBuilder()).isNotNull();
 	}
 
 	@Test
 	public void blankBuild() {
-		System.out.println(constants.getDefaultBuilderTenant().getFirstName());
-		assertThat(TenantBuilder.tenantBuild().matches(constants.getDefaultBuilderTenant())).isEqualTo(true);
+		System.out.println(Constants.getDefaultBuilderTenant().getFirstName());
+		assertThat(TenantBuilder.tenantBuild().matches(Constants.getDefaultBuilderTenant())).isEqualTo(true);
 	}
 
 	@Test
 	public void setterBuild() {
-		tenantBuilder.firstName(constants.getTestFirstName()).lastName(constants.getTestLastName())
-				.contactNumber(constants.getTestContactNumber()).contactEmail(constants.getTestContactEmail())
-				.qaEmail(constants.getTestQaEmail()).roomReference(constants.getTestRoomReference())
-				.groupName(constants.getTestGroupName()).startDate(constants.getTestStartDate())
-				.endDate(constants.getTestEndDate()).notes(constants.getTestNotes());
+		TenantBuilder.getTenantBuilder().firstName(Constants.getTestFirstName()).lastName(Constants.getTestLastName())
+				.contactNumber(Constants.getTestContactNumber()).contactEmail(Constants.getTestContactEmail())
+				.qaEmail(Constants.getTestQaEmail()).roomReference(Constants.getTestRoomReference())
+				.groupName(Constants.getTestGroupName()).startDate(Constants.getTestStartDate())
+				.endDate(Constants.getTestEndDate()).notes(Constants.getTestNotes());
 		assertThat(TenantBuilder.tenantBuild())
-		.isEqualToComparingFieldByField(constants.getConstructedTenant());
+		.isEqualToComparingFieldByField(Constants.getConstructedTenant());
 	}
 }

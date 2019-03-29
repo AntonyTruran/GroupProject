@@ -1,5 +1,10 @@
 package com.qa.tenantApi.main;
 
+import java.nio.charset.Charset;
+
+import org.springframework.http.MediaType;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.tenantApi.main.entities.Tenant;
 import com.qa.tenantApi.main.entities.TenantBuilder;
 
@@ -7,6 +12,10 @@ public class Constants {
 	
 	private static final Tenant NULL_TENANT = new Tenant();
 	private static Tenant DEFAULT_BUILDER_TENANT = TenantBuilder.getTenantBuilder().tenantBuild();
+	
+	public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
+			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName(Constants.getCharset()));
 
 	private static final String TEST_FIRST_NAME = "TestFirst";
 	private static final String TEST_LAST_NAME = "TestLast";
@@ -33,15 +42,15 @@ public class Constants {
 	private static final String ID = "id";
 	private static final String CHARSET = "utf8";
 	
-	private static final String CREATE_URL = "/createTenant";
-	private static final String GET_ALL_URL = "/getAllTenants";
-	private static final String SEARCH_URL = "/tenantSearch";
-	private static final String GROUP_SEARCH_URL = "/tenantGroupSearch/{groupName}";
-	private static final String DELETE_ALL_URL="/deleteAllTenants";
-	private static final String DELETE_GROUP_URL ="/deleteTenantGroup/{groupName}";
-	private static final String DELETE_URL="/deleteTenant";
-	private static final String UPDATE_URL="/updateTenant/{id}";
-	private static final String UPDATE_GROUP_URL="/updateTenantGroup/{groupName}";
+	public static final String CREATE_URL = "/createTenant";
+	public static final String GET_ALL_URL = "/getAllTenants";
+	public static final String SEARCH_URL = "/tenantSearch";
+	public static final String GROUP_SEARCH_URL = "/tenantGroupSearch/{groupName}";
+	public static final String DELETE_ALL_URL="/deleteAllTenants";
+	public static final String DELETE_GROUP_URL ="/deleteTenantGroup/{groupName}";
+	public static final String DELETE_URL="/deleteTenant";
+	public static final String UPDATE_URL="/updateTenant/{id}";
+	public static final String UPDATE_GROUP_URL="/updateTenantGroup/{groupName}";
 	
 
 	public static void setDefaultBuilderTenant(Tenant tenant) {
@@ -50,42 +59,6 @@ public class Constants {
 	
 	public static String getTenantsDeletionMessage() {
 		return TENANTS_DELETION_MESSAGE;
-	}
-
-	public static String getCreateUrl() {
-		return CREATE_URL;
-	}
-
-	public static String getGetAllUrl() {
-		return GET_ALL_URL;
-	}
-
-	public static String getSearchUrl() {
-		return SEARCH_URL;
-	}
-
-	public static String getGroupSearchUrl() {
-		return GROUP_SEARCH_URL;
-	}
-
-	public static String getDeleteAllUrl() {
-		return DELETE_ALL_URL;
-	}
-
-	public static String getDeleteGroupUrl() {
-		return DELETE_GROUP_URL;
-	}
-
-	public static String getDeleteUrl() {
-		return DELETE_URL;
-	}
-
-	public static String getUpdateUrl() {
-		return UPDATE_URL;
-	}
-
-	public static String getUpdateGroupUrl() {
-		return UPDATE_GROUP_URL;
 	}
 
 	public static String getFirstName() {
