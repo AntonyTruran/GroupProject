@@ -39,6 +39,14 @@ public class ApartmentService {
 	public List<Apartment> getApartmentsByLandlord(String request) {
 		return this.repo.getApartmentsByLandlord(request);
 	}
+	public Apartment getApartmentsByBuildingAndApartmentNumber(String building, int apartmentNumber)
+	{
+		return this.repo.getApartmentsByBuildingAndApartmentNumber(building,apartmentNumber);
+	}
+	public String deleteApartment(String building, int apartmentNumber){
+		this.repo.delete(repo.getApartmentsByBuildingAndApartmentNumber(building,apartmentNumber));
+		return "Deleted Successfully";
+	}
 
 //	public String updateApartment(String apartmentReference, Apartment updatedApartment) {
 //		Apartment currentDetails = this.repo.getApartmentByApartmentId(updatedApartment.getApartmentId());

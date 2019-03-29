@@ -17,5 +17,9 @@ public interface ApartmentRepo extends MongoRepository<Apartment, String>{
 	
 	public List<Apartment> getApartmentsByLandlord(String request);
 	public List<Apartment> getApartmentsByLandlord();
+	public void delete(Apartment apartment);
+
+	public Apartment getApartmentsByBuildingAndApartmentNumber(String building, int apartmentNumber);
+	
 	
 }
