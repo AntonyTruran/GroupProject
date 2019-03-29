@@ -28,7 +28,7 @@ public class LandlordBuilderTest {
 
 	@After
 	public void resetBuilder() {
-		landlordBuilder = LandlordBuilder.getLandlord();
+		this.landlordBuilder = LandlordBuilder.getLandlord();
 		assertThat(landlordBuilder).isNotNull();
 	}
 
