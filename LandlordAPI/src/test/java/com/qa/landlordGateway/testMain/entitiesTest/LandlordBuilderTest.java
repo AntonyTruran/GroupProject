@@ -22,7 +22,7 @@ public class LandlordBuilderTest {
 
 	@Before
 	public void getBuilder() {
-		landlordBuilder = LandlordBuilder.getLandlord();
+		this.landlordBuilder = LandlordBuilder.getLandlord();
 		assertThat(landlordBuilder).isNotNull();
 	}
 
