@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import Timeline from 'react-timelines'
 import 'react-timelines/lib/css/style.css'
+import axios from 'axios';
 
 import {
     START_YEAR,
     NUM_OF_YEARS,
     NUM_OF_TRACKS,
+    GET_ALL_APARTMENTS_URL,
+    BASE_URL,
 } from './Constants'
 
 import {
@@ -25,7 +28,9 @@ const MAX_ZOOM = 4
 class EventTimeline extends Component {
     constructor(props) {
         super(props)
-
+        axios.get(BASE_URL + GET_ALL_APARTMENTS_URL)
+        .then(r => this.setState({tracks: r.data}))
+        .catch(e => console.log(e));
         const tracksById = fill(NUM_OF_TRACKS).reduce((acc, i) => {
             const track = buildTrack(i + 1)
             acc[track.id] = track
@@ -33,110 +38,11 @@ class EventTimeline extends Component {
         }, {})
 
         this.state = {
+            
             open: true,
             zoom: 4,
             tracksById,
-            tracks: [{
-                id: "track-0",
-                title: "Apt 908",
-                tracks: [
-                    {
-                        id: "track-0-0",
-                        title: "Room 1",
-                        elements: [
-                            {
-                                id: "tt ",
-                                title: "Mohammed Alamas",
-                                start: new Date("2019-01-14"),
-                                end: new Date("2019-04-26")
-                            }
-                        ],
-                    },
-                    {
-                        id: "track-0-1",
-                        title: "Room 2",
-                        elements: [
-                            {
-                                id: "t",
-                                title: "John Torrance",
-                                start: new Date("2019-01-14"),
-                                end: new Date("2019-04-26")
-                            }
-                        ],
-                    }, {
-                        id: "track-0-2",
-                        title: "Room 3",
-                        elements: [
-                            {
-                                id: "tt ",
-                                title: "Rizwan Mahmood",
-                                start: new Date("2019-01-14"),
-                                end: new Date("2019-04-26")
-                            }
-                        ],
-                    },
-                ],
-                elements: [{
-                }],
-                isOpen: false
-            }, {
-                id: "track-1",
-                title: "Apt 1008",
-                tracks: [
-                    {
-                        id: "track-1-0",
-                        title: "Room 1",
-                        elements: [
-                            {
-                                id: "t-1-st-0-el-0",
-                                title: "Bilal Khan",
-                                start: new Date("2019-01-01"),
-                                end: new Date("2019-01-25")
-                            },
-                            {
-                                id: "t-1-st-0-el-1",
-                                title: "Joseph Ogden Talk Talk 8 Weeks",
-                                start: new Date("2019-02-11"),
-                                end: new Date("2019-03-01")
-                            }
-                        ],
-                    },
-                    {
-                        id: "track-1-1",
-                        title: "Room 2",
-                        elements: [
-                            {
-                                id: "t-1-st-1-el-0",
-                                title: "Joseph Ogden",
-                                start: new Date("2019-01-01"),
-                                end: new Date("2019-01-25")
-                            },
-                            {
-                                id: "t-1-st-1-el-1",
-                                title: "Ahmed Osman TalkTalk 8 Weeks",
-                                start: new Date("2019-02-11"),
-                                end: new Date("2019-03-01")
-                            }
-                        ],
-                    }, {
-                        id: "track-1-2",
-                        title: "Room 3",
-                        elements: [
-                            {
-                                id: "t-1-st-2-el-0",
-                                title: "Chester Gardner ",
-                                start: new Date("2019-01-01"),
-                                end: new Date("2019-03-01")
-                            }
-                        ],
-                    },
-                ],
-                elements: [{
-                }],
-                isOpen: true
-            }
-            ]
-
+            tracks: []
         }
     }
 
