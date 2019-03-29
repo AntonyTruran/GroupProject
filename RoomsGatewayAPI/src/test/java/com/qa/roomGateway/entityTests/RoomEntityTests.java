@@ -1,6 +1,7 @@
 package com.qa.roomGateway.entityTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
@@ -19,17 +20,12 @@ public class RoomEntityTests {
 		Room room = new Room();
 		assertThat(room).isNotNull();
 	}
-//	@Test
-//	public void fullConstructorTest() {
-//		Room room = GatewayConstants.getConstructedRoom();
-//		assertThat(Room.matches(GatewayConstants.getConstructedRoom()));
-//	}
 	@Test
 	public void getterTest(){
-		assertNull(GatewayConstants.getNullRoom().getRoomId());
+		assertEquals(0,GatewayConstants.getNullRoom().getRoomId());
 		assertNull(GatewayConstants.getNullRoom().getBuilding());
 		assertNull(GatewayConstants.getNullRoom().getRoomNumber());
-		assertNull(GatewayConstants.getNullRoom().getOccupants());
+		assertNull(GatewayConstants.getNullRoom().getEvents());
 		assertNull(GatewayConstants.getNullRoom().getCurrentState());
 		assertNull(GatewayConstants.getNullRoom().getLandlord());
 	}
@@ -39,10 +35,8 @@ public class RoomEntityTests {
 		testRoom.setRoomId(1);
 		testRoom.setBuilding(GatewayConstants.getNaString());
 		testRoom.setRoomNumber(1301);
-		testRoom.setOccupants(0);
+		testRoom.setEvents();
 		testRoom.setCurrentState(GatewayConstants.getNaString());
 		testRoom.setLandlord(GatewayConstants.getNaString());
-		
-//		assertThat(testRoom.matches(GatewayConstants.getConstructedRoom()));
 	}
 }

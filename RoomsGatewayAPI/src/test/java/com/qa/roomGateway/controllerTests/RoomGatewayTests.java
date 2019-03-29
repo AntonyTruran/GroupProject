@@ -21,6 +21,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -35,6 +36,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -64,11 +66,18 @@ public class RoomGatewayTests {
 
 	private List<Room> roomList = new ArrayList<Room>();
 	private Room testRoom;
+	private String postContent;
+	private ObjectWriter ow;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws JsonProcessingException {
 		roomList.add(GatewayConstants.getConstructedRoom());
 		testRoom = GatewayConstants.getConstructedRoom();
+		OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+		ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
+		postContent= ow.writeValueAsString(testRoom);
+
+//		
 	}
 	@Test
 	public void addRoomTest() throws Exception {
@@ -115,23 +124,30 @@ public class RoomGatewayTests {
 	}
 
 	@Test
-	public void updateRoomTest() {
+	public void updateRoomTest() throws Exception {
+		int id = testRoom.getRoomId();
+		Mockito.when(service.updateRoom((String)notNull(), (Room)notNull())).thenAnswer((Answer<?>) invocation -> {
+			testRoom.setRoomId(id);
+			return GatewayConstants.getNaString();
+		});
+		this.mvc.perform(MockMvcRequestBuilders.put(GatewayConstants.getUpdateUrl(), id)
+				.contentType(MediaType.APPLICATION_JSON).content(postContent)).andExpect(status().isOk());
+		assertThat(testRoom.getRoomId()).isEqualTo(id);
 
 	}
-//	@Ignore
-//	@Test
-//	public void deleteRoomTest() throws Exception {
-//		Room mockRoom =  GatewayConstants.getConstructedRoom();
-//		Mockito.when(service.deleteRoom(GatewayConstants.getDeleteBuilding(), GatewayConstants.getDeleteRoomNum())).thenReturn(GatewayConstants.getMockDeleteResponse());
-//		assertEquals(GatewayConstants.getMockDeleteResponse(), controller.deleteRoom(mockRoom));
-//		Mockito.verify(service).deleteRoom(GatewayConstants.getDeleteBuilding(), GatewayConstants.getDeleteRoomNum());
-//		
-//		OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-//		ObjectWriter ow = OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
-//		String postContent = ow.writeValueAsString(testRoom);
-//		Mockito.when(service.addRoom((Room)notNull())).thenReturn("{\"message\":\"room deleted\"}");
-//		MvcResult result = mvc.perform(post("/removeRoom").contentType(APPLICATION_JSON_UTF8)
-//				.content(postContent)).andReturn();
-//		assertThat(result.getResponse().getContentAsString()).contains("{\"message\":\"room deleted\"}");
-//	}
+	@Test
+	public void deleteRoomTest() throws Exception {
+		List<Room> MOCKED_ROOM_LIST = new ArrayList<Room>();
+		MOCKED_ROOM_LIST.add(testRoom);
+		Mockito.when(service.deleteRoom(GatewayConstants.getBuilding(), GatewayConstants.getRoomNumber())).thenAnswer((Answer<?>) invocation -> {
+			MOCKED_ROOM_LIST.remove(testRoom);
+			return GatewayConstants.getNaString();
+		});
+		this.mvc.perform(MockMvcRequestBuilders
+				.post(GatewayConstants.getDeletionUrl())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(postContent))
+		.andExpect(status().isOk());
+		assertThat(MOCKED_ROOM_LIST.size()).isEqualTo(0);
+	}
 }

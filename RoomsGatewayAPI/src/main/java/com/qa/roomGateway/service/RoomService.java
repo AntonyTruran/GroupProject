@@ -42,7 +42,7 @@ public class RoomService {
 	public String updateRoom(String roomReference, Room updatedRoom) {
 		Room currentDetails = this.repo.getOne(updatedRoom.getRoomId());
 		currentDetails.setCurrentState(updatedRoom.getCurrentState());
-		currentDetails.setOccupants(updatedRoom.getOccupants());
+//		currentDetails.setOccupants(updatedRoom.getOccupants());
 		currentDetails.setLandlord(updatedRoom.getLandlord());
 		repo.save(currentDetails);
 		return "{\"message\":\"room updated\"}";
@@ -53,9 +53,9 @@ public class RoomService {
 		return new ResponseEntity<List<Room>>(room, HttpStatus.OK);
 	}
 	
-	public String deleteRoomCustom(String building, int roomNumber) {
-		this.repo.deleteRoomByBuildingAndRoomNumber(building,roomNumber);
-		return "{\"message\":\"room updated\"}";
-	}
+//	public String deleteRoomCustom(String building, int roomNumber) {
+//		this.repo.deleteRoomByBuildingAndRoomNumber(building,roomNumber);
+//		return "{\"message\":\"room updated\"}";
+//	}
 
 }
