@@ -28,27 +28,55 @@ const MAX_ZOOM = 4
 class EventTimeline extends Component {
     constructor(props) {
         super(props)
+
         axios.get(BASE_URL + GET_ALL_APARTMENTS_URL)
-            .then(r => this.setState({ tracks: JSON.parse(JSON.stringify(r.data)
-                .replace("apartmentNumber","title")
-                .replace("roomName","tile")
-                .replace("currentState", "elements\":[],\"isOpen\":true,\"currentState")
-                .replace("rooms","tracks")
-                .replace(/Date/g, "")) }))
+            .then(r => this.setState({
+                holder:Date.parse(
+                    JSON.stringify(r.data)
+                    .replace("apartmentNumber", "title")
+                    .replace("roomName", "title")
+                    .replace("events", "elements")
+                    .replace("currentState", "elements\":[],\"isOpen\":true,\"currentState")
+                    .replace("rooms", "tracks")
+                    .replace(/Date/g, "")
+                    .replace(/_id/g, "id").match(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/g))
+                // )
+            }))
             .catch(e => console.log(e));
         const tracksById = fill(NUM_OF_TRACKS).reduce((acc, i) => {
             const track = buildTrack(i + 1)
             acc[track.id] = track
             return acc
         }, {})
-
         this.state = {
-
+            holder: [],
             open: true,
             zoom: 4,
             tracksById,
-            tracks: []
-        }
+            tracks: [{
+                id: "track-0",
+                title: "Apt 908",
+                tracks: [
+                    {
+                        id: "track-0-0",
+                        title: "Room 1",
+                        elements: [
+                            {
+                                id: "tt ",
+                                title: "Mohammed Alamas",
+                                start: new Date("2019-01-14"),
+                                end: new Date("2019-04-26")
+                            }
+                        ]
+                    }],
+                isOpen: true,
+                elements: []
+            }]
+        ,}  
+    }
+
+    componentDidMount(){
+        // this.parseProperly()
     }
 
     handleToggleOpen = () => {
@@ -81,16 +109,18 @@ class EventTimeline extends Component {
             }
         }
     }
-
-
+    parseProperly = () => {
+                var object
+            }
+    
     render() {
-        console.log(this.state.tracks)
         const { open, zoom, tracks } = this.state
         const start = new Date(`${START_YEAR}`)
         const end = new Date(`${START_YEAR + NUM_OF_YEARS}`)
         return (
+           
             <div className="app">
-
+            
                 <Timeline
                     scale={{
                         start,
@@ -111,13 +141,10 @@ class EventTimeline extends Component {
                     enableSticky
                     scrollToNow
                 />
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                {JSON.stringify(this.state.tracks)
-                    .replace("apartmentNumber","title")
-                    .replace("roomName","title")
-                    .replace("rooms","tracks")
-                    .replace("currentState", "elements\":[],\"isOpen\":true,\"currentState")
-                    .replace(/Date/g, "")}
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                {JSON.stringify(this.state.holder)}
+                <br /><br /> <br />
+                {JSON.stringify(this.state.tracks)}
             </div>
         )
     }

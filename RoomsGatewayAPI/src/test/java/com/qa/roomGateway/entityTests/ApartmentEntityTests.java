@@ -59,8 +59,8 @@ public class ApartmentEntityTests {
 	public void eventSetterTest() {
 		Event testEvent = GatewayConstants.getNullEvent();
 		testEvent.setTitle(GatewayConstants.getNaString());
-		testEvent.setEndDate(GatewayConstants.getNaString());
-		testEvent.setStartDate(GatewayConstants.getNaString());
+//		testEvent.setEndDate(GatewayConstants.getNaString());
+//		testEvent.setStartDate(GatewayConstants.getNaString());
 	}
 	@Test
 	public void eventGetterTest() {
