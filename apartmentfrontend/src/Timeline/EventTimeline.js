@@ -29,8 +29,13 @@ class EventTimeline extends Component {
     constructor(props) {
         super(props)
         axios.get(BASE_URL + GET_ALL_APARTMENTS_URL)
-        .then(r => this.setState({tracks: r.data}))
-        .catch(e => console.log(e));
+            .then(r => this.setState({ tracks: JSON.parse(JSON.stringify(r.data)
+                .replace("apartmentNumber","title")
+                .replace("roomName","tile")
+                .replace("currentState", "elements\":[],\"isOpen\":true,\"currentState")
+                .replace("rooms","tracks")
+                .replace(/Date/g, "")) }))
+            .catch(e => console.log(e));
         const tracksById = fill(NUM_OF_TRACKS).reduce((acc, i) => {
             const track = buildTrack(i + 1)
             acc[track.id] = track
@@ -38,7 +43,7 @@ class EventTimeline extends Component {
         }, {})
 
         this.state = {
-            
+
             open: true,
             zoom: 4,
             tracksById,
@@ -77,12 +82,15 @@ class EventTimeline extends Component {
         }
     }
 
+
     render() {
+        console.log(this.state.tracks)
         const { open, zoom, tracks } = this.state
         const start = new Date(`${START_YEAR}`)
         const end = new Date(`${START_YEAR + NUM_OF_YEARS}`)
         return (
             <div className="app">
+
                 <Timeline
                     scale={{
                         start,
@@ -103,6 +111,13 @@ class EventTimeline extends Component {
                     enableSticky
                     scrollToNow
                 />
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                {JSON.stringify(this.state.tracks)
+                    .replace("apartmentNumber","title")
+                    .replace("roomName","title")
+                    .replace("rooms","tracks")
+                    .replace("currentState", "elements\":[],\"isOpen\":true,\"currentState")
+                    .replace(/Date/g, "")}
             </div>
         )
     }
