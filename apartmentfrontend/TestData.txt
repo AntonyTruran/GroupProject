@@ -1,0 +1,16 @@
+{
+	"building":"The Heart",
+	"apartmentNumber":908,
+	"roomNumber": 2,
+	"currentState":"Clean",
+	"landlord": "Joe Bloggs",
+	"rooms":[
+		{
+			"roomName":"Room 1",
+			"events":[{
+				"title": "Mohammed Alamas",
+                "startDate": "2019-01-14",
+                "endDate": "2019-04-26"
+			}]
+		}]
+}
