@@ -2,8 +2,9 @@ package com.qa.roomGateway.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,12 +27,10 @@ public class GatewayController {
 		this.rtb = rtb;
 	}
 
-	@Autowired
 	private EurekaClient client;
 
 	private ApartmentService service;
 
-	@Autowired
 	private RestTemplateBuilder rtb;
 
 	@PostMapping("/createApartment")
@@ -73,11 +72,30 @@ public class GatewayController {
 //	}
 
 	// send to microservices
+	@GetMapping("/getAllBuildings")
+	public String getBuildings() {
+		return this.rtb.build().exchange(client.getNextServerFromEureka("BuildingAPI", false).getHomePageUrl()+"getAllBuildings", 
+				HttpMethod.GET, null, String.class).getBody();
+	}
+	
+	@GetMapping("/buildingSearch")
+	public String buildingSearch(@RequestBody Object entity) {
+		return this.rtb.build().exchange(client.getNextServerFromEureka("BuildingAPI", false).getHomePageUrl()+"buildingSearch", 
+				HttpMethod.GET, new HttpEntity<Object>(entity), String.class).getBody();
+	}
+	
+	@DeleteMapping("/deleteBuilding")
+	public String deleteBuilding(@RequestBody Object entity) {
+		return this.rtb.build().exchange(client.getNextServerFromEureka("BuildingAPI", false).getHomePageUrl()+"deleteBuilding", 
+				HttpMethod.DELETE, new HttpEntity<Object>(entity), String.class).getBody();
+	}
 
-	// get building ref
-
-	// create building?
-
+	@PostMapping("/createBuilding")
+	public String createBuilding(@RequestBody Object entity) {
+//		HttpEntity<String> entity = new HttpEntity<>(@RequestBody, requestHeaders);
+		return this.rtb.build().exchange(client.getNextServerFromEureka("BuildingAPI", false).getHomePageUrl()+"createBuilding", 
+				HttpMethod.POST, new HttpEntity<Object>(entity), String.class).getBody();
+	}
 	// get tenants
 
 	// add tenants

@@ -1,7 +1,30 @@
 import React, { Component } from 'react';
 import './Admin.css';
+import axios from 'axios';
+import {
+    START_YEAR,
+    NUM_OF_YEARS,
+    NUM_OF_TRACKS,
+    GET_ALL_APARTMENTS_URL,
+    BASE_URL,
+    CREATE_URL
+} from './Timeline/Constants';
+
+
 
 class Admin extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      building: "",
+      title: "",
+      roomNumber: 0,
+      currentState: "",
+      landlord: "",
+      tracks: []
+    }
+  }
+
  
   prettyUpJSON(json){
     let cleanResult = JSON.stringify(json);
@@ -15,6 +38,21 @@ class Admin extends Component {
       
             document.getElementById('testid').innerHTML =  cleanResult; 
   }
+
+  createApartment() {
+    console.log("clicked");
+    axios.post(BASE_URL+CREATE_URL, {
+      "building": this.state.building,
+      "title": this.state.title,
+      "roomNumber": this.state.roomNumber,
+      "currentState": this.state.currentState,
+      "landlord": this.state.landlord
+
+    }).then(response => {
+      console.log(response.data.message);
+    });
+    
+  }
  
   render() {
     return (
@@ -24,12 +62,13 @@ class Admin extends Component {
           <h3>Add New Apartment</h3>
            <form>
              <pre>Building Name:    <input id="building" type="text" name="Building"></input></pre>
-             <pre>Apartment No:     <input id="roomNo" type="number" name="Apartment"></input></pre>
-             <pre>No Of Occupants:  <input id="occupantNo" type="number" name="No of Occupants"></input></pre>
+             <pre>Apartment No:     <input id="title" type="text" name="Apartment"></input></pre>
+             <pre>No. of rooms:     <input id="roomNumber" type="number" name="Room Number"></input></pre>
+             <pre>Current State:    <input id="currentState" type="text" name="Current State"></input></pre>
              <pre>Landlord Name:    <input id="landlord" type="text" name="Landlord"></input></pre>
-             <pre>Notes:            <input id="notes" type="text" name="notes"></input></pre>
+          
            </form> 
-           <input type='submit' value="Add"></input> 
+           <input type='submit'onClick={this.createApartment()} value="Add"></input> 
           <div className="delete">
            <h3>Delete an Apartment</h3>
             <form>
