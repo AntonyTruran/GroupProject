@@ -1,4 +1,4 @@
-package com.qa.tenantApi.main.testMain;
+package com.qa.tenantApi.main;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
