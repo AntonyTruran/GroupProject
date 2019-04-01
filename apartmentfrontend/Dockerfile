@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:latest
 RUN npm install
 RUN npm update
 RUN npm start
