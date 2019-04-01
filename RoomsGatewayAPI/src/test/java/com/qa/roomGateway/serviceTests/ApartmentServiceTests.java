@@ -60,28 +60,28 @@ public class ApartmentServiceTests {
 	
 	@Test
 	public void getByNumberTest() {
-		Mockito.when(repo.findAll()).thenReturn(roomList);
-		List<Apartment> returnList = service.getAllApartments();
+		Mockito.when(repo.findByApartmentNumber(GatewayConstants.getApartmentNumber())).thenReturn(roomList);
+		List<Apartment> returnList = service.getApartmentsByNumber(GatewayConstants.getApartmentNumber());
 
 		assertThat(returnList.size()).isEqualTo(1);		
 	}
 	
 	@Test
 	public void getByBuildingTest() {
-		Mockito.when(repo.findAll()).thenReturn(roomList);
-		List<Apartment> returnList = service.getAllApartments();
+		Mockito.when(repo.findByBuilding(GatewayConstants.getBuilding())).thenReturn(roomList);
+		List<Apartment> returnList = service.getApartmentsByBuilding(GatewayConstants.getBuilding());
 
 		assertThat(returnList.size()).isEqualTo(1);
 	}
 	
 	@Test
 	public void getByLandlordTest() {
-		Mockito.when(repo.findAll()).thenReturn(roomList);
-		List<Apartment> returnList = service.getAllApartments();
+		Mockito.when(repo.getApartmentsByLandlord(GatewayConstants.getLandlord())).thenReturn(roomList);
+		List<Apartment> returnList = service.getApartmentsByLandlord(GatewayConstants.getLandlord());
 
 		assertThat(returnList.size()).isEqualTo(1);
 	}
-	
+		
 	@Test
 	public void updateApartmentTest() {
 		
