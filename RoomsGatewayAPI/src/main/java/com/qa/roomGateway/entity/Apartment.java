@@ -3,69 +3,55 @@ package com.qa.roomGateway.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.data.annotation.Id;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class Apartment {
 
-	@Id
-	private String _id;
 	private String building;
-	private boolean isOpen = true;
-	private Integer apartmentNumber;
-	private Set<Event> elements = new HashSet<>();
+	private boolean isIsOpen = false;
 	private Integer title;
+	private Set<Event> elements = new HashSet<>();
+	private Integer roomNumber;
 	private Set<Room> tracks;
 	private String currentState;
-	
 	private String landlord;
 	public Apartment() {
 	}
 
-	public Apartment( String building, Integer aptNumber, Integer title, Set<Room> tracks,
+	public Apartment( String building, Integer title, Integer roomNumber, Set<Room> tracks,
 			String currentState, String landlord) {
 		this.building = building;
-		this.apartmentNumber = aptNumber;
 		this.title = title;
+		this.roomNumber = roomNumber;
 		this.tracks = tracks;
 		this.currentState = currentState;
 		this.landlord = landlord;
 	}
-	
-	public String get_id() {
-		return _id;
-	}
-
-	public void set_id(String _id) {
-		this._id = _id;
-	}
-
 	public String getBuilding() {
 		return building;
 	}
 	public void setBuilding(String building) {
 		this.building = building;
 	}
-	public Integer getApartmentNumber() {
-		return apartmentNumber;
-	}
-	public void setApartmentNumber(Integer aptNumber) {
-		this.apartmentNumber = aptNumber;
-	}
-	public Integer getRoomNumber() {
+	public Integer getTitle() {
 		return title;
 	}
-	public void setRoomNumber(Integer roomNumber) {
-		this.title = roomNumber;
+	public void setTitle(Integer title) {
+		this.title = title;
 	}
-	public Set<Room> getRooms() {
+	public Integer getRoomNumber() {
+		return roomNumber;
+	}
+	public void setRoomNumber(Integer roomNumber) {
+		this.roomNumber = roomNumber;
+	}
+	public Set<Room> getTracks() {
 		return tracks;
 	}
-	public void setRooms(Set<Room> events) {
-		this.tracks = events;
+	public void setTracks(Set<Room> tracks) {
+		this.tracks = tracks;
 	}
 	public String getCurrentState() {
 		return currentState;
@@ -94,12 +80,12 @@ public class Apartment {
     	return jsonString;
     }
 
-	public boolean isOpen() {
-		return isOpen;
+	public boolean getIsOpen() {
+		return isIsOpen;
 	}
 
-	public void setOpen(boolean isOpen) {
-		this.isOpen = isOpen;
+	public void setIsOpen(boolean isIsOpen) {
+		this.isIsOpen = isIsOpen;
 	}
 
 	public Set<Event> getElements() {

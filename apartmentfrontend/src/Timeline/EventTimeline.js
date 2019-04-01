@@ -30,7 +30,7 @@ class EventTimeline extends Component {
         super(props)
 
         axios.get(BASE_URL + GET_ALL_APARTMENTS_URL)
-            .then(r => this.setState({holder: r.data}))
+            .then(r => this.setState({tracks: r.data}))
             .catch(e => console.log(e));
         const tracksById = fill(NUM_OF_TRACKS).reduce((acc, i) => {
             const track = buildTrack(i + 1)
@@ -42,25 +42,7 @@ class EventTimeline extends Component {
             open: true,
             zoom: 4,
             tracksById,
-            tracks: [{
-                id: "track-0",
-                title: "Apt 908",
-                tracks: [
-                    {
-                        id: "track-0-0",
-                        title: "Room 1",
-                        elements: [
-                            {
-                                id: "tt ",
-                                title: "Mohammed Alamas",
-                                start: new Date("2019-01-14"),
-                                end: new Date("2019-04-26")
-                            }
-                        ]
-                    }],
-                isOpen: true,
-                elements: []
-            }]
+            tracks: []
         ,}  
     }
 
@@ -103,7 +85,6 @@ class EventTimeline extends Component {
             }
     
     render() {
-         console.log(this.state.date)
         const { open, zoom, tracks } = this.state
         const start = new Date(`${START_YEAR}`)
         const end = new Date(`${START_YEAR + NUM_OF_YEARS}`)
@@ -133,7 +114,6 @@ class EventTimeline extends Component {
                 />
                     
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                {JSON.stringify(this.state.holder)}
                 <br /><br /> <br />
                 {JSON.stringify(this.state.tracks)}
             </div>

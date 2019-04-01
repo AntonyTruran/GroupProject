@@ -17,7 +17,7 @@ public class ApartmentService {
 	private ApartmentRepo repo;
 
 	public String addApartment(Apartment apartment) {
-		System.out.println(apartment.getRooms());
+		System.out.println(apartment.getTracks());
 		repo.save(apartment);
 		return "{\"message\":\"apartment added\"}";
 	}
@@ -27,7 +27,7 @@ public class ApartmentService {
 	}
 
 	public List<Apartment> getApartmentsByNumber(int request) {
-		return this.repo.findByApartmentNumber(request);
+		return this.repo.findByTitle(request);
 	}
 
 	public List<Apartment> getApartmentsByBuilding(String request) {
@@ -39,10 +39,10 @@ public class ApartmentService {
 	}
 	public Apartment getApartmentsByBuildingAndApartmentNumber(String building, int apartmentNumber)
 	{
-		return this.repo.getApartmentsByBuildingAndApartmentNumber(building,apartmentNumber);
+		return this.repo.getApartmentsByBuildingAndTitle(building,apartmentNumber);
 	}
 	public String deleteApartment(String building, int apartmentNumber){
-		this.repo.delete(repo.getApartmentsByBuildingAndApartmentNumber(building,apartmentNumber));
+		this.repo.delete(repo.getApartmentsByBuildingAndTitle(building,apartmentNumber));
 		return "Deleted Successfully";
 	}
 

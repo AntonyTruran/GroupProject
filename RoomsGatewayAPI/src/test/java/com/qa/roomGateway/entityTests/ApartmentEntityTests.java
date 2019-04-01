@@ -1,6 +1,7 @@
 package com.qa.roomGateway.entityTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
@@ -24,8 +25,8 @@ public class ApartmentEntityTests {
 	@Test
 	public void apartmentGetterTest(){
 		assertNull(GatewayConstants.getNullApartment().getBuilding());
-		assertNull(GatewayConstants.getNullApartment().getApartmentNumber());
-		assertNull(GatewayConstants.getNullApartment().getRooms());
+		assertNull(GatewayConstants.getNullApartment().getTitle());
+		assertNull(GatewayConstants.getNullApartment().getTracks());
 		assertNull(GatewayConstants.getNullApartment().getCurrentState());
 		assertNull(GatewayConstants.getNullApartment().getLandlord());
 	}
@@ -33,8 +34,8 @@ public class ApartmentEntityTests {
 	public void apartmentSettterTest() {
 		Apartment testApartment = GatewayConstants.getNullApartment();
 		testApartment.setBuilding(GatewayConstants.getNaString());
-		testApartment.setApartmentNumber(1301);
-		testApartment.setRooms(null);
+		testApartment.setTitle(1301);
+		testApartment.setTracks(null);
 		testApartment.setCurrentState(GatewayConstants.getNaString());
 		testApartment.setLandlord(GatewayConstants.getNaString());
 	}
@@ -46,14 +47,14 @@ public class ApartmentEntityTests {
 	@Test
 	public void roomSetterTest() {
 		Room testRoom = GatewayConstants.getNullRoom();
-		testRoom.setRoomName(GatewayConstants.getNaString());
-		testRoom.setEvents(null);
+		testRoom.setTitle(GatewayConstants.getNaString());
+		testRoom.setElements(null);
 	}
 	
 	@Test
 	public void roomGetterTest() {
-		assertNull(GatewayConstants.getNullRoom().getEvents());
-		assertNull(GatewayConstants.getNullRoom().getRoomName());
+		assertNull(GatewayConstants.getNullRoom().getElements());
+		assertNull(GatewayConstants.getNullRoom().getTitle());
 	}
 	@Test
 	public void eventSetterTest() {
@@ -64,8 +65,8 @@ public class ApartmentEntityTests {
 	}
 	@Test
 	public void eventGetterTest() {
-		assertNull(GatewayConstants.getNullEvent().getEndDate());
-		assertNull(GatewayConstants.getNullEvent().getStartDate());
-		assertNull(GatewayConstants.getNullEvent().getTitle());
+		assertNull(GatewayConstants.getNullEvent().getEnd());
+		assertNull(GatewayConstants.getNullEvent().getStart());
+		assertEquals(GatewayConstants.getNaString(),GatewayConstants.getNullEvent().getTitle());
 	}
 }

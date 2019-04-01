@@ -7,11 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.qa.roomGateway.entity.Apartment;
 
-import io.micrometer.core.lang.Nullable;
 
 @Repository
 public interface ApartmentRepo extends MongoRepository<Apartment, String>{
-	public List<Apartment> findByApartmentNumber(int apartmentNumber);
+	public List<Apartment> findByTitle(Integer title);
 
 	public List<Apartment> findByBuilding(String building);
 	
@@ -19,7 +18,7 @@ public interface ApartmentRepo extends MongoRepository<Apartment, String>{
 	public List<Apartment> getApartmentsByLandlord();
 	public void delete(Apartment apartment);
 
-	public Apartment getApartmentsByBuildingAndApartmentNumber(String building, int apartmentNumber);
+	public Apartment getApartmentsByBuildingAndTitle(String building, int title);
 	
 	
 }
