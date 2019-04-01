@@ -1,4 +1,4 @@
-package com.qa.maintenanceApi.main.testMain;
+package com.qa.maintenanceApi.main;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
