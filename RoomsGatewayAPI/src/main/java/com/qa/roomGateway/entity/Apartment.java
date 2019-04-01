@@ -1,8 +1,7 @@
 package com.qa.roomGateway.entity;
 
+import java.util.HashSet;
 import java.util.Set;
-
-import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,51 +9,37 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class Apartment {
 
-	@Id
-	private String _id;
 	private String building;
-
-	private Integer apartmentNumber;
-	
+	private boolean isIsOpen = false;
+	private Integer title;
+	private Set<Event> elements = new HashSet<>();
 	private Integer roomNumber;
-	
-	private Set<Room> rooms;
-	
+	private Set<Room> tracks;
 	private String currentState;
-	
 	private String landlord;
 	public Apartment() {
 	}
 
-	public Apartment( String building, Integer aptNumber, Integer roomNumber, Set<Room> rooms,
+	public Apartment( String building, Integer title, Integer roomNumber, Set<Room> tracks,
 			String currentState, String landlord) {
 		this.building = building;
-		this.apartmentNumber = aptNumber;
+		this.title = title;
 		this.roomNumber = roomNumber;
-		this.rooms = rooms;
+		this.tracks = tracks;
 		this.currentState = currentState;
 		this.landlord = landlord;
 	}
-	
-	public String get_id() {
-		return _id;
-	}
-
-	public void set_id(String _id) {
-		this._id = _id;
-	}
-
 	public String getBuilding() {
 		return building;
 	}
 	public void setBuilding(String building) {
 		this.building = building;
 	}
-	public Integer getApartmentNumber() {
-		return apartmentNumber;
+	public Integer getTitle() {
+		return title;
 	}
-	public void setApartmentNumber(Integer aptNumber) {
-		this.apartmentNumber = aptNumber;
+	public void setTitle(Integer title) {
+		this.title = title;
 	}
 	public Integer getRoomNumber() {
 		return roomNumber;
@@ -62,11 +47,11 @@ public class Apartment {
 	public void setRoomNumber(Integer roomNumber) {
 		this.roomNumber = roomNumber;
 	}
-	public Set<Room> getRooms() {
-		return rooms;
+	public Set<Room> getTracks() {
+		return tracks;
 	}
-	public void setRooms(Set<Room> events) {
-		this.rooms = events;
+	public void setTracks(Set<Room> tracks) {
+		this.tracks = tracks;
 	}
 	public String getCurrentState() {
 		return currentState;
@@ -94,5 +79,21 @@ public class Apartment {
 		
     	return jsonString;
     }
+
+	public boolean getIsOpen() {
+		return isIsOpen;
+	}
+
+	public void setIsOpen(boolean isIsOpen) {
+		this.isIsOpen = isIsOpen;
+	}
+
+	public Set<Event> getElements() {
+		return elements;
+	}
+
+	public void setElements(Set<Event> elements) {
+		this.elements = elements;
+	}
 
 }

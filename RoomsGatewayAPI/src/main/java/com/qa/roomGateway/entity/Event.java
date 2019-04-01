@@ -7,27 +7,27 @@ import org.springframework.data.annotation.Id;
 
 public class Event {
 	@Id
-	private String _id;
+	private String id;
 	private String title;
-	private Date startDate;
-	private Date endDate;
+	private Date start;
+	private Date end;
 
 	public Event() {
 	}
 
-	public Event(String title, Date startDate, Date endDate) {
+	public Event(String title, Date start, Date end) {
 		this.title = title;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this._id= ObjectId.get().toString();
+		this.start = start;
+		this.end = end;
+		this.id= ObjectId.get().toString();
 	}
 
-	public String get_id() {
-		return _id;
+	public String getId() {
+		return id;
 	}
 
-	public void set_id(String _id) {
-		this._id = _id;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -38,20 +38,20 @@ public class Event {
 		this.title = title;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public Date getStart() {
+		return start;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStart(Date start) {
+		this.start = start;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Date getEnd() {
+		return end;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setEnd(Date end) {
+		this.end = end;
 	}
 
 }
