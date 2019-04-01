@@ -2,6 +2,7 @@ package com.qa.roomGateway.serviceTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.notNull;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class ApartmentServiceTests {
 	
 	@Test
 	public void getByNumberTest() {
-		Mockito.when(repo.findByApartmentNumber(GatewayConstants.getApartmentNumber())).thenReturn(roomList);
+		Mockito.when(repo.findByTitle(GatewayConstants.getApartmentNumber())).thenReturn(roomList);
 		List<Apartment> returnList = service.getApartmentsByNumber(GatewayConstants.getApartmentNumber());
 
 		assertThat(returnList.size()).isEqualTo(1);		
@@ -89,6 +90,14 @@ public class ApartmentServiceTests {
 	
 	@Test
 	public void deleteApartmentTest() {
-		
+		Mockito.when(this.tenantService.deleteTenant((Tenant)notNull())).thenAnswer((Answer<?>) invocation -> {
+			this.roomList.remove(GatewayConstants.getConstructedApartment());
+			return Constants.getDeletionMessage();
+		});
+		Apartment toDelete = (Apartment) Mockito.when(repo.getApartmentsByBuildingAndTitle(GatewayConstants.getBuilding(), GatewayConstants.getApartmentNumber())).thenReturn(GatewayConstants.getConstructedApartment());
+		Mockito.when(repo.delete((Apartment)notNull())).thenAnswer((Answer<?>) invocation -> {
+			returnList.remove(GatewayConstants.getConstructedApartment());
+			return "did it work";
+		});
 	}
 }

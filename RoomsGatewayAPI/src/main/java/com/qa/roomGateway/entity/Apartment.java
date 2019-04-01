@@ -11,7 +11,7 @@ public class Apartment {
 
 	private String building;
 	private boolean isIsOpen = false;
-	private Integer title;
+	private String title;
 	private Set<Event> elements = new HashSet<>();
 	private Integer roomNumber;
 	private Set<Room> tracks;
@@ -20,7 +20,7 @@ public class Apartment {
 	public Apartment() {
 	}
 
-	public Apartment( String building, Integer title, Integer roomNumber, Set<Room> tracks,
+	public Apartment( String building, String title, Integer roomNumber, Set<Room> tracks,
 			String currentState, String landlord) {
 		this.building = building;
 		this.title = title;
@@ -35,10 +35,10 @@ public class Apartment {
 	public void setBuilding(String building) {
 		this.building = building;
 	}
-	public Integer getTitle() {
+	public String getTitle() {
 		return title;
 	}
-	public void setTitle(Integer title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 	public Integer getRoomNumber() {

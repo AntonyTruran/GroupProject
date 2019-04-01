@@ -8,7 +8,7 @@ import com.qa.roomGateway.entity.Room;
 public class GatewayConstants {
 	private static final String APARTMENT_ID = "TestFirst";
 	private static final String BUILDING = "numberOne";
-	private static final Integer APARTMENT_NUMBER = 1301;
+	private static final String APARTMENT_NUMBER = "1301";
 	private static final int OCCUPANTS = 5;
 	private static final String CURRENT_STATE = "TestQaEmail";
 	private static final String LANDLORD = "TestApartmentReference";
