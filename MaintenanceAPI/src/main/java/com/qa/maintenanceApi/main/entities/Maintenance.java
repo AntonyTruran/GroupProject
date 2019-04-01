@@ -1,7 +1,5 @@
 package com.qa.maintenanceApi.main.entities;
 
-import java.util.Optional;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -122,16 +120,6 @@ public class Maintenance {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-	
-	public void update(Maintenance updateMaintenance) {
-		this.setIssueType(Optional.ofNullable(updateMaintenance.getIssueType()).orElse(Optional.ofNullable(this.getIssueType()).orElse(Constants.getNaString())));
-		this.setSeverity(Optional.ofNullable(updateMaintenance.getSeverity()).orElse(Optional.ofNullable(this.getSeverity()).orElse(Constants.getNaString())));
-		this.setAdditionalDetails(Optional.ofNullable(updateMaintenance.getAdditionalDetails()).orElse(Optional.ofNullable(this.getAdditionalDetails()).orElse(Constants.getNaString())));
-		this.setStatus(Optional.ofNullable(updateMaintenance.getStatus()).orElse(Optional.ofNullable(this.getStatus()).orElse(Constants.getNaString())));
-		this.setDateReported(Optional.ofNullable(updateMaintenance.getDateReported()).orElse(Optional.ofNullable(this.getDateReported()).orElse(Constants.getNaString())));
-		this.setStatus(Optional.ofNullable(updateMaintenance.getStatus()).orElse(Optional.ofNullable(this.getStatus()).orElse(Constants.getNaString())));
-		this.setNotes(Optional.ofNullable(updateMaintenance.getNotes()).orElse(Optional.ofNullable(this.getNotes()).orElse(Constants.getNaString())));
 	}
 
 }
