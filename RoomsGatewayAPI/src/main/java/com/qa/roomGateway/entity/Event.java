@@ -22,12 +22,12 @@ public class Event {
 		this.id= ObjectId.get().toString();
 	}
 
-	public String get_id() {
+	public String getId() {
 		return id;
 	}
 
-	public void set_id(String _id) {
-		this.id = _id;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -38,20 +38,20 @@ public class Event {
 		this.title = title;
 	}
 
-	public Date getStartDate() {
+	public Date getStart() {
 		return start;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.start = startDate;
+	public void setStart(Date start) {
+		this.start = start;
 	}
 
-	public Date getEndDate() {
+	public Date getEnd() {
 		return end;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.end = endDate;
+	public void setEnd(Date end) {
+		this.end = end;
 	}
 
 }

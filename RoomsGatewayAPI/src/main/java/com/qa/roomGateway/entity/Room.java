@@ -20,28 +20,28 @@ public class Room {
 		this.id= ObjectId.get().toString();
 	}
 
-	public String get_id() {
+	public String getId() {
 		return id;
 	}
 
-	public void set_id(String _id) {
-		this.id = _id;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getRoomName() {
+	public String getTitle() {
 		return title;
 	}
 
-	public void setRoomName(String roomName) {
+	public void setTitle(String roomName) {
 		this.title = roomName;
 	}
 
-	public Set<Event> getEvents() {
+	public Set<Event> getElements() {
 		return elements;
 	}
 
-	public void setEvents(Set<Event> events) {
-		this.elements = events;
+	public void setElements(Set<Event> elements) {
+		this.elements = elements;
 	}
 
 }
