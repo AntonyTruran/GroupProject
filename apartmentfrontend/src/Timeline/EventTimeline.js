@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import Timeline from 'react-timelines'
-import 'react-timelines/lib/css/style.css'
+import React, { Component } from 'react';
+import Timeline from 'react-timelines';
+import update from 'react-addons-update';
+import 'react-timelines/lib/css/style.css';
 import axios from 'axios';
 
 import {
@@ -29,9 +30,7 @@ class EventTimeline extends Component {
     constructor(props) {
         super(props)
 
-        axios.get(BASE_URL + GET_ALL_APARTMENTS_URL)
-            .then(r => this.setState({tracks: r.data}))
-            .catch(e => console.log(e));
+
         const tracksById = fill(NUM_OF_TRACKS).reduce((acc, i) => {
             const track = buildTrack(i + 1)
             acc[track.id] = track
@@ -43,11 +42,43 @@ class EventTimeline extends Component {
             zoom: 4,
             tracksById,
             tracks: []
-        ,}  
+        };
+        axios.get(BASE_URL + GET_ALL_APARTMENTS_URL)
+            .then((r => this.setState({ tracks: r.data })))
+            .catch(e => console.log(e));
+        this.convert();
     }
+    convert = () => {
+        console.log(this.state.tracks);
+        for (let track of this.state.tracks) {
+            console.log("Track:", track);
+            for (let innerTrack of track.tracks) {
+                console.log("InnerTrack:", innerTrack);
+                for (let element of innerTrack.elements) {
+                    console.log("Element:", element);
+                }
+            }
+        }
+        // for (var i = 0; i < this.state.tracks.length; i++) {
+        //     console.log(i);
+        //     for (var j = 0; j < this.state.tracks[i].tracks.length; j++) {
+        //         console.log(i + " " + j);
+        //         for (var k = 0; k < this.state.tracks[i].tracks[j].elements.length; k++) {
+        //             update(this.state, { tracks: { [i]: { tracks: {[j]: {    elements: {    [k]: { start: { $set: new Date((this.state.tracks[i].tracks[j].elements[k].end))}}}}}}}});
+        //             // console.log(i + " " + j + " " + k)
+        //             // this.setState({...state.tracks[i].tracks[j].elements[k].start= new Date((this.state.tracks[i].tracks[j].elements[k].start).toISOString().substr(0,10))});
+        //             // this.setState({...state.tracks[i].tracks[j].elements[k].end = new Date((this.state.tracks[i].tracks[j].elements[k].end).toISOString().substr(0,10))});
+        //             // console.log(this.state.tracks[i].tracks[j].elements[k].start.toISOString().substr(0,10));
+        //             console.log(this.state.tracks[i].tracks[j].elements[k].end);
+        //         }
+        //         console.log("here");
+        //     }
+        //     console.log("here");
+        // }
+        // console.log("here");
+    }
+    componentDidMount() {
 
-    componentDidMount(){
-      
     }
 
     handleToggleOpen = () => {
@@ -80,18 +111,15 @@ class EventTimeline extends Component {
             }
         }
     }
-    parseProperly = () => {
-                var object
-            }
-    
+
     render() {
         const { open, zoom, tracks } = this.state
         const start = new Date(`${START_YEAR}`)
         const end = new Date(`${START_YEAR + NUM_OF_YEARS}`)
         return (
-           
-            <div className="app">
-            
+
+            <div className="app" >
+
                 <Timeline
                     scale={{
                         start,
@@ -112,8 +140,9 @@ class EventTimeline extends Component {
                     enableSticky
                     scrollToNow
                 />
-                    
+
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                {JSON.stringify(this.state.holder)}
                 <br /><br /> <br />
                 {JSON.stringify(this.state.tracks)}
             </div>
