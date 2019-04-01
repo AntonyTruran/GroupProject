@@ -26,7 +26,7 @@ public class MaintenanceController {
 		this.maintenanceService = maintenanceService;
 	}
 
-	@PostMapping("/")
+	@PostMapping(Constants.CREATE_URL)
 	public String createMaintenance(@RequestBody Maintenance maintenance) {
 		return this.maintenanceService.createMaintenance(maintenance);
 	}

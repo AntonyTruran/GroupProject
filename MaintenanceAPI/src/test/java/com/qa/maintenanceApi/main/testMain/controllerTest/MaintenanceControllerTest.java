@@ -80,7 +80,7 @@ public class MaintenanceControllerTest {
 		Mockito.when(this.service.createMaintenance((Maintenance) notNull()))
 				.thenReturn(Constants.getCreationMessage());
 		this.result = this.mockMvc
-				.perform(post("/").contentType(Constants.APPLICATION_JSON_UTF8).content(this.postContent)).andReturn();
+				.perform(post(Constants.GET_ALL_URL).contentType(Constants.APPLICATION_JSON_UTF8).content(this.postContent)).andReturn();
 		assertThat(result.getResponse().getContentAsString()).contains(Constants.getCreationMessage());
 	}
 
