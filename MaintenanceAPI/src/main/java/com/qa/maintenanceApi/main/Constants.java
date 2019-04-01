@@ -39,6 +39,13 @@ public class Constants {
 	private static final String TEST_DATE_REPORTED = "Test5";
 	private static final String TEST_STATUS = "Test6";
 	private static final String TEST_NOTES = "Test7";
+	
+	private static final String ISSUE_TYPE = "issueType";
+	private static final String SEVERITY = "severity";
+	private static final String ROOM_REFERENCE = "roomReference";
+	private static final String DATE_REPORTED = "dateReported";
+	private static final String STATUS = "status";
+	
 
 	private static final Maintenance CONSTRUCTED_MAINTENANCE = new Maintenance(TEST_ISSUE_TYPE, TEST_SEVERITY,
 			TEST_ADDITIONAL_DETAILS, TEST_ROOM_REFERENCE, TEST_DATE_REPORTED, TEST_STATUS, TEST_NOTES);
@@ -91,6 +98,26 @@ public class Constants {
 
 	public static ObjectMapper getObjectMapper() {
 		return OBJECT_MAPPER;
+	}
+
+	public static String getIssueType() {
+		return ISSUE_TYPE;
+	}
+
+	public static String getSeverity() {
+		return SEVERITY;
+	}
+
+	public static String getRoomReference() {
+		return ROOM_REFERENCE;
+	}
+
+	public static String getDateReported() {
+		return DATE_REPORTED;
+	}
+
+	public static String getStatus() {
+		return STATUS;
 	}
 
 	public static MediaType getApplicationJsonUtf8() {

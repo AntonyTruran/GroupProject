@@ -40,9 +40,9 @@ import com.qa.maintenanceApi.main.services.MaintenanceService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(MaintenanceController.class)
-@AutoConfigureMockMvc 
+@AutoConfigureMockMvc
 public class MaintenanceControllerTest {
-	
+
 	@Autowired
 	private MockMvc mockMvc;
 
@@ -69,44 +69,51 @@ public class MaintenanceControllerTest {
 		this.controllerTestMaintenance = Constants.getConstructedMaintenance();
 		Constants.OBJECT_MAPPER.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
 		this.ow = Constants.OBJECT_MAPPER.writer().withDefaultPrettyPrinter();
-		this.postContent= this.ow.writeValueAsString(this.controllerTestMaintenance);
+		this.postContent = this.ow.writeValueAsString(this.controllerTestMaintenance);
 		this.postContent2 = this.ow.writeValueAsString(Constants.getDefaultBuilderMaintenance());
 		this.mockedMaintenances = new ArrayList<Maintenance>();
 	}
 
 	@Test
 	public void testMaintenanceCreation() throws Exception {
-		Mockito.when(this.service.createMaintenance((Maintenance) notNull())).thenReturn(Constants.getCreationMessage());
+		System.out.println(postContent);
+		Mockito.when(this.service.createMaintenance((Maintenance) notNull()))
+				.thenReturn(Constants.getCreationMessage());
 		this.result = this.mockMvc
-				.perform(post(Constants.CREATE_URL).contentType(Constants.APPLICATION_JSON_UTF8).content(this.postContent)).andReturn();
+				.perform(post("/").contentType(Constants.APPLICATION_JSON_UTF8).content(this.postContent)).andReturn();
 		assertThat(result.getResponse().getContentAsString()).contains(Constants.getCreationMessage());
 	}
 
 	@Test
 	public void testGetAllMaintenances() throws Exception {
 		this.mockedMaintenances.add(Constants.getConstructedMaintenance());
-		when(this.service.getAllMaintenances()).thenReturn(this.mockedMaintenances);
+		when(this.service.getAllMaintenance()).thenReturn(this.mockedMaintenances);
 		assertThat(this.mockMvc.perform(get(Constants.GET_ALL_URL).accept(MediaType.APPLICATION_JSON))
-				.andExpect(content().string(containsString(Constants.getTestFirstName()))));
+				.andExpect(content().string(containsString(Constants.getTestIssueType()))));
 	}
-	
+
 	@Test
 	public void testMaintenanceSearch() throws Exception {
 		this.mockedMaintenances.add(this.controllerTestMaintenance);
 		this.mockedMaintenances.add(Constants.getDefaultBuilderMaintenance());
 
-		Mockito.when(this.service.maintenanceSearch((Maintenance) notNull()))
-				.thenReturn(this.mockedMaintenances.stream().filter(x -> x.matches(this.controllerTestMaintenance)).collect(Collectors.toList()));
+		Mockito.when(this.service.maintenanceSearch((Maintenance) notNull())).thenReturn(this.mockedMaintenances
+				.stream().filter(x -> x.matches(this.controllerTestMaintenance)).collect(Collectors.toList()));
 		this.result = this.mockMvc
-				.perform(get(Constants.SEARCH_URL).param(Constants.getFirstName(), Constants.getTestFirstName()).param(Constants.getLastName(), Constants.getTestLastName())
-						.param(Constants.getGroupName(), Constants.getTestGroupName()).accept(MediaType.APPLICATION_JSON))
+				.perform(get(Constants.SEARCH_URL)
+						.param(Constants.getIssueType(), Constants.getTestIssueType())
+						.param(Constants.getSeverity(),Constants.getTestSeverity())
+						.param(Constants.getRoomReference(),Constants.getTestRoomReference())
+						.param(Constants.getDateReported(),Constants.getTestDateReported())
+						.param(Constants.getStatus(),Constants.getTestStatus())
+						.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andReturn();
 		this.content = this.result.getResponse().getContentAsString();
-	    this.mapType = new TypeReference<List<Maintenance>>() {
+		this.mapType = new TypeReference<List<Maintenance>>() {
 		};
 		this.list = Constants.OBJECT_MAPPER.readValue(this.content, this.mapType);
-		assertThat(this.list.stream().filter(x -> x.matches(this.controllerTestMaintenance)).collect(Collectors.toList()).get(0)
-				.matches(this.controllerTestMaintenance)).isEqualTo(true);
+		assertThat(this.list.stream().filter(x -> x.matches(this.controllerTestMaintenance))
+				.collect(Collectors.toList()).get(0).matches(this.controllerTestMaintenance)).isEqualTo(true);
 	}
 
 	@Test
@@ -117,43 +124,39 @@ public class MaintenanceControllerTest {
 			this.mockedMaintenances.clear();
 			return Constants.getAllDeletionMessage();
 		});
-		this.mockMvc.perform(MockMvcRequestBuilders.delete(Constants.DELETE_ALL_URL).contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+		this.mockMvc.perform(MockMvcRequestBuilders.delete(Constants.DELETE_ALL_URL)
+				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 		assertThat(this.mockedMaintenances.size()).isEqualTo(0);
 	}
 
 	@Test
 	public void testDeleteMaintenance() throws Exception {
-		this.mockedMaintenances = new ArrayList<Maintenance>(); 
+		this.mockedMaintenances = new ArrayList<Maintenance>();
 		this.mockedMaintenances.add(this.controllerTestMaintenance);
 		this.mockedMaintenances.add(Constants.getDefaultBuilderMaintenance());
-		
+
 		Mockito.when(this.service.maintenanceSearch((Maintenance) notNull())).thenReturn(this.mockedMaintenances);
 		Mockito.when(this.service.deleteMaintenance((Maintenance) notNull())).thenAnswer((Answer<?>) invocation -> {
 			this.mockedMaintenances.remove(this.controllerTestMaintenance);
 			return Constants.getDeletionMessage();
 		});
-		this.mockMvc.perform(MockMvcRequestBuilders
-				.delete(Constants.DELETE_URL)
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(this.postContent))
-		.andExpect(status().isOk());
+		this.mockMvc.perform(MockMvcRequestBuilders.delete(Constants.DELETE_URL).contentType(MediaType.APPLICATION_JSON)
+				.content(this.postContent)).andExpect(status().isOk());
 		assertThat(this.mockedMaintenances.size()).isEqualTo(1);
 	}
 
 	@Test
 	public void testUpdateMaintenance() throws Exception {
 		this.id = controllerTestMaintenance.getId();
-		Mockito.when(this.service.updateMaintenance((Long)notNull(), (Maintenance)notNull())).thenAnswer((Answer<?>) invocation -> {
-			this.controllerTestMaintenance = Constants.getDefaultBuilderMaintenance();
-			this.controllerTestMaintenance.setId(id);
-			return Constants.getUpdateMesssage();
-		});
+		Mockito.when(this.service.updateMaintenance((Long) notNull(), (Maintenance) notNull()))
+				.thenAnswer((Answer<?>) invocation -> {
+					this.controllerTestMaintenance = Constants.getDefaultBuilderMaintenance();
+					this.controllerTestMaintenance.setId(id);
+					return Constants.getUpdateMesssage();
+				});
 		this.mockMvc.perform(MockMvcRequestBuilders.put(Constants.UPDATE_URL, this.id)
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(this.postContent2))
-		.andExpect(status().isOk());
-		assertThat(this.controllerTestMaintenance.getFirstName()).isEqualTo(Constants.getNaString());
+				.contentType(MediaType.APPLICATION_JSON).content(this.postContent2)).andExpect(status().isOk());
+		assertThat(this.controllerTestMaintenance.getIssueType()).isEqualTo(Constants.getNaString());
 		assertThat(this.controllerTestMaintenance.getId()).isEqualTo(id);
 	}
 }

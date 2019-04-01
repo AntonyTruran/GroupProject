@@ -2,18 +2,22 @@ package com.qa.maintenanceApi.main.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.maintenanceApi.main.Constants;
 import com.qa.maintenanceApi.main.entities.Maintenance;
 import com.qa.maintenanceApi.main.entities.MaintenanceBuilder;
 import com.qa.maintenanceApi.main.services.MaintenanceService;
 
+@RestController
+@CrossOrigin
 public class MaintenanceController {
 
 	private MaintenanceService maintenanceService;
@@ -22,7 +26,7 @@ public class MaintenanceController {
 		this.maintenanceService = maintenanceService;
 	}
 
-	@PostMapping(Constants.CREATE_URL)
+	@PostMapping("/")
 	public String createMaintenance(@RequestBody Maintenance maintenance) {
 		return this.maintenanceService.createMaintenance(maintenance);
 	}

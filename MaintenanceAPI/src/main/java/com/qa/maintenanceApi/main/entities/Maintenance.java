@@ -118,4 +118,8 @@ public class Maintenance {
 		this.dateReported = dateReported;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }
