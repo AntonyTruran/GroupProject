@@ -22,7 +22,7 @@ public class Maintenance {
 
 	public Maintenance(String issueType, String severity, String additionalDetails, String roomReference,
 			String dateReported, String status, String notes) {
-
+		
 		this.issueType = issueType;
 		this.severity = severity;
 		this.additionalDetails = additionalDetails;
@@ -56,9 +56,6 @@ public class Maintenance {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getIssueType() {
 		return issueType;

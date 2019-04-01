@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.qa.maintenanceApi.main.Constants;
 
+
 @Component
 @Scope("singleton")
 public class MaintenanceBuilder {
@@ -18,11 +19,11 @@ public class MaintenanceBuilder {
 	private String dateReported;
 	private String status;
 	private String notes;
+	private static MaintenanceBuilder builder;
 
 	private MaintenanceBuilder() {
 	}
 
-	private static MaintenanceBuilder builder;
 
 	public static MaintenanceBuilder getMaintenanceBuilder() {
 		if (builder == null) {
@@ -66,7 +67,7 @@ public class MaintenanceBuilder {
 		return this;
 	}
 
-	public static Maintenance MaintenanceBuild() {
+	public static Maintenance maintenanceBuild() {
 		Maintenance maintenance = new Maintenance(
 				Optional.ofNullable(builder.issueType).orElse(Constants.getNaString()),
 				Optional.ofNullable(builder.severity).orElse(Constants.getNaString()),

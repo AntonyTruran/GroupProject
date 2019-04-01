@@ -39,7 +39,7 @@ public class MaintenanceController {
 		MaintenanceBuilder.getMaintenanceBuilder().issueType(issueType).severity(severity).roomReference(roomReference)
 				.dateReported(dateReported);
 
-		Maintenance maintenance = MaintenanceBuilder.MaintenanceBuild();
+		Maintenance maintenance = MaintenanceBuilder.maintenanceBuild();
 		return this.maintenanceService.maintenanceSearch(maintenance);
 	}
 
