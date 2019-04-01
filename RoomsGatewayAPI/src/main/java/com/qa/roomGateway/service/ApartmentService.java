@@ -26,7 +26,7 @@ public class ApartmentService {
 		return this.repo.findAll();
 	}
 
-	public List<Apartment> getApartmentsByNumber(int request) {
+	public List<Apartment> getApartmentsByNumber(String request) {
 		return this.repo.findByTitle(request);
 	}
 

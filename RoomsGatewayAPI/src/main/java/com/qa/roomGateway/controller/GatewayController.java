@@ -45,7 +45,7 @@ public class GatewayController {
 	}
 
 	@GetMapping("/getApartmentByNumber/{request}")
-	public List<Apartment> getApartmentsByNumber(@PathVariable("request") int request) {
+	public List<Apartment> getApartmentsByNumber(@PathVariable("request") String request) {
 		return service.getApartmentsByNumber(request);
 	}
 

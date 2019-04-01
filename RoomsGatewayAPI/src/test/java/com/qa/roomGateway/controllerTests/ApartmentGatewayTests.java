@@ -100,7 +100,7 @@ public class ApartmentGatewayTests {
 	@Test
 	public void getApartmentsByNumberTest() throws Exception {
 		roomList.add(GatewayConstants.getConstructedApartment());
-		when(service.getApartmentsByNumber(0)).thenReturn(roomList);
+		when(service.getApartmentsByNumber("0")).thenReturn(roomList);
 		assertThat(mvc.perform(get("/getApartmentByNumber/").param("request", "1301").accept(MediaType.APPLICATION_JSON))
 				.andExpect(content().string("")));
 	}

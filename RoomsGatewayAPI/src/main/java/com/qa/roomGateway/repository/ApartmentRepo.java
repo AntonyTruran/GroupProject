@@ -10,7 +10,7 @@ import com.qa.roomGateway.entity.Apartment;
 
 @Repository
 public interface ApartmentRepo extends MongoRepository<Apartment, String>{
-	public List<Apartment> findByTitle(Integer title);
+	public List<Apartment> findByTitle(String title);
 
 	public List<Apartment> findByBuilding(String building);
 	
