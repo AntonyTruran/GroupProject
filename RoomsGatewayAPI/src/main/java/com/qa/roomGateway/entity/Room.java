@@ -7,41 +7,41 @@ import org.springframework.data.annotation.Id;
 
 public class Room {
 	@Id
-	private String _id;
-	private String roomName;
-	private Set<Event> events;
+	private String id;
+	private String title;
+	private Set<Event> elements;
 
 	public Room() {
 	}
 
-	public Room(String roomName, Set<Event> events) {
-		this.roomName = roomName;
-		this.events = events;
-		this._id= ObjectId.get().toString();
+	public Room(String roomName, Set<Event> elements) {
+		this.title = roomName;
+		this.elements = elements;
+		this.id= ObjectId.get().toString();
 	}
 
 	public String get_id() {
-		return _id;
+		return id;
 	}
 
 	public void set_id(String _id) {
-		this._id = _id;
+		this.id = _id;
 	}
 
 	public String getRoomName() {
-		return roomName;
+		return title;
 	}
 
 	public void setRoomName(String roomName) {
-		this.roomName = roomName;
+		this.title = roomName;
 	}
 
 	public Set<Event> getEvents() {
-		return events;
+		return elements;
 	}
 
 	public void setEvents(Set<Event> events) {
-		this.events = events;
+		this.elements = events;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.qa.roomGateway.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.data.annotation.Id;
@@ -13,25 +14,23 @@ public class Apartment {
 	@Id
 	private String _id;
 	private String building;
-
+	private boolean isOpen = true;
 	private Integer apartmentNumber;
-	
-	private Integer roomNumber;
-	
-	private Set<Room> rooms;
-	
+	private Set<Event> elements = new HashSet<>();
+	private Integer title;
+	private Set<Room> tracks;
 	private String currentState;
 	
 	private String landlord;
 	public Apartment() {
 	}
 
-	public Apartment( String building, Integer aptNumber, Integer roomNumber, Set<Room> rooms,
+	public Apartment( String building, Integer aptNumber, Integer title, Set<Room> tracks,
 			String currentState, String landlord) {
 		this.building = building;
 		this.apartmentNumber = aptNumber;
-		this.roomNumber = roomNumber;
-		this.rooms = rooms;
+		this.title = title;
+		this.tracks = tracks;
 		this.currentState = currentState;
 		this.landlord = landlord;
 	}
@@ -57,16 +56,16 @@ public class Apartment {
 		this.apartmentNumber = aptNumber;
 	}
 	public Integer getRoomNumber() {
-		return roomNumber;
+		return title;
 	}
 	public void setRoomNumber(Integer roomNumber) {
-		this.roomNumber = roomNumber;
+		this.title = roomNumber;
 	}
 	public Set<Room> getRooms() {
-		return rooms;
+		return tracks;
 	}
 	public void setRooms(Set<Room> events) {
-		this.rooms = events;
+		this.tracks = events;
 	}
 	public String getCurrentState() {
 		return currentState;
@@ -94,5 +93,21 @@ public class Apartment {
 		
     	return jsonString;
     }
+
+	public boolean isOpen() {
+		return isOpen;
+	}
+
+	public void setOpen(boolean isOpen) {
+		this.isOpen = isOpen;
+	}
+
+	public Set<Event> getElements() {
+		return elements;
+	}
+
+	public void setElements(Set<Event> elements) {
+		this.elements = elements;
+	}
 
 }
