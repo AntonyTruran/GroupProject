@@ -2,8 +2,8 @@ package com.qa.roomGateway.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.base.Strings;
 import com.netflix.discovery.EurekaClient;
 import com.qa.roomGateway.entity.Apartment;
 import com.qa.roomGateway.service.ApartmentService;
@@ -28,12 +27,10 @@ public class GatewayController {
 		this.rtb = rtb;
 	}
 
-	@Autowired
 	private EurekaClient client;
 
 	private ApartmentService service;
 
-	@Autowired
 	private RestTemplateBuilder rtb;
 
 	@PostMapping("/createApartment")
@@ -82,21 +79,22 @@ public class GatewayController {
 	}
 	
 	@GetMapping("/buildingSearch")
-	public String buildingSearch() {
+	public String buildingSearch(@RequestBody Object entity) {
 		return this.rtb.build().exchange(client.getNextServerFromEureka("BuildingAPI", false).getHomePageUrl()+"buildingSearch", 
-				HttpMethod.GET, null, String.class).getBody();
+				HttpMethod.GET, new HttpEntity<Object>(entity), String.class).getBody();
 	}
 	
 	@DeleteMapping("/deleteBuilding")
-	public String deleteBuilding() {
+	public String deleteBuilding(@RequestBody Object entity) {
 		return this.rtb.build().exchange(client.getNextServerFromEureka("BuildingAPI", false).getHomePageUrl()+"deleteBuilding", 
-				HttpMethod.DELETE, null, String.class).getBody();
+				HttpMethod.DELETE, new HttpEntity<Object>(entity), String.class).getBody();
 	}
 
 	@PostMapping("/createBuilding")
-	public String createBuilding() {
+	public String createBuilding(@RequestBody Object entity) {
+//		HttpEntity<String> entity = new HttpEntity<>(@RequestBody, requestHeaders);
 		return this.rtb.build().exchange(client.getNextServerFromEureka("BuildingAPI", false).getHomePageUrl()+"createBuilding", 
-				HttpMethod.POST, null, String.class).getBody();
+				HttpMethod.POST, new HttpEntity<Object>(entity), String.class).getBody();
 	}
 	// get tenants
 
