@@ -49,16 +49,7 @@ public class TenantService {
 	
 	public String updateTenant(Long id, Tenant updateTenant) {
 		Tenant tenantToUpdate = this.tenantRepo.findById(id).orElse(new Tenant());
-		tenantToUpdate.setFirstName(Optional.ofNullable(updateTenant.getFirstName()).orElse(Optional.ofNullable(tenantToUpdate.getFirstName()).orElse(Constants.getNaString())));
-		tenantToUpdate.setLastName(Optional.ofNullable(updateTenant.getLastName()).orElse(Optional.ofNullable(tenantToUpdate.getLastName()).orElse(Constants.getNaString())));
-		tenantToUpdate.setContactNumber(Optional.ofNullable(updateTenant.getContactNumber()).orElse(Optional.ofNullable(tenantToUpdate.getContactNumber()).orElse(Constants.getNaString())));
-		tenantToUpdate.setContactEmail(Optional.ofNullable(updateTenant.getContactEmail()).orElse(Optional.ofNullable(tenantToUpdate.getContactEmail()).orElse(Constants.getNaString())));
-		tenantToUpdate.setQaEmail(Optional.ofNullable(updateTenant.getQaEmail()).orElse(Optional.ofNullable(tenantToUpdate.getQaEmail()).orElse(Constants.getNaString())));
-		tenantToUpdate.setRoomReference(Optional.ofNullable(updateTenant.getRoomReference()).orElse(Optional.ofNullable(tenantToUpdate.getRoomReference()).orElse(Constants.getNaString())));
-		tenantToUpdate.setGroupName(Optional.ofNullable(updateTenant.getGroupName()).orElse(Optional.ofNullable(tenantToUpdate.getGroupName()).orElse(Constants.getNaString())));
-		tenantToUpdate.setStartDate(Optional.ofNullable(updateTenant.getStartDate()).orElse(Optional.ofNullable(tenantToUpdate.getStartDate()).orElse(Constants.getNaString())));
-		tenantToUpdate.setEndDate(Optional.ofNullable(updateTenant.getEndDate()).orElse(Optional.ofNullable(tenantToUpdate.getEndDate()).orElse(Constants.getNaString())));
-		tenantToUpdate.setNotes(Optional.ofNullable(updateTenant.getNotes()).orElse(Optional.ofNullable(tenantToUpdate.getNotes()).orElse(Constants.getNaString())));
+		tenantToUpdate.update(updateTenant);
 		this.tenantRepo.saveAndFlush(tenantToUpdate);
 		return Constants.getUpdateMesssage();
 	}

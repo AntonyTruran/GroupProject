@@ -1,5 +1,7 @@
 package com.qa.tenantApi.main.entities;
 
+import java.util.Optional;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -143,5 +145,18 @@ public class Tenant {
 		lastCheck = lastCheck||lastNull;
 		groupCheck = groupCheck||groupNull;
 		return (firstCheck && lastCheck && groupCheck);
+	}
+	
+	public void update(Tenant updateTenant) {
+		this.setFirstName(Optional.ofNullable(updateTenant.getFirstName()).orElse(Optional.ofNullable(this.getFirstName()).orElse(Constants.getNaString())));
+		this.setLastName(Optional.ofNullable(updateTenant.getLastName()).orElse(Optional.ofNullable(this.getLastName()).orElse(Constants.getNaString())));
+		this.setContactNumber(Optional.ofNullable(updateTenant.getContactNumber()).orElse(Optional.ofNullable(this.getContactNumber()).orElse(Constants.getNaString())));
+		this.setContactEmail(Optional.ofNullable(updateTenant.getContactEmail()).orElse(Optional.ofNullable(this.getContactEmail()).orElse(Constants.getNaString())));
+		this.setQaEmail(Optional.ofNullable(updateTenant.getQaEmail()).orElse(Optional.ofNullable(this.getQaEmail()).orElse(Constants.getNaString())));
+		this.setRoomReference(Optional.ofNullable(updateTenant.getRoomReference()).orElse(Optional.ofNullable(this.getRoomReference()).orElse(Constants.getNaString())));
+		this.setGroupName(Optional.ofNullable(updateTenant.getGroupName()).orElse(Optional.ofNullable(this.getGroupName()).orElse(Constants.getNaString())));
+		this.setStartDate(Optional.ofNullable(updateTenant.getStartDate()).orElse(Optional.ofNullable(this.getStartDate()).orElse(Constants.getNaString())));
+		this.setEndDate(Optional.ofNullable(updateTenant.getEndDate()).orElse(Optional.ofNullable(this.getEndDate()).orElse(Constants.getNaString())));
+		this.setNotes(Optional.ofNullable(updateTenant.getNotes()).orElse(Optional.ofNullable(this.getNotes()).orElse(Constants.getNaString())));
 	}
 }
