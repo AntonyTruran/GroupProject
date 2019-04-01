@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.accommodation.buildingAPI.Constants;
@@ -24,22 +25,26 @@ public class BuildingController {
 	}
 	
 	@PostMapping("/createBuilding")
+	@ResponseBody
 	public String createBuilding(@RequestBody Building building) {
 		return this.buildingService.createBuilding(building);
 	}
 	
 	@GetMapping("/getAllBuildings")
+	@ResponseBody
 	public List<Building> getAllBuildings() {
 		return this.buildingService.getAllBuildings();
 	}
 	
 	@GetMapping("/buildingSearch")
+	@ResponseBody
 	public List<Building> buildingSearch(String buildingName, String buildingLocation, String ownerName){
 		return this.buildingService.buildingSearch(BuildingBuilder.getBuildingBuilder().buildingName(buildingName)
 				.buildingLocation(buildingLocation).ownerName(ownerName).buildingBuild());
 	}
 	
 	@DeleteMapping("/deleteBuilding")
+	@ResponseBody
 	public String deleteBuilding(String buildingName, String buildingLocation, String ownerName) {
 		List<Building> buildings = this.buildingSearch(buildingName, buildingLocation, ownerName);
 		for(int i = 0; i < buildings.size(); i++) {
