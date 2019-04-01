@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import './Table.css';
+import axios from 'axios';
+import {
+    GET_ALL_APARTMENTS_URL,
+    BASE_URL,
+} from './Timeline/Constants'
 
 class Apartments extends Component {
   constructor(props){
@@ -17,6 +22,21 @@ class Apartments extends Component {
       notes:"defaultNotes"
     }
   }
+
+  searchByRef = (event) => {
+
+    event.preventDefault();
+    axios.get(BASE_URL + GET_ALL_APARTMENTS_URL).then(response => {
+      console.log(response.data);
+      this.setState({
+        rowNumber:response.data.length,
+        data: response.data
+      });
+      this.addRow(response.data);
+    });
+
+  }
+
    createRow(data) {
     return (
       <tr>
