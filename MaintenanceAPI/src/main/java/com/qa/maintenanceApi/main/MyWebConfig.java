@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 @Configuration
 @ComponentScan
-public class MyWebConfig extends WebMvcConfigurerAdapter {
+public class MyWebConfig extends WebMvcConfigurerAdapter { 
   
   @Override
   public void configureContentNegotiation (ContentNegotiationConfigurer configurer) {
