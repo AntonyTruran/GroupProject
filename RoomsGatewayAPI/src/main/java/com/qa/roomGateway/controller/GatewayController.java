@@ -62,7 +62,7 @@ public class GatewayController {
 
 	@DeleteMapping("/deleteApartment/{requestString}/{requestInt}")
 	public String deleteApartment(@PathVariable("requestString") String building,
-			@PathVariable("requestInt") int apartmentNumber) {
+			@PathVariable("requestInt") String apartmentNumber) {
 		return service.deleteApartment(building, apartmentNumber);
 	}
 

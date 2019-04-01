@@ -34,7 +34,7 @@ public class ApartmentEntityTests {
 	public void apartmentSettterTest() {
 		Apartment testApartment = GatewayConstants.getNullApartment();
 		testApartment.setBuilding(GatewayConstants.getNaString());
-		testApartment.setTitle(1301);
+		testApartment.setTitle("1301");
 		testApartment.setTracks(null);
 		testApartment.setCurrentState(GatewayConstants.getNaString());
 		testApartment.setLandlord(GatewayConstants.getNaString());

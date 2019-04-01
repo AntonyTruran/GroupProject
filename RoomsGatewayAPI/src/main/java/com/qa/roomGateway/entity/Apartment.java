@@ -3,15 +3,18 @@ package com.qa.roomGateway.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.data.annotation.Id;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class Apartment {
-
+	@Id
+	private String id;
 	private String building;
-	private boolean isIsOpen = false;
-	private Integer title;
+	private boolean isIsOpen = true;
+	private String title;
 	private Set<Event> elements = new HashSet<>();
 	private Integer roomNumber;
 	private Set<Room> tracks;
@@ -20,7 +23,7 @@ public class Apartment {
 	public Apartment() {
 	}
 
-	public Apartment( String building, Integer title, Integer roomNumber, Set<Room> tracks,
+	public Apartment( String building, String title, Integer roomNumber, Set<Room> tracks,
 			String currentState, String landlord) {
 		this.building = building;
 		this.title = title;
@@ -29,16 +32,25 @@ public class Apartment {
 		this.currentState = currentState;
 		this.landlord = landlord;
 	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getBuilding() {
 		return building;
 	}
 	public void setBuilding(String building) {
 		this.building = building;
 	}
-	public Integer getTitle() {
+	public String getTitle() {
 		return title;
 	}
-	public void setTitle(Integer title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 	public Integer getRoomNumber() {
