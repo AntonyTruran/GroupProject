@@ -59,23 +59,6 @@ class EventTimeline extends Component {
                 }
             }
         }
-        // for (var i = 0; i < this.state.tracks.length; i++) {
-        //     console.log(i);
-        //     for (var j = 0; j < this.state.tracks[i].tracks.length; j++) {
-        //         console.log(i + " " + j);
-        //         for (var k = 0; k < this.state.tracks[i].tracks[j].elements.length; k++) {
-        //             update(this.state, { tracks: { [i]: { tracks: {[j]: {    elements: {    [k]: { start: { $set: new Date((this.state.tracks[i].tracks[j].elements[k].end))}}}}}}}});
-        //             // console.log(i + " " + j + " " + k)
-        //             // this.setState({...state.tracks[i].tracks[j].elements[k].start= new Date((this.state.tracks[i].tracks[j].elements[k].start).toISOString().substr(0,10))});
-        //             // this.setState({...state.tracks[i].tracks[j].elements[k].end = new Date((this.state.tracks[i].tracks[j].elements[k].end).toISOString().substr(0,10))});
-        //             // console.log(this.state.tracks[i].tracks[j].elements[k].start.toISOString().substr(0,10));
-        //             console.log(this.state.tracks[i].tracks[j].elements[k].end);
-        //         }
-        //         console.log("here");
-        //     }
-        //     console.log("here");
-        // }
-        // console.log("here");
     }
     componentDidMount() {
 
@@ -138,13 +121,8 @@ class EventTimeline extends Component {
                     now={now}
                     toggleTrackOpen={this.handleToggleTrackOpen}
                     enableSticky
-                    scrollToNow
+                    scrollToNow={false}
                 />
-
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                {JSON.stringify(this.state.holder)}
-                <br /><br /> <br />
-                {JSON.stringify(this.state.tracks)}
             </div>
         )
     }
